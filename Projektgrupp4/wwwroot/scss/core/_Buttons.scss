@@ -1,0 +1,39 @@
+//Ändra inte denna kod. Om du vill lägga till mer kod, gör det längre ner på sidan. :)
+
+// Den bredare knappen. 335px width
+.button335W {
+    background-color: $color-darkBlack;
+    color: $color-white;
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    width: 335px;
+    height: 50px;
+    border-radius: 25px;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+        background-color: $color-white;
+        color: $color-darkBlack;
+    }
+}
+
+// Den smalare knappen. 255px width
+.button255W {
+    background-color: $color-darkBlack;
+    color: $color-white;
+    font-size: 14px;
+    font-weight: $font-weight-semibold;
+    width: 255px;
+    height: 50px;
+    border-radius: 25px;
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+        background-color: $color-white;
+        color: $color-darkBlack;
+    }
+}
+//Ändra inte denna kod ovanför.
+
+
+// Nedanför kan du lägga till mer kod.
