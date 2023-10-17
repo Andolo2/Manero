@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Projektgrupp4.Contexts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Services
@@ -8,8 +11,9 @@ var app = builder.Build();
 // Context
 
 
+//builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
 
-
+builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
 
 
 
