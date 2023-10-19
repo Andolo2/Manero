@@ -1,4 +1,7 @@
-﻿<section class="productDetails">
+﻿
+@model ProductDetailViewModel
+
+<section class="productDetails">
     <div class="container">
         <div class="productImage">
             <img src="images/product-detail-placeholder.svg" />
@@ -12,7 +15,7 @@
 
         <div class="productInformation">
             <div class="productInformationTop">
-                <h3 class="productTitle">Knitted summer top</h3>
+                <h3 class="productTitle">@Model.ProductTitle</h3>
                 <i class="productAddToFavorite fa-sharp fa-light fa-heart"></i>
             </div>
             <div class="productReviewStars">
@@ -24,7 +27,7 @@
                 <span>(23)</span>
             </div>
             <div class="productPrice">
-                <p>$37.88</p>
+                <p>$@Model.ProductPrice</p>
                 <div class="productQuantity">
                     <button class="productSubtract"><i class="fa-regular fa-minus"></i></button>
                     <span>1</span>
@@ -76,7 +79,7 @@
             </div>
             <div class="productDescription">
                 <h5>Description</h5>
-                <p>Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.</p>
+                <p>@Model.ProductDescription</p>
             </div>
             <div class="buttonContainer">
                 <button class="button335W">+ ADD TO CART</button>
@@ -85,40 +88,10 @@
         <div class="productReviews">
             <h3>Reviews (23)</h3>
             <a class="productViewAllReviews" href="Reviews.html">view all <i class="fa-solid fa-chevron-right"></i></a>
-            <div class="productReviewCard">
-                <div class="imageAndContentContainer">
-                    <img src="images/review-image.svg" alt="">
-                    <div class="product-review-card-container">
-                        <h6 class="reviewName">Jenny Wilson</h6>
-                        <p class="reviewDate">23 Jan 2022</p>
-                        <p class="reviewText">Consequat ut ea dolor aliqua laborum tempor Lorem culpa. Commodo veniam sint est mollit proident commodo.</p>
-                    </div>
-                </div>
-                <div class="reviewStars">
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-light fa-star"></i>
-                    <i class="star fa-sharp fa-light fa-star"></i>
-                </div>
-            </div>
-            <div class="productReviewCard">
-                <div class="imageAndContentContainer">
-                    <img src="images/review-image.svg" alt="">
-                    <div class="productReviewCardContainer">
-                        <h6 class="reviewName">Jenny Wilson</h6>
-                        <p class="reviewDate">23 Jan 2022</p>
-                        <p class="reviewText">Consequat ut ea dolor aliqua laborum tempor Lorem culpa. Commodo veniam sint est mollit proident commodo.</p>
-                    </div>
-                </div>
-                <div class="reviewStars">
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-light fa-star"></i>
-                    <i class="star fa-sharp fa-light fa-star"></i>
-                </div>
-            </div>
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+
         </div>
     </div>
 </section>
