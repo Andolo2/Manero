@@ -1,0 +1,97 @@
+﻿
+@model ProductDetailViewModel
+
+<section class="productDetails">
+    <div class="container">
+        <div class="productImage">
+            <img src="images/product-detail-placeholder.svg" />
+            <div class="productImageDots">
+                <div class="productImageDot"></div>
+                <div class="productImageDot"></div>
+                <div class="productImageDot"></div>
+            </div>
+
+        </div>
+
+        <div class="productInformation">
+            <div class="productInformationTop">
+                <h3 class="productTitle">@Model.ProductTitle</h3>
+                <i class="productAddToFavorite fa-sharp fa-light fa-heart"></i>
+            </div>
+            <div class="productReviewStars">
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                <span>(23)</span>
+            </div>
+            <div class="productPrice">
+                <p>$@Model.ProductPrice</p>
+                <div class="productQuantity">
+                    <button class="productSubtract"><i class="fa-regular fa-minus"></i></button>
+                    <span>1</span>
+                    <button class="productAdd"><i class="fa-regular fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="productSize">
+                <h5>Size</h5>
+                <div class="productSizeOptions">
+                    <div>
+                        <a>XS</a>
+                    </div>
+                    <div>
+                        <a>S</a>
+                    </div>
+                    <div>
+                        <a>M</a>
+                    </div>
+                    <div>
+                        <a>L</a>
+                    </div>
+                    <div>
+                        <a>XL</a>
+                    </div>
+                    <div>
+                        <a>XXL</a>
+                    </div>
+                </div>
+            </div>
+            <div class="productColors">
+                <h5>Color</h5>
+                <div class="colorSelection">
+                    <div class="colorRed">
+                        <a></a>
+                    </div>
+                    <div class="colorBlue">
+                        <a></a>
+                    </div>
+                    <div class="colorBeige">
+                        <a></a>
+                    </div>
+                    <div class="colorDarkBlue">
+                        <a></a>
+                    </div>
+                    <div class="colorBlack">
+                        <a></a>
+                    </div>
+                </div>
+            </div>
+            <div class="productDescription">
+                <h5>Description</h5>
+                <p>@Model.ProductDescription</p>
+            </div>
+            <div class="buttonContainer">
+                <button class="button335W">+ ADD TO CART</button>
+            </div>
+        </div>
+        <div class="productReviews">
+            <h3>Reviews (23)</h3>
+            <a class="productViewAllReviews" href="Reviews.html">view all <i class="fa-solid fa-chevron-right"></i></a>
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+
+        </div>
+    </div>
+</section>
