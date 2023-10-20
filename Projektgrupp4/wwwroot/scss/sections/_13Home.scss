@@ -1,0 +1,159 @@
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+._13Home {
+
+    .showcase {
+        background-color: $color-theme;
+ 
+        h1 {
+            color: $color-white;
+            font-size: 32px;
+            font-weight: $font-weight-bold;
+            padding-left: 1rem;
+            padding-bottom: 1rem;
+            padding-top: 12rem;
+
+            @include md {
+                padding-left: 5rem;
+                padding-bottom: 4rem;
+            }
+
+            @include lg {
+                padding-left: 9rem;
+           
+            }
+
+            @include xl {
+                padding-left: 16rem;
+            
+            }
+
+            @include xxl {
+                padding-left: 22rem;
+               
+            }
+
+            @include xxxl {
+                padding-left: 39rem;
+            
+            }
+        }
+    }
+
+    .cardSection {
+        color: $color-darkBlack;
+        margin-top: 3rem;
+
+        .container {
+            padding: 0 1rem;
+
+            .top {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 0.2rem;
+                padding: 0 0.8rem;
+                
+
+                @include md {
+                    padding: 0 0;
+                }
+    
+                @include lg {
+                    padding: 0 7.5rem;
+                }
+    
+                @include xl {
+                    padding: 0 13rem;
+                }
+
+                @include xxl {
+                    padding: 0 18.8rem;
+                }
+
+                h2 {
+                    font-size: 20px;
+                    font-weight: $font-weight-bold;
+                }
+
+                a {
+                    color: $color-darkBlack;
+                    text-decoration: none;
+                    transition: all 0.25s ease-in-out;
+
+                    &:hover {
+                        color: $color-yellow;
+                    }
+
+                    i {
+                        font-size: 16px;
+                    }
+
+                }
+            }
+        }
+    }
+ 
+    .take5OfNow {
+        background-color: $color-theme;
+        padding-bottom: 4rem;
+        
+
+
+        h1 {
+            color: $color-white;
+            font-size: 22px;
+            font-weight: $font-weight-bold;
+            padding-left: 1rem;
+            padding-top: 2.5rem;
+            margin-bottom: 2.5rem;
+
+            @include lg {
+                padding-left: 8rem;            
+            }
+
+            @include xl {
+                padding-left: 13.5rem;            
+            }
+
+            @include xxl {
+                padding-left: 19.5rem;           
+            }
+        }
+
+            // Vit knapp. 255px
+        .buttonWhite {
+            background-color: $color-white;
+            color: $color-darkBlack;
+            font-size: 14px;
+            font-weight: $font-weight-semibold;
+            width: 150px;
+            height: 50px;
+            border-radius: 25px;
+            transition: all 0.25s ease-in-out;
+            margin-left: 1rem;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+
+            @include lg {
+                margin-left: 8rem;            
+            }
+
+            @include xl {
+                margin-left: 13.5rem;            
+            }
+
+            @include xxl {
+                margin-left: 19.5rem;           
+            }
+
+            &:hover {
+                background-color: $color-yellow;
+                color: $color-white;
+            }
+        }
+    } 
+}
