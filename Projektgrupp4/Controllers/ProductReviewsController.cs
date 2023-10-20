@@ -4,7 +4,7 @@ namespace Projektgrupp4.Controllers
 {
 	public class ProductReviewsController : Controller
 	{
-		public IActionResult Index()
+		public IActionResult ProductReviews()
 		{
 			return View();
 		}
