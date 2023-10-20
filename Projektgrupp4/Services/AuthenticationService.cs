@@ -21,13 +21,7 @@ public class AuthenticationService
     {
         try
         {
-            //UserEntity userEntity = viewModel;
 
-            //var result = await _userManager.CreateAsync(userEntity, viewModel.Password);
-
-            //if (result.Succeeded) {
-            //    return true;
-            //}
             var user = new UserEntity
             {
                 UserName = viewModel.Email,
@@ -48,8 +42,6 @@ public class AuthenticationService
         }
         return false;
 
-        //return false;
-        //} catch { return false; }
     }
 
     public async Task<bool> UserAlreadyExistsAsync(Expression<Func<UserEntity, bool>> expression)

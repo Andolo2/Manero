@@ -11,8 +11,5 @@ public class UserEntity : IdentityUser
     [MaxLength(256)]
     public string Name { get; set; } = null!;
 
-//    public PasswordEntity Password { get; set; } = null!;
-
     public ICollection<AddressEntity> UserAddress { get; set; } = new HashSet<AddressEntity>();
-//    public ICollection<PasswordEntity> Users { get; set; } = new HashSet<PasswordEntity>();
 }
