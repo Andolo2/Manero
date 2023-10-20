@@ -5,8 +5,6 @@ namespace Projektgrupp4.Contexts
 {
     public class DataContext : DbContext
     {
-        private readonly string _connectionString = @"Server=tcp:grupp4-sqlserver.database.windows.net,1433;Initial Catalog=database-1;Persist Security Info=False;User ID=SqlAdmin;Password={Bytmig123!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
         public DataContext()
         {
         }
@@ -16,5 +14,6 @@ namespace Projektgrupp4.Contexts
         }
 
         public DbSet<AddressEntity> Adresses { get; set; } = null!;
+        public DbSet<UserEntity> Users { get; set; }
     }
 }

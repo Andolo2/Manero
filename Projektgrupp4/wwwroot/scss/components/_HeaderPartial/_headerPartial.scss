@@ -1,3 +1,9 @@
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+
 /* Denna regel hanterar huvuddelen av sidan, och overflow: hidden döljer innehåll som är utanför */
 .Header-Section {
     overflow: hidden;
@@ -13,7 +19,7 @@
     /* Stilen för vänster delen av toppmenyn */
     .top-menu-left {
         & > p {
-            font-weight: $font-weight-semibold; /* Använder en specifik fontvikt för texten */
+           /* font-weight: $font-weight-semibold;*/ /* Använder en specifik fontvikt för texten */
         }
     }
 }
