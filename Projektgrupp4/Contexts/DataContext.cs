@@ -16,5 +16,6 @@ namespace Projektgrupp4.Contexts
         }
 
         public DbSet<AddressEntity> Adresses { get; set; } = null!;
+        public DbSet<ProductEntity> Products { get; set; } // Create Product fields in db
     }
 }
