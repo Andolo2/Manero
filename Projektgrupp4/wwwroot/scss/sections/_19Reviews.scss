@@ -1,2 +1,120 @@
-﻿body {
+﻿
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+.review-section {
+
+    .container {
+        padding-top: 50px;
+
+        .review-top-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+
+            @include lg {
+                display: none;
+            }
+
+            > a {
+
+                &:hover {
+
+                    i {
+                        color: #7c7c7c;
+                    }
+                }
+
+                > i {
+                    color: $color-darkBlack;
+                }
+            }
+
+            > h6 {
+                margin: auto;
+                font-size: 18px;
+                font-weight: $font-weight-semibold;
+            }
+        }
+
+
+        .product-reviews {
+            display: grid;
+            margin-top: 40px;
+            gap: 40px;
+
+
+            > h3 {
+                font-weight: $font-weight-bold;
+                font-size: 20px;
+                color: $color-darkBlack;
+                margin: 0;
+            }
+
+            .product-view-all-reviews {
+                text-decoration: none;
+                text-align: right;
+                margin-right: 20px;
+                color: $color-darkBlack;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .product-review-card {
+                position: relative;
+                align-items: start;
+                padding-bottom: 40px;
+                border-bottom: 1px solid rgb(219, 227, 245);
+
+
+
+
+                .image-and-content-container {
+                    display: flex;
+                    align-items: start;
+
+                    > img {
+                        margin-right: 20px;
+                    }
+
+                    .product-review-card-container {
+
+
+                        .review-name {
+                            font-size: 16px;
+                            font-weight: $font-weight-semibold;
+                            color: $color-darkBlack;
+                        }
+
+
+
+                        .review-date {
+                            font-size: 10px;
+                            grid-column: 1 / 2;
+                        }
+
+                        .review-text {
+                            grid-column: 1 / -1;
+                            margin: 0px;
+                        }
+                    }
+                }
+
+                .review-stars {
+                    display: flex;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+
+                    > .star {
+                        color: $color-yellow;
+                    }
+                }
+            }
+        }
+    }
 }
