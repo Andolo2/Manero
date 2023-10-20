@@ -1,4 +1,10 @@
-﻿.signUp {
+﻿@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Buttons.scss";
+@import "../core/_Base.scss";
+@import "../core/_Mixins.scss";
+
+.signUp {
     margin: 20px;
 
     .container {
@@ -117,33 +123,33 @@
                 }
             }
         }
-    }
 
-    .socialMedia {
-        display: flex;
-        justify-content: center;
-        margin-top: 40px;
-
-        p {
-            padding: 10px;
-            border: 1px solid $color-theme;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
+        .socialMedia {
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin-right: 10px;
+            margin-top: 40px;
 
-            &:last-child {
-                margin-right: 0;
-            }
+            p {
+                padding: 10px;
+                border: 1px solid $color-theme;
+                border-radius: 50%;
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10px;
 
-            a {
-                color: inherit;
+                &:last-child {
+                    margin-right: 0;
+                }
 
-                &:hover {
-                    color: $color-socialLightBlue;
+                a {
+                    color: inherit;
+
+                    &:hover {
+                        color: $color-socialLightBlue;
+                    }
                 }
             }
         }
