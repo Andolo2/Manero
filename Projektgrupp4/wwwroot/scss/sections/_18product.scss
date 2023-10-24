@@ -174,7 +174,7 @@
                     margin-bottom: 10px;
                 }
 
-                .productSizeOptions {
+                .productSizeSelection {
                     display: flex;
                     gap: 10px;
                     margin-bottom: 40px;
@@ -183,20 +183,39 @@
                         margin-bottom: 20px;
                     }
 
-
-                    > div {
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                    .productSizeOption {
+                        position: relative;
                         height: 45px;
                         width: 45px;
-                        border: 1px solid #DBE3F5;
-                        border-radius: 50px;
-                        transition: 0.2s ease-in-out;
+                        border-radius: 50%;
 
-                        &:hover {
-                            background-color: rgb(219, 227, 245);
-                            cursor: pointer;
+                        > input[type="radio"] {
+                            display: none;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+
+                            &:checked + label {
+                                background-color: rgb(219, 227, 245);
+                            }
+                        }
+
+                        > label {
+                            position: absolute;
+                            text-align: center;
+                            border-radius: 50%;
+                            border: 1px solid rgb(219, 227, 245);
+                            width: 45px;
+                            height: 45px;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            line-height: 45px;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
                     }
                 }
@@ -224,15 +243,39 @@
                     display: flex;
                     gap: 15px;
 
-                    > div {
+                    .colorOption {
+                        position: relative;
                         width: 35px;
                         height: 35px;
                         border-radius: 50%;
-                        transition: 0.1s ease-in-out;
 
                         &:hover {
-                            cursor: pointer;
                             box-shadow: 0px 0px 0px 5px rgba(219, 227, 245, 1.0);
+                        }
+
+                        > input[type="radio"] {
+                            display: none;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+
+                            &:checked + label {
+                                box-shadow: 0px 0px 0px 5px rgba(219, 227, 245, 1.0);
+                            }
+                        }
+
+                        > label {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 35px;
+                            height: 35px;
+                            border-radius: 50%;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
                     }
 
