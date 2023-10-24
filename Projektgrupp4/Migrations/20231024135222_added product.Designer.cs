@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projektgrupp4.Contexts;
 
@@ -11,9 +12,11 @@ using Projektgrupp4.Contexts;
 namespace Projektgrupp4.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231024135222_added product")]
+    partial class addedproduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,18 +125,6 @@ namespace Projektgrupp4.Migrations
                             ProductPriceOrOffer = true,
                             ProductSize = 2,
                             ProductTitle = "T-shirt"
-                        },
-                        new
-                        {
-                            ArticleNumber = 2,
-                            ProductColor = 2,
-                            ProductDescription = "This is a pair of jeans",
-                            ProductLabel = 7,
-                            ProductOfferPrice = 150,
-                            ProductPrice = 399,
-                            ProductPriceOrOffer = true,
-                            ProductSize = 3,
-                            ProductTitle = "Jeans"
                         });
                 });
 

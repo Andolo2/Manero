@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Projektgrupp4.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace Projektgrupp4.Models.Entities;
 
@@ -6,18 +7,19 @@ public class ProductEntity
 {
     [Key]
     public int ArticleNumber { get; set; }
-    public string? ProductImage { get; set; } = null!;
+    public string? ProductImageUrl { get; set; } = null!;
     public string ProductTitle { get; set; } = null!;
-
     public int ProductPrice { get; set; }
     public int? ProductOfferPrice { get; set; }     
     public bool ProductPriceOrOffer { get; set; } = true; //if(ProductPrice) else(ProductOff erPrice)
                                                           //if it is ProductOfferPrice, change classes on a product card. From ProductPrice to ProductOfferPrice
     public string? ProductDescription { get; set; } = null!;
 
+    public ICollection<ReviewEntity> ProductReviews { get; set; } = new HashSet<ReviewEntity>();
 
-
-    public ICollection<ProductCategoriesEntity> ProductCategories { get; set; } = new HashSet<ProductCategoriesEntity>();
+    public Color? ProductColor { get; set; }
+    public Label? ProductLabel { get; set; }
+    public Size? ProductSize { get; set; }
 
 
     //Vart vi ska göra av dessa?
