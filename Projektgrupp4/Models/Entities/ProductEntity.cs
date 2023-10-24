@@ -16,6 +16,7 @@ public class ProductEntity
     public string? ProductDescription { get; set; } = null!;
 
 
+
     public ICollection<ProductCategoriesEntity> ProductCategories { get; set; } = new HashSet<ProductCategoriesEntity>();
 
 

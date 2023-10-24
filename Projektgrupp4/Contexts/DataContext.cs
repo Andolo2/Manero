@@ -13,7 +13,12 @@ namespace Projektgrupp4.Contexts
         {
         }
 
+        // Users
         public DbSet<AddressEntity> Adresses { get; set; } = null!;
         public DbSet<UserEntity> Users { get; set; }
+
+        // Products
+        public DbSet<ProductCategoriesEntity> ProductCategories { get; set; }
+        public DbSet<ProductEntity> Product { get; set; }
     }
 }
