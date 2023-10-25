@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Projektgrupp4.Models.Entities;
 
 namespace Projektgrupp4.Contexts
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<UserEntity>
     {
         public DataContext()
         {
@@ -13,14 +15,15 @@ namespace Projektgrupp4.Contexts
         {
         }
 
+
+
         // Users
         public DbSet<AddressEntity> Adresses { get; set; } = null!;
-        public DbSet<UserEntity> Users { get; set; }
 
         // Products
         public DbSet<ProductEntity> Product { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+/*        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductEntity>().HasData(
                 new ProductEntity {
@@ -44,7 +47,8 @@ namespace Projektgrupp4.Contexts
                     ProductLabel = Enum.Label.Pants,
                     ProductSize = Enum.Size.l
                 }
-                );
-        }
+                );*/
+/*        }*/
+
     }
 }
