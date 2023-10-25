@@ -12,8 +12,8 @@ using Projektgrupp4.Contexts;
 namespace Projektgrupp4.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231024133803_Init Product")]
-    partial class InitProduct
+    [Migration("20231025092440_product database")]
+    partial class productdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,6 +73,63 @@ namespace Projektgrupp4.Migrations
                     b.ToTable("Adresses");
                 });
 
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.CategoryEntity", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.ColorEntity", b =>
+                {
+                    b.Property<int>("ColorId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ColorId"));
+
+                    b.Property<string>("ColorName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ColorId");
+
+                    b.ToTable("Colors");
+                });
+
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductCategoriesEntity", b =>
+                {
+                    b.Property<int>("ProductCategoryRowId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductCategoryRowId"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductCategoryRowId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductCategories");
+                });
+
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductEntity", b =>
                 {
                     b.Property<int>("ArticleNumber")
@@ -81,29 +138,20 @@ namespace Projektgrupp4.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArticleNumber"));
 
-                    b.Property<int?>("ProductColor")
-                        .HasColumnType("int");
-
                     b.Property<string>("ProductDescription")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProductLabel")
-                        .HasColumnType("int");
+                    b.Property<decimal?>("ProductOfferPrice")
+                        .HasColumnType("money");
 
-                    b.Property<int?>("ProductOfferPrice")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductPrice")
-                        .HasColumnType("int");
+                    b.Property<decimal>("ProductPrice")
+                        .HasColumnType("money");
 
                     b.Property<bool>("ProductPriceOrOffer")
                         .HasColumnType("bit");
-
-                    b.Property<int?>("ProductSize")
-                        .HasColumnType("int");
 
                     b.Property<string>("ProductTitle")
                         .IsRequired()
@@ -111,7 +159,35 @@ namespace Projektgrupp4.Migrations
 
                     b.HasKey("ArticleNumber");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductItemEntity", b =>
+                {
+                    b.Property<int>("ProductEntryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductEntryId"));
+
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SizeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductEntryId");
+
+                    b.HasIndex("ColorId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SizeId");
+
+                    b.ToTable("ProductItem");
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ReviewEntity", b =>
@@ -143,7 +219,24 @@ namespace Projektgrupp4.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ReviewEntity");
+                    b.ToTable("Reviews");
+                });
+
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.SizeEntity", b =>
+                {
+                    b.Property<int>("SizeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SizeId"));
+
+                    b.Property<string>("SizeName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SizeId");
+
+                    b.ToTable("Sizes");
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.UserEntity", b =>
@@ -218,6 +311,52 @@ namespace Projektgrupp4.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductCategoriesEntity", b =>
+                {
+                    b.HasOne("Projektgrupp4.Models.Entities.CategoryEntity", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projektgrupp4.Models.Entities.ProductEntity", "Product")
+                        .WithMany("ProductCategories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductItemEntity", b =>
+                {
+                    b.HasOne("Projektgrupp4.Models.Entities.ColorEntity", "Color")
+                        .WithMany()
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projektgrupp4.Models.Entities.ProductEntity", "Product")
+                        .WithMany("ProductEntries")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Projektgrupp4.Models.Entities.SizeEntity", "Size")
+                        .WithMany()
+                        .HasForeignKey("SizeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Color");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("Size");
+                });
+
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ReviewEntity", b =>
                 {
                     b.HasOne("Projektgrupp4.Models.Entities.ProductEntity", "Product")
@@ -231,6 +370,10 @@ namespace Projektgrupp4.Migrations
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductEntity", b =>
                 {
+                    b.Navigation("ProductCategories");
+
+                    b.Navigation("ProductEntries");
+
                     b.Navigation("ProductReviews");
                 });
 #pragma warning restore 612, 618
