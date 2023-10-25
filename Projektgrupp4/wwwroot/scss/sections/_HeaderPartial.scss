@@ -1,0 +1,106 @@
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+/* Denna regel hanterar huvuddelen av sidan, och overflow: hidden d?ljer inneh?ll som ?r utanf?r */
+.Header-Section {
+    overflow: hidden;
+}
+
+/* Stilen f?r toppmenyn som inneh?ller olika element */
+.top-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    transition: transform 0.3s; /* Anv?nder en smidig ?verg?ngseffekt p? transform-egenskapen */
+    transform: translateX(0); /* Startar med menyn st?ngd (g?md) */
+    /* Stilen f?r v?nster delen av toppmenyn */
+    .top-menu-left {
+        & > p {
+            font-weight: $font-weight-semibold; /* Anv?nder en specifik fontvikt f?r texten */
+        }
+    }
+}
+
+/* Stilen f?r menyknappen med id "menu-toggle" */
+#menu-toggle {
+    cursor: pointer;
+    background-color: transparent;
+    color: black;
+    padding: 5px 10px;
+    border: none;
+    font-size: 30px; /* ?ndrar storleken p? ikonen */
+}
+
+/* Stilen f?r bottenmenyn som inneh?ller olika element */
+.bottom-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Stilen f?r varukorgen */
+    .shopping-cart {
+        position: relative;
+        /* Stilen f?r antalet varor i varukorgen */
+        .cart-items {
+            position: absolute;
+            top: 5px;
+            left: -1rem;
+            width: 20px; /* St?ller in bredden och h?jden f?r att skapa en cirkel */
+            height: 20px;
+            border: 1px solid red; /* S?tter f?rgen p? ramen till r?d */
+            border-radius: 50%; /* G?r den till en cirkel */
+            background-color: red; /* S?tter bakgrundsf?rgen till r?d */
+            color: white; /* S?tter textf?rgen till vit */
+            display: flex;
+            justify-content: center;
+            /* Stilen f?r texten inuti cirkeln */
+            & > p {
+                font-size: 10px; /* ?ndrar textstorleken */
+            }
+        }
+    }
+}
+
+
+.slide-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: black;
+    color: white;
+    transition: transform 0.3s;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+
+    .slide-menu-top {
+        & > h1 {
+            padding: 1rem;
+        }
+
+        .slider-menu-content {
+            border-bottom: 1px solid white;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+
+            & > p {
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+
+.slide-menu-content {
+    padding: 20px;
+}

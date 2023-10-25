@@ -1,4 +1,57 @@
-﻿window.addEventListener("load", function () {
+﻿// Kod för slider meny.
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuToggle = document.getElementById("menu-toggle");
+    const slideMenu = document.querySelector(".slide-menu");
+
+    // Klickhändelsen för menyknappen
+    menuToggle.addEventListener("click", function (e) {
+        e.stopPropagation(); // Förhindra att klickhändelsen sprider sig
+
+        if (slideMenu.style.transform === "translateX(0px)") {
+            slideMenu.style.transform = "translateX(250px)";
+        } else {
+            slideMenu.style.transform = "translateX(0px)";
+        }
+    });
+
+    // Klickhändelse för att stänga "slider" när man klickar utanför den
+    document.addEventListener("click", function (event) {
+        if (event.target !== slideMenu && event.target !== menuToggle) {
+            slideMenu.style.transform = "translateX(-250px)";
+            console.log("Press")
+        }
+    });
+});
+
+/////////////////////////////////////////////////////////////////////////////
+
+// Kod för Sticky footer.
+
+//document.addEventListener("DOMContentLoaded", function () { // Fäster footer längst ned på sidan i alla lägen.
+//    const footer = document.querySelector(".Footer-Section footer");
+
+//    function setFooterPosition() {
+//        const windowHeight = window.innerHeight; // Hämta windiwsheight
+//        const bodyHeight = document.body.clientHeight; // Hämta bodyheght
+
+//        if (bodyHeight < windowHeight) {
+//            const offset = windowHeight - bodyHeight;
+//            footer.style.position = "fixed";
+//            footer.style.bottom = "0";
+//            footer.style.width = "100%";
+//            footer.style.left = "0";
+//        } else {
+//            footer.style.position = "static";
+//        }
+//    }
+
+//    window.addEventListener("resize", setFooterPosition);
+//    window.addEventListener("load", setFooterPosition);
+//    setFooterPosition();
+//});
+
+window.addEventListener("load", function () {
     var footer = document.querySelector("footer");
     var body = document.querySelector("body");
     var bodyHeight = body.offsetHeight;
