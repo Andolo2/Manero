@@ -12,8 +12,8 @@ using Projektgrupp4.Contexts;
 namespace Projektgrupp4.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231025092440_product database")]
-    partial class productdatabase
+    [Migration("20231025101755_Added content")]
+    partial class Addedcontent
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,6 +88,53 @@ namespace Projektgrupp4.Migrations
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            CategoryName = "Men"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            CategoryName = "Women"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            CategoryName = "Kids"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            CategoryName = "Accessories"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            CategoryName = "Shoes"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            CategoryName = "Dresses"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            CategoryName = "Pants"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            CategoryName = "Bestsellers"
+                        },
+                        new
+                        {
+                            CategoryId = 9,
+                            CategoryName = "Featured"
+                        });
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ColorEntity", b =>
@@ -105,6 +152,58 @@ namespace Projektgrupp4.Migrations
                     b.HasKey("ColorId");
 
                     b.ToTable("Colors");
+
+                    b.HasData(
+                        new
+                        {
+                            ColorId = 1,
+                            ColorName = "White"
+                        },
+                        new
+                        {
+                            ColorId = 2,
+                            ColorName = "Black"
+                        },
+                        new
+                        {
+                            ColorId = 3,
+                            ColorName = "Red"
+                        },
+                        new
+                        {
+                            ColorId = 4,
+                            ColorName = "Green"
+                        },
+                        new
+                        {
+                            ColorId = 5,
+                            ColorName = "Blue"
+                        },
+                        new
+                        {
+                            ColorId = 6,
+                            ColorName = "Beige"
+                        },
+                        new
+                        {
+                            ColorId = 7,
+                            ColorName = "LightBlue"
+                        },
+                        new
+                        {
+                            ColorId = 8,
+                            ColorName = "DarkBlue"
+                        },
+                        new
+                        {
+                            ColorId = 9,
+                            ColorName = "Orange"
+                        },
+                        new
+                        {
+                            ColorId = 10,
+                            ColorName = "Yellow"
+                        });
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductCategoriesEntity", b =>
@@ -160,6 +259,18 @@ namespace Projektgrupp4.Migrations
                     b.HasKey("ArticleNumber");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            ArticleNumber = 1,
+                            ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                            ProductImageUrl = "#",
+                            ProductOfferPrice = 0m,
+                            ProductPrice = 29.80m,
+                            ProductPriceOrOffer = false,
+                            ProductTitle = "Black sneakers"
+                        });
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductItemEntity", b =>
@@ -237,6 +348,38 @@ namespace Projektgrupp4.Migrations
                     b.HasKey("SizeId");
 
                     b.ToTable("Sizes");
+
+                    b.HasData(
+                        new
+                        {
+                            SizeId = 1,
+                            SizeName = "XS"
+                        },
+                        new
+                        {
+                            SizeId = 2,
+                            SizeName = "S"
+                        },
+                        new
+                        {
+                            SizeId = 3,
+                            SizeName = "M"
+                        },
+                        new
+                        {
+                            SizeId = 4,
+                            SizeName = "L"
+                        },
+                        new
+                        {
+                            SizeId = 5,
+                            SizeName = "XL"
+                        },
+                        new
+                        {
+                            SizeId = 6,
+                            SizeName = "XXL"
+                        });
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.UserEntity", b =>
