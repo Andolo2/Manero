@@ -47,7 +47,7 @@ namespace Projektgrupp4.Contexts
                 new ColorEntity { ColorId = 8, ColorName = "DarkBlue" },
                 new ColorEntity { ColorId = 9, ColorName = "Orange" },
                 new ColorEntity { ColorId = 10, ColorName = "Yellow" }
-                );
+            );
 
 
             modelBuilder.Entity<CategoryEntity>().HasData(
@@ -74,10 +74,125 @@ namespace Projektgrupp4.Contexts
                     ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
                                          "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
                                          "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
+                new ProductEntity
+                {
+                ArticleNumber = 2,
+                ProductImageUrl = "#",
+                ProductTitle = "Summer dress",
+                ProductPrice = 36.00M,
+                ProductOfferPrice = 15.98M,
+                ProductPriceOrOffer = true,
+                ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                        "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                        "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
 
+                new ProductEntity
+                {
+                    ArticleNumber = 3,
+                    ProductImageUrl = "#",
+                    ProductTitle = "Shoulder bag",
+                    ProductPrice = 38.00M,
+                    ProductOfferPrice = 30.00M,
+                    ProductPriceOrOffer = true,
+                    ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                        "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                        "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
+
+                new ProductEntity
+                {
+                    ArticleNumber = 4,
+                    ProductImageUrl = "#",
+                    ProductTitle = "Denim shorts",
+                    ProductPrice = 54.96M,
+                    ProductOfferPrice = 0,
+                    ProductPriceOrOffer = false,
+                    ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                    "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                    "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
+
+                new ProductEntity
+                {
+                    ArticleNumber = 5,
+                    ProductImageUrl = "#",
+                    ProductTitle = "Summer pants",
+                    ProductPrice = 31.78M,
+                    ProductOfferPrice = 0,
+                    ProductPriceOrOffer = false,
+                    ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                        "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                        "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
+
+
+                new ProductEntity
+                {
+                    ArticleNumber = 6,
+                    ProductImageUrl = "#",
+                    ProductTitle = "Warm hat",
+                    ProductPrice = 6.93M,
+                    ProductOfferPrice = 0,
+                    ProductPriceOrOffer = false,
+                    ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                        "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                        "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
+
+                new ProductEntity
+                {
+                    ArticleNumber = 7,
+                    ProductImageUrl = "#",
+                    ProductTitle = "Hand bag",
+                    ProductPrice = 24.95M,
+                    ProductOfferPrice = 0,
+                    ProductPriceOrOffer = false,
+                    ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                        "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                        "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
+
+                new ProductEntity
+                {
+                    ArticleNumber = 8,
+                    ProductImageUrl = "#",
+                    ProductTitle = "T-shirt",
+                    ProductPrice = 12.95M,
+                    ProductOfferPrice = 0,
+                    ProductPriceOrOffer = false,
+                    ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                        "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                        "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
+
+                new ProductEntity
+                {
+                    ArticleNumber = 9,
+                    ProductImageUrl = "#",
+                    ProductTitle = "Purple sneakers",
+                    ProductPrice = 22.87M,
+                    ProductOfferPrice = 0,
+                    ProductPriceOrOffer = false,
+                    ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                        "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                        "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
+                },
+
+                new ProductEntity
+                {
+                    ArticleNumber = 10,
+                    ProductImageUrl = "#",
+                    ProductTitle = "Denim shorts",
+                    ProductPrice = 54.96M,
+                    ProductOfferPrice = 0,
+                    ProductPriceOrOffer = false,
+                    ProductDescription = "Amet amet Lorem eu consectetur in deserunt nostrud dolor culpa ad sint amet. " +
+                        "Nostrud deserunt consectetur culpa minim mollit veniam aliquip pariatur exercitation " +
+                        "ullamco ea voluptate et. Pariatur ipsum mollit magna proident nisi ipsum.",
                 }
-      
-                );
+            );
         }
     
        
