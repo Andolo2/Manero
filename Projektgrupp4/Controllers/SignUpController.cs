@@ -15,6 +15,8 @@ namespace Projektgrupp4.Controllers
 
         public IActionResult Index()
         {
+            ViewData["Title"] = "Signup";
+
             return View();
         }
 
@@ -27,11 +29,19 @@ namespace Projektgrupp4.Controllers
                     ModelState.AddModelError("", "An Account with the same email already exists");
                 
                 if (await _authService.SignUpAsync(model))
-                    return RedirectToAction("Index");
+                {
+                    return RedirectToAction("AccountCreated");
+
+                }
 
                 ModelState.AddModelError("", "Something went wrong please try again");    
             }
             return View(model);
+        }
+
+        public IActionResult AccountCreated()
+        {
+            return View();
         }
     }
 }

@@ -1,0 +1,67 @@
+﻿@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Buttons.scss";
+@import "../core/_Base.scss";
+@import "../core/_Mixins.scss";
+
+.accountCreated {
+
+    @include xl {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh
+    }
+
+    .container {
+        @include xl {
+            border: 1px solid $color-theme;
+            padding: 25px;
+            box-shadow: 0 0 20px $color-theme;
+        }
+    }
+
+
+    .logo {
+        margin-top: 80px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            width: 100px;
+        }
+    }
+
+    .createdLogo {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .line {
+        border: 1px solid black;
+        height: 30px;
+        width: 1px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+
+    .createdText {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+        margin-top: 20px;
+
+        h3 {
+            color: $color-darkBlack;
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    .createdButton {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+}

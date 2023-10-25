@@ -25,8 +25,8 @@ public class AuthenticationService
             var user = new UserEntity
             {
                 UserName = viewModel.Email,
-                Name = viewModel.Name,      // Change 'Name' to 'UserName'
-                Email = viewModel.Email,    // Change 'Email' to 'UserEmail'
+                Name = viewModel.Name,      
+                Email = viewModel.Email,    
             };
 
             var result = await _userManager.CreateAsync(user, viewModel.Password);
