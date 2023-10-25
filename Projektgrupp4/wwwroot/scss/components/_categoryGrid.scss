@@ -1,0 +1,39 @@
+@import '../core/_colors.scss';
+@import '../core/_fonts.scss';
+@import '../core/_mixins.scss';
+
+.categoryGrid{
+
+    .gridContainer{
+        display:grid;
+        margin-top:2rem;
+
+        .row{
+            justify-content: center; 
+            place-items: center; 
+       
+            .col-4, .col-8{
+                border: 1px solid white;
+                background-color: $color-darkGrey2;
+                color: $color-white;
+                height: 10rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end; 
+                padding: 1rem; 
+                text-align: left;
+                font-weight: $font-weight-bold ;
+                font-size:20px;
+                transition: background-color 0.3s, color 0.3s;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $color-white; 
+                    border:2px solid $color-darkGrey2;
+                    color: $color-darkGrey2; 
+                    
+                  }
+            }
+        }
+    }
+}
