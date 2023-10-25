@@ -34,7 +34,7 @@ namespace Projektgrupp4.Migrations
 
                     b.HasIndex("UsersId");
 
-                    b.ToTable("AddressEntityUserEntity");
+                    b.ToTable("AddressEntityUserEntity", (string)null);
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.AddressEntity", b =>
@@ -67,7 +67,7 @@ namespace Projektgrupp4.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Adresses", (string)null);
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductEntity", b =>
@@ -108,7 +108,7 @@ namespace Projektgrupp4.Migrations
 
                     b.HasKey("ArticleNumber");
 
-                    b.ToTable("Product");
+                    b.ToTable("Product", (string)null);
 
                     b.HasData(
                         new
@@ -166,7 +166,7 @@ namespace Projektgrupp4.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ReviewEntity");
+                    b.ToTable("ReviewEntity", (string)null);
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.UserEntity", b =>
@@ -223,7 +223,7 @@ namespace Projektgrupp4.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("AddressEntityUserEntity", b =>

@@ -18,33 +18,13 @@ namespace Projektgrupp4.Contexts
         public DbSet<UserEntity> Users { get; set; }
 
         // Products
-        public DbSet<ProductEntity> Product { get; set; }
+        public DbSet<ProductEntity> Products { get; set; } = null!;
+        public DbSet<ColorEntity> Colors { get; set; } = null!;
+        public DbSet<SizeEntity> Sizes { get; set; } = null!;
+        public DbSet<CategoryEntity> Categories { get; set; } = null!;
+        public DbSet<ReviewEntity> Reviews { get; set; } = null!;
+        public DbSet<ProductCategoriesEntity> ProductCategories { get; set; } = null!;
+        public DbSet<ProductItemEntity> ProductItem { get; set; } = null!;
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<ProductEntity>().HasData(
-                new ProductEntity {
-                    ArticleNumber = 1, ProductTitle = "T-shirt",
-                    ProductPrice = 399,
-                    ProductOfferPrice = 150,
-                    ProductPriceOrOffer = true,
-                    ProductDescription = "This is a T-shirt",
-                    ProductColor = Enum.Color.Green,
-                    ProductLabel = Enum.Label.Sport,
-                    ProductSize = Enum.Size.m },
-                new ProductEntity
-                {
-                    ArticleNumber = 2,
-                    ProductTitle = "Jeans",
-                    ProductPrice = 399,
-                    ProductOfferPrice = 150,
-                    ProductPriceOrOffer = true,
-                    ProductDescription = "This is a pair of jeans",
-                    ProductColor = Enum.Color.Blue,
-                    ProductLabel = Enum.Label.Pants,
-                    ProductSize = Enum.Size.l
-                }
-                );
-        }
     }
 }
