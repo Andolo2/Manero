@@ -11,10 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contexts\" />
     <Folder Include="Controllers\" />
     <Folder Include="Migrations\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Repositories\" />
     <Folder Include="Services\" />
     <Folder Include="Views\Partials\" />
@@ -23,6 +21,7 @@
     <Folder Include="wwwroot\images\logos\" />
     <Folder Include="wwwroot\scss\core\" />
     <Folder Include="wwwroot\scss\sections\" />
+    <Folder Include="wwwroot\scss\components\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

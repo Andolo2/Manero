@@ -1,0 +1,64 @@
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+
+/* Denna regel hanterar huvuddelen av sidan, och overflow: hidden döljer innehåll som är utanför */
+.Header-Section {
+    overflow: hidden;
+}
+
+/* Stilen för toppmenyn som innehåller olika element */
+.top-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    transition: transform 0.3s; /* Använder en smidig övergångseffekt på transform-egenskapen */
+    transform: translateX(0); /* Startar med menyn stängd (gömd) */
+    /* Stilen för vänster delen av toppmenyn */
+    .top-menu-left {
+        & > p {
+           /* font-weight: $font-weight-semibold;*/ /* Använder en specifik fontvikt för texten */
+        }
+    }
+}
+
+/* Stilen för menyknappen med id "menu-toggle" */
+#menu-toggle {
+    cursor: pointer;
+    background-color: transparent;
+    color: black;
+    padding: 5px 10px;
+    border: none;
+    font-size: 30px; /* Ändrar storleken på ikonen */
+}
+
+/* Stilen för bottenmenyn som innehåller olika element */
+.bottom-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Stilen för varukorgen */
+    .shopping-cart {
+        position: relative;
+        /* Stilen för antalet varor i varukorgen */
+        .cart-items {
+            position: absolute;
+            top: 5px;
+            left: -1rem;
+            width: 20px; /* Ställer in bredden och höjden för att skapa en cirkel */
+            height: 20px;
+            border: 1px solid red; /* Sätter färgen på ramen till röd */
+            border-radius: 50%; /* Gör den till en cirkel */
+            background-color: red; /* Sätter bakgrundsfärgen till röd */
+            color: white; /* Sätter textfärgen till vit */
+            display: flex;
+            justify-content: center;
+            /* Stilen för texten inuti cirkeln */
+            & > p {
+                font-size: 10px; /* Ändrar textstorleken */
+            }
+        }
+    }
+}

@@ -3,6 +3,16 @@
 @import "./core/Colors";
 @import "./core/Buttons";
 @import "./core/Base";
-
+@import "./core/Mixins";
 
 //Sections
+@import "./sections/18product";
+@import "./sections/09signUp";
+@import "./components/_topCategoryFlexBox.scss";
+@import "./components/_categoryGrid.scss";
+@import "./sections/_13Home.scss";
+@import "./sections/_Card.scss";
+@import "./sections/13Home";
+@import "./sections/Card";
+@import "./sections/_HeaderPartial.scss";
+@import "./sections/_Footer.scss";

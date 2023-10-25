@@ -1,0 +1,56 @@
+﻿@using Projektgrupp4.ViewModels;
+@model SignUpViewModel
+
+<section class="signUp">
+    <div class="container">
+        <div class="navigateBack">
+            <a href=""><i class="fa-solid fa-less-than"></i></a>
+            <p>Sign Up</p>
+        </div>
+        <div class="line"></div>
+        <div class="signUpForm">
+            <h1>Sign Up</h1>
+
+            <form method="post" asp-action="Index" asp-controller="SignUp" enctype="multipart/form-data" novalidate>
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="formSections">
+                    <label asp-for="Name">NAME</label>
+                    <input asp-for="Name" type=text>
+                    <small class="text-danger"><span asp-validation-for="Name"></span></small>
+                </div>
+                <div class="formSections">
+                    <label asp-for="Email">EMAIL</label>
+                    <input asp-for="Email" type="email">
+                    <small class="text-danger"><span asp-validation-for="Email"></span></small>
+                </div>
+                <div class="formSections">
+                    <label asp-for="Password">PASSWORD</label>
+                    <input asp-for="Password" type="password" id="password">
+                    <button id="togglePassword" class="toggleEye"><i class="fa-solid fa-eye"></i></button>
+                    <small class="text-danger"><span asp-validation-for="Password"></span></small>
+                </div>
+                <div class="formSections">
+                    <label asp-for="ConfirmPassword">CONFIRM PASSWORD</label>
+                    <input asp-for="ConfirmPassword" type="password" id="confirmPassword">
+                    <button id="toggleConfirmPassword" class="toggleEye"><i class="fa-solid fa-eye"></i></button>
+                    <small class="text-danger"><span asp-validation-for="ConfirmPassword"></span></small>
+                </div>
+                <div>
+                    <button type="submit" class="button335W">SIGN UP</button>
+                </div>
+
+            </form>
+
+            <p>Already have an account? <a href="">Sign in.</a></p>
+
+            <div class="socialMedia">
+                <p><a href=""><i class="fa-brands fa-facebook-f"></i></a></p>
+                <p><a href=""><i class="fa-brands fa-x-twitter"></i></a></p>
+                <p><a href=""><i class="fa-brands fa-google"></i></a></p>
+            </div>
+
+        </div>
+    </div>
+</section>
