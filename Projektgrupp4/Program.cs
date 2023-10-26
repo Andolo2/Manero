@@ -19,7 +19,7 @@ string connectionString = "Server=tcp:grupp4-sqlserver.database.windows.net,1433
 
 
 //authentication
-builder.Services.AddIdentityCore<UserEntity>(x =>
+builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
 {
     x.User.RequireUniqueEmail= true;
     x.SignIn.RequireConfirmedAccount = false;
