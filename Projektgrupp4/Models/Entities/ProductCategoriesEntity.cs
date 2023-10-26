@@ -8,10 +8,10 @@ public class ProductCategoriesEntity
     public int ProductCategoryRowId { get; set; }
 
     public int CategoryId { get; set; }
-    public CategoryEntity Category { get; set; }
+    public CategoryEntity Category { get; set; } = null!;
 
     public int ProductId { get; set; }
-    public ProductEntity Product { get; set; }
+    public ProductEntity Product { get; set; } = null!;
 
 
 
