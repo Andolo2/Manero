@@ -1,0 +1,47 @@
+﻿<!-- signin start -->
+@using Projektgrupp4.ViewModels;
+@model SignInViewModel;
+
+<section class="signIn">
+    <div class="container">
+        <div class="navigateBack">
+            <a href=""><i class="fa-solid fa-less-than"></i></a>
+            <p class="test">Sign in</p>
+        </div>
+        <div class="borderBox">
+            <div class="titleInstruction">
+                <h1>Welcome to Manero</h1>
+                <p>Sign in to continue</p>
+            </div>
+            <form asp-action="Index" asp-controller="SignIn" method="post" class="signInForm" enctype="multipart/form-data" novalidate>
+                <div class="formSections">
+                    <label asp-for="Email">EMAIL</label>
+                    <input asp-for="Email" type="email" placeholder="example@manero.com" />
+                </div>
+
+                <div class="formSections">
+                    <label asp-for="Password">PASSWORD</label>
+                    <input asp-for="Password" type="password" id="password" name="password" placeholder="enter your password" required>
+                    <button id="togglePassword" class="toggleEye"><i class="fa-solid fa-eye"></i></button>
+                    <small class="text-danger"><span asp-validation-for="Password"></span></small>
+                </div>
+
+                <div class="rememberForgot">
+                    <div class="rememberMe">
+                        <input asp-for="RememberMe" type="checkbox" id="remember" name="remember">
+                        <label asp-for="RememberMe">Remember me</label>
+                    </div>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button class="button335W" type="submit">SIGN IN</button>
+            </form>
+            <p class="noAccount">Don't have an account? <a asp-controller="SignUp" asp-action="Index">Sign up.</a></p>
+            <div class="socialMedia">
+                <p><a href="#"><i class="fa-brands fa-facebook-f"></i></a></p>
+                <p><a href="#"><i class="fa-brands fa-x-twitter"></i></a></p>
+                <p><a href="#"><i class="fa-brands fa-google"></i></a></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- signin end -->

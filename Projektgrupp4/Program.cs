@@ -19,7 +19,7 @@ string connectionString = "Server=tcp:grupp4-sqlserver.database.windows.net,1433
 
 
 //authentication
-builder.Services.AddIdentityCore<UserEntity>(x =>
+builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
 {
     x.User.RequireUniqueEmail= true;
     x.SignIn.RequireConfirmedAccount = false;
@@ -29,9 +29,8 @@ builder.Services.AddIdentityCore<UserEntity>(x =>
     .AddDefaultTokenProviders(); 
 
 builder.Services.AddScoped<UserEntity>();
-//builder.Services.AddScoped<PasswordEntity>();
-//builder.Services.AddScoped<UserPasswordEntity>();
 builder.Services.AddScoped<SignUpViewModel>();
+builder.Services.AddScoped<SignInViewModel>();
 
 using (var connection = new SqlConnection(connectionString))
 {
