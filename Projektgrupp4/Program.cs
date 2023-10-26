@@ -29,9 +29,8 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
     .AddDefaultTokenProviders(); 
 
 builder.Services.AddScoped<UserEntity>();
-//builder.Services.AddScoped<PasswordEntity>();
-//builder.Services.AddScoped<UserPasswordEntity>();
 builder.Services.AddScoped<SignUpViewModel>();
+builder.Services.AddScoped<SignInViewModel>();
 
 using (var connection = new SqlConnection(connectionString))
 {
