@@ -1,0 +1,45 @@
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Buttons.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+._17ShopSection {
+
+    .container {
+
+        .top {
+
+            h2 {
+                font-size: 18px;
+                font-weight: $font-weight-semibold;
+                color: $color-darkBlack;
+                text-align: center;
+                margin-top: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .filterSort {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 15px;
+                color: $color-darkGrey1;
+                font-size: 14px;
+
+
+                @include lg {
+                    padding: 0 8rem;
+                }
+
+                @include xl {
+                    padding: 0 13.5rem;
+                }
+
+                @include xxl {
+                    padding: 0 19rem;
+                }
+            }
+        }
+    }
+}
