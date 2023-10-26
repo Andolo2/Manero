@@ -28,15 +28,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Kod för Sticky footer.
 
-document.addEventListener("DOMContentLoaded", function () { // Fäster footer längst ned på sidan i alla lägen.
+document.addEventListener("DOMContentLoaded", function () {
     const footer = document.querySelector(".Footer-Section footer");
 
     function setFooterPosition() {
-        const windowHeight = window.innerHeight; // Hämta windiwsheight
-        const bodyHeight = document.body.clientHeight; // Hämta bodyheght
+        const windowHeight = window.innerHeight;
+        const bodyHeight = document.body.clientHeight;
+        const footerHeight = footer.clientHeight;
 
         if (bodyHeight < windowHeight) {
-            const offset = windowHeight - bodyHeight;
             footer.style.position = "fixed";
             footer.style.bottom = "0";
             footer.style.width = "100%";
@@ -48,10 +48,10 @@ document.addEventListener("DOMContentLoaded", function () { // Fäster footer l�
 
     window.addEventListener("resize", setFooterPosition);
     window.addEventListener("load", setFooterPosition);
+    window.addEventListener("scroll", setFooterPosition);
+
     setFooterPosition();
 });
-
-
 
 
 

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Projektgrupp4.Enum;
+using Projektgrupp4.ViewModels;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace Projektgrupp4.Models.Entities;
 
@@ -27,8 +29,10 @@ public class ProductEntity
 
     public ICollection<ProductCategoriesEntity> ProductCategories { get; set; } = new HashSet<ProductCategoriesEntity>();
 
+  
 
-    
+
+
 }
 
 
