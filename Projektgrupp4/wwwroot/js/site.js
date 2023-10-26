@@ -28,51 +28,51 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Kod för Sticky footer.
 
-//document.addEventListener("DOMContentLoaded", function () { // Fäster footer längst ned på sidan i alla lägen.
-//    const footer = document.querySelector(".Footer-Section footer");
+document.addEventListener("DOMContentLoaded", function () { // Fäster footer längst ned på sidan i alla lägen.
+    const footer = document.querySelector(".Footer-Section footer");
 
-//    function setFooterPosition() {
-//        const windowHeight = window.innerHeight; // Hämta windiwsheight
-//        const bodyHeight = document.body.clientHeight; // Hämta bodyheght
+    function setFooterPosition() {
+        const windowHeight = window.innerHeight; // Hämta windiwsheight
+        const bodyHeight = document.body.clientHeight; // Hämta bodyheght
 
-//        if (bodyHeight < windowHeight) {
-//            const offset = windowHeight - bodyHeight;
-//            footer.style.position = "fixed";
-//            footer.style.bottom = "0";
-//            footer.style.width = "100%";
-//            footer.style.left = "0";
-//        } else {
-//            footer.style.position = "static";
-//        }
-//    }
-
-//    window.addEventListener("resize", setFooterPosition);
-//    window.addEventListener("load", setFooterPosition);
-//    setFooterPosition();
-//});
-
-
-
-
-
-
-window.addEventListener("load", function () {
-    var footer = document.querySelector("footer");
-    var body = document.querySelector("body");
-    var bodyHeight = body.offsetHeight;
-    var footerHeight = footer.offsetHeight;
-
-
-
-    if (bodyHeight < window.innerHeight) {
-        footer.style.position = "fixed";
-        footer.style.bottom = "0";
-        body.style.paddingBottom = footerHeight + "px";
+        if (bodyHeight < windowHeight) {
+            const offset = windowHeight - bodyHeight;
+            footer.style.position = "fixed";
+            footer.style.bottom = "0";
+            footer.style.width = "100%";
+            footer.style.left = "0";
+        } else {
+            footer.style.position = "static";
+        }
     }
 
-
-
+    window.addEventListener("resize", setFooterPosition);
+    window.addEventListener("load", setFooterPosition);
+    setFooterPosition();
 });
+
+
+
+
+
+
+//window.addEventListener("load", function () {
+//    var footer = document.querySelector("footer");
+//    var body = document.querySelector("body");
+//    var bodyHeight = body.offsetHeight;
+//    var footerHeight = footer.offsetHeight;
+
+
+
+//    if (bodyHeight < window.innerHeight) {
+//        footer.style.position = "fixed";
+//        footer.style.bottom = "0";
+//        body.style.paddingBottom = footerHeight + "px";
+//    }
+
+
+
+//});
 
 const togglePasswordButton = document.getElementById("togglePassword");
 const passwordInput = document.getElementById("password");
