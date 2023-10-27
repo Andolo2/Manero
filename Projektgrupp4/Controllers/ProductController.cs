@@ -68,8 +68,7 @@ namespace Projektgrupp4.Controllers
                 }
                 else
                 {
-                    // Handle the case where product creation fails
-                   
+                    // Redirect to error messege/Page
                 }
             }
 
@@ -86,8 +85,7 @@ namespace Projektgrupp4.Controllers
             }
             else
             {
-                // Optionally, handle the case where the product was not found
-                // You can return a view or provide an error message
+               
                 return View();
             }
         }
