@@ -1,5 +1,6 @@
 @import "../core/_Fonts.scss";
 @import "../core/_Colors.scss";
+@import "../core/_Buttons.scss";
 @import "../core/_Mixins.scss";
 @import "../core/_Base.scss";
 
@@ -7,7 +8,7 @@
 
     .showcase {
         background-color: $color-theme;
- 
+
         h1 {
             color: $color-white;
             font-size: 32px;
@@ -16,6 +17,17 @@
             padding-bottom: 1rem;
             padding-top: 12rem;
 
+
+            a {
+                text-decoration: none;
+                color: $color-white;
+                transition: all 0.25s ease-in-out;
+
+                &:hover {
+                    color: $color-yellow;
+                }
+            }
+
             @include md {
                 padding-left: 5rem;
                 padding-bottom: 4rem;
@@ -23,22 +35,18 @@
 
             @include lg {
                 padding-left: 9rem;
-           
             }
 
             @include xl {
                 padding-left: 16rem;
-            
             }
 
             @include xxl {
                 padding-left: 22rem;
-               
             }
 
             @include xxxl {
                 padding-left: 39rem;
-            
             }
         }
     }
@@ -56,16 +64,16 @@
                 align-items: baseline;
                 margin-bottom: 0.2rem;
                 padding: 0 0.8rem;
-                
+
 
                 @include md {
                     padding: 0 0;
                 }
-    
+
                 @include lg {
                     padding: 0 7.5rem;
                 }
-    
+
                 @include xl {
                     padding: 0 13rem;
                 }
@@ -91,16 +99,15 @@
                     i {
                         font-size: 16px;
                     }
-
                 }
             }
         }
     }
- 
+
     .take5OfNow {
         background-color: $color-theme;
         padding-bottom: 4rem;
-        
+
 
 
         h1 {
@@ -112,19 +119,18 @@
             margin-bottom: 2.5rem;
 
             @include lg {
-                padding-left: 8rem;            
+                padding-left: 8rem;
             }
 
             @include xl {
-                padding-left: 13.5rem;            
+                padding-left: 13.5rem;
             }
 
             @include xxl {
-                padding-left: 19.5rem;           
+                padding-left: 19.5rem;
             }
         }
-
-            // Vit knapp. 255px
+        // Vit knapp. 255px
         .buttonWhite {
             background-color: $color-white;
             color: $color-darkBlack;
@@ -139,15 +145,15 @@
             text-decoration: none;
 
             @include lg {
-                margin-left: 8rem;            
+                margin-left: 8rem;
             }
 
             @include xl {
-                margin-left: 13.5rem;            
+                margin-left: 13.5rem;
             }
 
             @include xxl {
-                margin-left: 19.5rem;           
+                margin-left: 19.5rem;
             }
 
             &:hover {
@@ -155,5 +161,5 @@
                 color: $color-white;
             }
         }
-    } 
+    }
 }

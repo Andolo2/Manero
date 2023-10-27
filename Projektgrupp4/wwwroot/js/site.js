@@ -24,9 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-/////////////////////////////////////////////////////////////////////////////
-
-// Kod för Sticky footer.
 
 document.addEventListener("DOMContentLoaded", function () { // Fäster footer längst ned på sidan i alla lägen.
     const footer = document.querySelector(".Footer-Section footer");

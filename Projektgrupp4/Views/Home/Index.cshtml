@@ -2,18 +2,19 @@
     ViewData["Title"] = "Home Page";
 }
 
-@* Add Header partial *@
-
-
 <partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
 
 <div class="_13Home">
     <!-- Showcase section. Welcome To Manero! -->
     <section class="showcase">
         <h1>
-            Welcome To <br>
-            Manero! <br>
-            50% off
+            <a asp-action="Offer50" asp-controller="Product">
+                Welcome To <br>
+                Manero! <br>
+                50% off
+
+            </a>
+            
         </h1>
     </section>
 
@@ -22,7 +23,7 @@
         <div class="container">
             <div class="top">
                 <h2>Best Sellers</h2>
-                <a href="#">view all <i class="fa-solid fa-chevron-right"></i></a>
+                <a asp-action="BestSellers" asp-controller="Product">view all <i class="fa-solid fa-chevron-right"></i></a>
             </div>
 
             <div class="cardGrid">
@@ -120,7 +121,7 @@
     <section class="take5OfNow">
         <div class="container">
             <h1>Take 50% off now!</h1>
-            <a class="buttonWhite" href="#">SHOP NOW</a>
+            <a asp-action="Offer50" asp-controller="Product" class="buttonWhite">SHOP NOW</a>
         </div>
     </section>
 
@@ -129,7 +130,7 @@
         <div class="container">
             <div class="top">
                 <h2>Featured Products</h2>
-                <a href="#">view all <i class="fa-solid fa-chevron-right"></i></a>
+                <a asp-action="FeaturedProducts" asp-controller="Product">view all <i class="fa-solid fa-chevron-right"></i></a>
             </div>
 
             <div class="cardGrid">
@@ -227,5 +228,3 @@
 
 <partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
 
-@* Add Header partial
-<partial name="" /> *@

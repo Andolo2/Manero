@@ -1,5 +1,154 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Product Best sellers page";
 }
+
+<partial name="/Views/Partials/HeaderPartial/_Header.cshtml" /> 
+
+<section class="_17ShopSection">
+    <div class="container">
+        <div class="top">
+            <div class="title">
+                <a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-chevron-left"></i></a> 
+                <h2>Best Sellers</h2>
+            </div>
+     
+            <div class="filterSort">
+                <p><i class="fa-regular fa-sliders-up"></i> Filters</p>
+                <p>Sorting by  <i class="fa-solid fa-chevron-down"></i></p>
+            </div>
+        </div>
+
+        <div class="cardGrid">
+            <div class="cards">
+                <!-- Card 1 -->
+                <a class="card" href="#">
+                    <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                    <div class="text">
+                        <p class="ProductRating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            (3)
+                        </p>
+                        <h2 class="productTitle">Purple sneakers</h2>
+                        <div class="prices">
+                            <p class="productPrice">$22.87</p>
+                            <p class="productPrice oldPrice d-none">$29.95</p>
+                            <p class="productOfferPrice d-none">$29.95</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a class="card product" href="#">
+                    <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                    <div class="text">
+                        <p class="ProductRating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            (3)
+                        </p>
+                        <h2 class="productTitle">Warm hat</h2>
+                        <div class="prices">
+                            <p class="productPrice d-none">$6.93</p>
+                            <p class="productPrice oldPrice">$36</p>
+                            <p class="productOfferPrice">$15.98</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a class="card product" href="#">
+                    <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                    <div class="text">
+                        <p class="ProductRating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            (3)
+                        </p>
+                        <h2 class="productTitle">Summer dress</h2>
+                        <div class="prices">
+                            <p class="productPrice d-none">$38</p>
+                            <p class="productPrice oldPrice">$38</p>
+                            <p class="productOfferPrice">$15.98</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 4 -->
+                <a class="card product" href="#">
+                    <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                    <div class="text">
+                        <p class="ProductRating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            (3)
+                        </p>
+                        <h2 class="productTitle">Denim shorts</h2>
+                        <div class="prices">
+                            <p class="productPrice ">$54.96</p>
+                            <p class="productPrice oldPrice d-none">$38</p>
+                            <p class="productOfferPrice d-none">$30</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 5 -->
+                <a class="card product" href="#">
+                    <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                    <div class="text">
+                        <p class="ProductRating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            (3)
+                        </p>
+                        <h2 class="productTitle">Shoulder bag</h2>
+                        <div class="prices">
+                            <p class="productPrice d-none">38</p>
+                            <p class="productPrice oldPrice ">$38</p>
+                            <p class="productOfferPrice">$30</p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Card 6 -->
+                <a class="card product" href="#">
+                    <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                    <div class="text">
+                        <p class="ProductRating">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            <i class="fa-light fa-star"></i>
+                            (3)
+                        </p>
+                        <h2 class="productTitle">T-shirt</h2>
+                        <div class="prices">
+                            <p class="productPrice ">$12.95</p>
+                            <p class="productPrice oldPrice d-none">$38</p>
+                            <p class="productOfferPrice d-none">$30</p>
+                        </div>
+                    </div>
+                </a>
+               
+            </div>
+        </div>
+    </div>
+</section>
+
+<partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
