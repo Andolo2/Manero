@@ -16,11 +16,22 @@
         font-size: 30px;
         color: $color-darkBlack;
 
+
         & > a {
             color: $color-darkBlack;
 
+            /* Ev Ta bort*/
+            transition: all 0.25s ease-in-out;
+            /* end */
+
             & > i {
                 color: $color-darkGrey1;
+
+                /* Ev Ta bort*/
+                &:hover {
+                    color: $color-yellow;
+                }
+                /* end */
             }
         }
     }
