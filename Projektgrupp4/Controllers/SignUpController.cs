@@ -34,7 +34,7 @@ namespace Projektgrupp4.Controllers
 
                 }
 
-                ModelState.AddModelError("", "Something went wrong please try again");    
+                ModelState.AddModelError("", "Something went wrong please try again");
             }
             return View(model);
         }
