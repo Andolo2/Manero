@@ -16,8 +16,9 @@
     transition: all 0.25s ease-in-out;
 
     &:hover {
-        background-color: $color-white;
+        background-color: $color-yellow;
         color: $color-darkBlack;
+        border: none;
     }
 }
 
@@ -33,8 +34,9 @@
     transition: all 0.25s ease-in-out;
 
     &:hover {
-        background-color: $color-white;
+        background-color: $color-yellow;
         color: $color-darkBlack;
+        border: none;
     }
 }
 //Ändra inte denna kod ovanför.

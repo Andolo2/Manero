@@ -2,9 +2,6 @@
     ViewData["Title"] = "Home Page";
 }
 
-@* Add Header partial *@
-
-
 <partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
 
 <partial name="/Views/Partials/_WishList.cshtml" />
@@ -13,9 +10,13 @@
     <!-- Showcase section. Welcome To Manero! -->
     <section class="showcase">
         <h1>
-            Welcome To <br>
-            Manero! <br>
-            50% off
+            <a asp-action="Offer50" asp-controller="Product">
+                Welcome To <br>
+                Manero! <br>
+                50% off
+
+            </a>
+            
         </h1>
     </section>
 
@@ -24,14 +25,14 @@
         <div class="container">
             <div class="top">
                 <h2>Best Sellers</h2>
-                <a href="#">view all <i class="fa-solid fa-chevron-right"></i></a>
+                <a asp-action="BestSellers" asp-controller="Product">view all <i class="fa-solid fa-chevron-right"></i></a>
             </div>
 
             <div class="cardGrid">
                 <div class="cards">
 
                     <!-- Card 1 -->
-                    <a class="card" href="#">
+                    <a asp-action="ProductDetail" asp-controller="ProductDetail" class="card">
                         <img class="productImage" src="/images/productImage.svg" alt="Image of product">
                         <div class="text">
                             <p class="ProductRating">
@@ -122,7 +123,7 @@
     <section class="take5OfNow">
         <div class="container">
             <h1>Take 50% off now!</h1>
-            <a class="buttonWhite" href="#">SHOP NOW</a>
+            <a asp-action="Offer50" asp-controller="Product" class="buttonWhite">SHOP NOW</a>
         </div>
     </section>
 
@@ -131,7 +132,7 @@
         <div class="container">
             <div class="top">
                 <h2>Featured Products</h2>
-                <a href="#">view all <i class="fa-solid fa-chevron-right"></i></a>
+                <a asp-action="FeaturedProducts" asp-controller="Product">view all <i class="fa-solid fa-chevron-right"></i></a>
             </div>
 
             <div class="cardGrid">
@@ -229,5 +230,3 @@
 
 <partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
 
-@* Add Header partial
-<partial name="" /> *@
