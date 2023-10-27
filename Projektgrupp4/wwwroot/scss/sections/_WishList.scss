@@ -1,0 +1,90 @@
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+
+.WishList-Section {
+
+    & > .container-fluid {
+
+        @include xl {
+            display: flex;
+            justify-content: center;
+        }
+
+        .wishlist-cards {
+
+            @include xl {
+                width: 60%;
+            }
+
+            .wishlist-card {
+                display: flex;
+                justify-content: space-between;
+                margin: 2rem 0rem 0rem 0rem;
+                border-bottom: 1px solid;
+                padding-bottom: 1.5rem;
+
+                & > img {
+                    height: 100px;
+                    width: 100px;
+                    border: 1px solid;
+
+                    @include xl {
+                        height: 300px;
+                        width: 300px;
+                    }
+                }
+
+                .wishlist-card-image {
+                    position: relative;
+
+                    .wishlist-sale {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                    }
+                }
+
+                .wishlist-prod-details {
+
+                    @include xl {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: column;
+                    }
+
+                    & > p {
+                        font-weight: $font-weight-semibold;
+                    }
+
+                    .wishlist-rating {
+                        color: $color-yellow;
+                    }
+                }
+
+                .wishlist-cart-details {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+
+
+                    #wishlist-heart {
+                        color: red;
+                    }
+
+                    #wishlist-shopping-bag {
+                        padding: 0.5rem;
+                        border: 1px solid;
+                        border-radius: 50px;
+                        background-color: black;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
