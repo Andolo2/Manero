@@ -16,8 +16,14 @@ namespace Projektgrupp4.Controllers
             return View();
         }
 
-        // Page for FeaturedProducts products
+        // Page for Featured products
         public IActionResult FeaturedProducts()
+        {
+            return View();
+        }
+
+        // Page for WishList products
+        public IActionResult WishList()
         {
             return View();
         }
