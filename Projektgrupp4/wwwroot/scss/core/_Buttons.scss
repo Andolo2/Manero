@@ -1,6 +1,5 @@
 @import "../core/_Fonts.scss";
 @import "../core/_Colors.scss";
-@import "../core/_Mixins.scss";
 @import "../core/_Base.scss";
 
 //Ändra inte denna kod. Om du vill lägga till mer kod, gör det längre ner på sidan. :)
@@ -17,8 +16,9 @@
     transition: all 0.25s ease-in-out;
 
     &:hover {
-        background-color: $color-white;
+        background-color: $color-yellow;
         color: $color-darkBlack;
+        border: none;
     }
 }
 
@@ -34,8 +34,9 @@
     transition: all 0.25s ease-in-out;
 
     &:hover {
-        background-color: $color-white;
+        background-color: $color-yellow;
         color: $color-darkBlack;
+        border: none;
     }
 }
 //Ändra inte denna kod ovanför.
