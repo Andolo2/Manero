@@ -8,9 +8,11 @@ namespace Projektgrupp4.ViewModels
        
             public int ArticleNumber { get; set; }
 
-            [Display(Name = "Product Image URL")]
-            [Required(ErrorMessage = "Product Image URL is required")]
-            public string ProductImageUrl { get; set; }
+            [DataType(DataType.Upload)]
+            [Display(Name = "Product Image")]
+            public IFormFile ProductImage { get; set; }
+
+             public string? ProductImageBase64 { get; set; }
 
 
 
@@ -33,7 +35,7 @@ namespace Projektgrupp4.ViewModels
             [Required(ErrorMessage = "Product Description is required")]
             public string ProductDescription { get; set; }
 
-        [Display(Name = "Product Color")]
+            [Display(Name = "Product Color")]
             public Enum.Color ProductColor { get; set; }
 
             [Display(Name = "Product Label")]
