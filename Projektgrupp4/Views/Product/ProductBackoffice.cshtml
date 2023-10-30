@@ -1,0 +1,27 @@
+﻿@model List<BackofficeProductViewModel>
+
+<div class="container">
+    <div class="row">
+        @foreach (var product in Model)
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="@product.ProductImageUrl" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <h5 class="card-title">@product.ProductTitle</h5>
+                        <p class="card-text">@product.ProductDescription</p>
+                        <p class="card-text">Price: @product.ProductPrice</p>
+                        @if (product.ProductPriceOrOffer && product.ProductOfferPrice != null)
+                        {
+                            <p class="card-text">Offer Price: @product.ProductOfferPrice</p>
+                        }
+                        <form asp-controller="Product" asp-action="DeleteProduct" method="post">
+                            <input type="hidden" name="productId" value="@product.ArticleNumber" />
+                            <button type="submit" class="btn btn-danger">Remove from Cart</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
