@@ -32,6 +32,8 @@ builder.Services.AddScoped<UserEntity>();
 builder.Services.AddScoped<SignUpViewModel>();
 builder.Services.AddScoped<SignInViewModel>();
 
+builder.Services.AddScoped<ProductService>();  //Added for Dependency injecttion
+
 using (var connection = new SqlConnection(connectionString))
 {
     try

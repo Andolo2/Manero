@@ -25,15 +25,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-document.addEventListener("DOMContentLoaded", function () { // F채ster footer l채ngst ned p책 sidan i alla l채gen.
+document.addEventListener("DOMContentLoaded", function () {
     const footer = document.querySelector(".Footer-Section footer");
 
     function setFooterPosition() {
-        const windowHeight = window.innerHeight; // H채mta windiwsheight
-        const bodyHeight = document.body.clientHeight; // H채mta bodyheght
+        const windowHeight = window.innerHeight;
+        const bodyHeight = document.body.clientHeight;
+        const footerHeight = footer.clientHeight;
 
         if (bodyHeight < windowHeight) {
-            const offset = windowHeight - bodyHeight;
             footer.style.position = "fixed";
             footer.style.bottom = "0";
             footer.style.width = "100%";
@@ -45,10 +45,10 @@ document.addEventListener("DOMContentLoaded", function () { // F채ster footer l�
 
     window.addEventListener("resize", setFooterPosition);
     window.addEventListener("load", setFooterPosition);
+    window.addEventListener("scroll", setFooterPosition);
+
     setFooterPosition();
 });
-
-
 
 
 
