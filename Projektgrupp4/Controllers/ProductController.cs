@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Projektgrupp4.Contexts;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.Services;
@@ -30,68 +31,62 @@ namespace Projektgrupp4.Controllers
                 ProductOfferPrice = x.ProductOfferPrice,
                 ProductPriceOrOffer = x.ProductPriceOrOffer,
                 ProductDescription = x.ProductDescription,
-                ProductImageBase64 = Convert.ToBase64String(x.ProductImage)
-
-
-
+                ProductImageBase64 = Convert.ToBase64String(x.ProductImage) // Img is saved as Byte[] in database, needed to convert.
 
             }).ToList();
-
-
-
             return View(viewModels);
         }
 
 
-
- public IActionResult CreateProduct(BackofficeProductViewModel productViewModel)
-{
-    if (ModelState.IsValid)
+        //[Authorize(Roles = "system-admin")] 
+        public IActionResult CreateProduct(BackofficeProductViewModel productViewModel)
     {
-        var productEntity = new ProductEntity
+        if (ModelState.IsValid)
         {
-            ProductTitle = productViewModel.ProductTitle,
-            ProductPrice = productViewModel.ProductPrice,
-            ProductOfferPrice = productViewModel.ProductOfferPrice,
-            ProductPriceOrOffer = productViewModel.ProductPriceOrOffer,
-            ProductDescription = productViewModel.ProductDescription,
-
-            ProductReviews = new List<ReviewEntity>(),
-            ProductEntries = new List<ProductItemEntity>(),
-            ProductCategories = new List<ProductCategoriesEntity>()
-        };
-
-        // Handle the image upload
-        if (productViewModel.ProductImage != null && productViewModel.ProductImage.Length > 0)
-        {
-            using (var stream = new MemoryStream())
+            var productEntity = new ProductEntity
             {
-                productViewModel.ProductImage.CopyTo(stream);
-                productEntity.ProductImage = stream.ToArray();
+                ProductTitle = productViewModel.ProductTitle,
+                ProductPrice = productViewModel.ProductPrice,
+                ProductOfferPrice = productViewModel.ProductOfferPrice,
+                ProductPriceOrOffer = productViewModel.ProductPriceOrOffer,
+                ProductDescription = productViewModel.ProductDescription,
+
+                ProductReviews = new List<ReviewEntity>(),
+                ProductEntries = new List<ProductItemEntity>(),
+                ProductCategories = new List<ProductCategoriesEntity>()
+            };
+
+            // Handle the image upload
+            if (productViewModel.ProductImage != null && productViewModel.ProductImage.Length > 0)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    productViewModel.ProductImage.CopyTo(stream);
+                    productEntity.ProductImage = stream.ToArray();
+                }
+            }
+
+            // Call the CreateProduct method in the ProductService
+            bool success = _productService.CreateProduct(productEntity);
+
+            if (success)
+            {
+                // Redirect to a success page 
+                return RedirectToAction("ProductBackoffice");
+            }
+            else
+            {
+                // Redirect to an error message/page
+                // You should define the appropriate error handling logic here.
             }
         }
 
-        // Call the CreateProduct method in the ProductService
-        bool success = _productService.CreateProduct(productEntity);
-
-        if (success)
-        {
-            // Redirect to a success page 
-            return RedirectToAction("ProductBackoffice");
-        }
-        else
-        {
-            // Redirect to an error message/page
-            // You should define the appropriate error handling logic here.
-        }
+        return View(productViewModel);
     }
 
-    return View(productViewModel);
-}
 
 
-
-
+        //[Authorize(Roles = "system-admin")]
         [HttpPost]
         public IActionResult DeleteProduct(int productId)
         {

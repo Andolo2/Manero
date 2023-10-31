@@ -15,7 +15,7 @@ builder.Services.AddScoped<AuthenticationService>();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
 
-string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Andreas Olofsson\\Documents\\TestDatabaseManero.mdf\";Integrated Security=True;Connect Timeout=30";
+string connectionString = "Server=tcp:grupp4-sqlserver.database.windows.net,1433;Initial Catalog=database-1;Persist Security Info=False;User ID=SqlAdmin;Password={Bytmig123!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
 
 //authentication

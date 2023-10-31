@@ -11,7 +11,7 @@ public class ProductEntity
 {
     [Key]
     public int ArticleNumber { get; set; }
-    public byte[] ProductImage { get; set; }
+    public byte[] ProductImage { get; set; } = null!;
     public string ProductTitle { get; set; } = null!;
 
     [Column(TypeName = "money")]
