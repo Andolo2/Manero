@@ -4,6 +4,14 @@
         <a href="#"><i class="fa-regular fa-magnifying-glass"></i></a>
         <a asp-action="Index" asp-controller="ShoppingCart" ><i class="fa-light fa-bag-shopping"></i></a>
         <a asp-action="WishList" asp-controller="Product"><i class="fa-regular fa-heart"></i></a>
-        <a asp-action="Index" asp-controller="SignIn"><i class="fa-light fa-circle-user"></i></a>
+        @if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
+        {
+            <a asp-action="Index" asp-controller="Admin"><i class="fa-light fa-circle-user"></i></a>
+        }
+        else
+        {
+            <a asp-action="Index" asp-controller="SignIn"><i class="fa-light fa-circle-user"></i></a>
+
+        }
     </footer>
 </section>

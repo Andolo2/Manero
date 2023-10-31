@@ -3,6 +3,7 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Projektgrupp4.Contexts;
 using Projektgrupp4.Models.Entities;
+using Projektgrupp4.Models.Identity;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
 
@@ -11,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Services
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<SeedService>();
 // Context
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
@@ -26,7 +28,7 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
     x.Password.RequiredLength = 8;
 })
     .AddEntityFrameworkStores<DataContext>()
-    .AddDefaultTokenProviders(); 
+    .AddClaimsPrincipalFactory<CustomClaimsPrincipalFactory>(); 
 
 builder.Services.AddScoped<UserEntity>();
 builder.Services.AddScoped<SignUpViewModel>();

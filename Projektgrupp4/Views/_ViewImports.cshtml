@@ -1,2 +1,8 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNet.Identity;
+@using Microsoft.AspNetCore.Identity;
+@using Projektgrupp4.Models.Entities;
 @using Projektgrupp4.ViewModels;
+
+
+@inject SignInManager<UserEntity> signInManager

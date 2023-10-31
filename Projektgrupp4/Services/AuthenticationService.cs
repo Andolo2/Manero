@@ -12,26 +12,30 @@ public class AuthenticationService
 {
     private readonly UserManager<UserEntity> _userManager;
     private readonly SignInManager<UserEntity> _signInManager;
+    private readonly SeedService _seedService;
 
-    public AuthenticationService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
+    public AuthenticationService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, SeedService seedService)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _seedService = seedService;
     }
 
     public async Task<bool> SignUpAsync(SignUpViewModel viewModel)
     {
         try
         {
+            await _seedService.SeedRoles();
+            var roleName = "user";
 
-            var user = new UserEntity
-            {
-                UserName = viewModel.Email,
-                Name = viewModel.Name,      
-                Email = viewModel.Email,    
-            };
+            if (!await _userManager.Users.AnyAsync())
+                roleName = "admin";
 
-            var result = await _userManager.CreateAsync(user, viewModel.Password);
+            UserEntity userEntity = viewModel;
+
+            var result = await _userManager.CreateAsync(userEntity, viewModel.Password);
+
+            await _userManager.AddToRoleAsync(userEntity, roleName);
 
             if (result.Succeeded)
             {
