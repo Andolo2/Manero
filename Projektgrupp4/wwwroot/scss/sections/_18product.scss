@@ -284,7 +284,7 @@
                     background-color: $color-productRed;
                 }
 
-                .colorBlue {
+                .colorLightBlue {
                     background-color: $color-productLightBlue;
                 }
 
@@ -298,6 +298,31 @@
 
                 .colorBlack {
                     background-color: $color-darkBlack;
+                }
+
+                .colorWhite {
+                    background-color: white;
+                    outline: 1px solid gray;
+                }
+
+                .colorGreen {
+                    background-color: #32bf55
+                }
+
+                .colorBlue {
+                    background-color: #41a3e0
+                }
+
+                .colorOrange {
+                    background-color: #f5bd45
+                }
+
+                .colorYellow {
+                    background-color: #f2f545
+                }
+
+                .colorPurple {
+                    background-color: #c941e0
                 }
             }
         }
