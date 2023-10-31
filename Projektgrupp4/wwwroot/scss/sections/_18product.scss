@@ -241,6 +241,7 @@
 
             .colorSelection {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 15px;
 
                 .colorOption {
