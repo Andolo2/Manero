@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
 
 namespace Projektgrupp4.Controllers
@@ -8,24 +9,25 @@ namespace Projektgrupp4.Controllers
 
         private readonly ProductService _productService;
 
+        public ProductDetailController(ProductService productService)
+        {
+            _productService = productService;
+        }
+
         [HttpGet]
-        public IActionResult ProductDetail()
+        public async Task<IActionResult> ProductDetail(int articleNumber)
 		{
-            
-            public async Task<IActionResult> Index(int articleNumber)
+            var product = await _productService.GetProductAsync(articleNumber);
+            if (product != null)
             {
-                var product = await _productService.GetProductAsync(articleNumber);
-                if (product != null)
-                {
-                    ProductDetailViewModel viewModel = product;
-                    viewModel.ProductSizes = product.ProductEntries.Select(x => x.Size).Distinct().ToList();
-                    viewModel.ProductColors = product.ProductEntries.Select(x => x.Color).Distinct().ToList();
+                ProductDetailViewModel viewModel = product;
+                viewModel.ProductSizes = product.ProductEntries.Select(x => x.Size).Distinct().ToList();
+                viewModel.ProductColors = product.ProductEntries.Select(x => x.Color).Distinct().ToList();
 
-                    return View(viewModel);
-                }
-
-                return NotFound();
+                return View(viewModel);
             }
+
+            return NotFound();
 
         }
     }
