@@ -219,195 +219,221 @@
                     }
                 }
             }
+        }
 
-            .productColors {
+        .productColors {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+
+            @include lg {
+                margin-bottom: 20px;
+            }
+
+
+
+            > h5 {
+                font-weight: $font-weight-semibold;
+                color: $color-darkBlack;
+                font-size: 16px;
+                margin: 0px 30px 0px 0px;
+            }
+
+            .colorSelection {
                 display: flex;
-                align-items: center;
-                margin-bottom: 40px;
+                gap: 15px;
 
-                @include lg {
-                    margin-bottom: 20px;
-                }
+                .colorOption {
+                    position: relative;
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 50%;
 
+                    &:hover {
+                        box-shadow: 0px 0px 0px 5px rgba(219, 227, 245, 1.0);
+                    }
 
+                    > input[type="radio"] {
+                        display: none;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
 
-                > h5 {
-                    font-weight: $font-weight-semibold;
-                    color: $color-darkBlack;
-                    font-size: 16px;
-                    margin: 0px 30px 0px 0px;
-                }
+                        &:checked + label {
+                            box-shadow: 0px 0px 0px 5px rgba(219, 227, 245, 1.0);
+                        }
+                    }
 
-                .colorSelection {
-                    display: flex;
-                    gap: 15px;
-
-                    .colorOption {
-                        position: relative;
+                    > label {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
                         width: 35px;
                         height: 35px;
                         border-radius: 50%;
 
                         &:hover {
-                            box-shadow: 0px 0px 0px 5px rgba(219, 227, 245, 1.0);
-                        }
-
-                        > input[type="radio"] {
-                            display: none;
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-
-                            &:checked + label {
-                                box-shadow: 0px 0px 0px 5px rgba(219, 227, 245, 1.0);
-                            }
-                        }
-
-                        > label {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 35px;
-                            height: 35px;
-                            border-radius: 50%;
-
-                            &:hover {
-                                cursor: pointer;
-                            }
+                            cursor: pointer;
                         }
                     }
-
-                    .colorRed {
-                        background-color: $color-productRed;
-                    }
-
-                    .colorBlue {
-                        background-color: $color-productLightBlue;
-                    }
-
-                    .colorBeige {
-                        background-color: $color-productBeige;
-                    }
-
-                    .colorDarkBlue {
-                        background-color: $color-productDarkBlue;
-                    }
-
-                    .colorBlack {
-                        background-color: $color-darkBlack;
-                    }
-                }
-            }
-
-            .productDescription {
-                margin-bottom: 40px;
-
-
-                @include xl {
-                    display: block;
                 }
 
-                > h5 {
-                    font-weight: $font-weight-semibold;
-                    font-size: 16px;
-                    color: $color-darkBlack;
-                    margin-bottom: 15px;
+                .colorRed {
+                    background-color: $color-productRed;
                 }
 
-                > p {
-                    font-size: 16px;
-                    font-weight: $font-weight-regular;
+                .colorLightBlue {
+                    background-color: $color-productLightBlue;
                 }
-            }
 
-            .buttonContainer {
-                text-align: center;
+                .colorBeige {
+                    background-color: $color-productBeige;
+                }
 
-                @include lg {
-                    text-align: start;
+                .colorDarkBlue {
+                    background-color: $color-productDarkBlue;
+                }
+
+                .colorBlack {
+                    background-color: $color-darkBlack;
+                }
+
+                .colorWhite {
+                    background-color: white;
+                    outline: 1px solid gray;
+                }
+
+                .colorGreen {
+                    background-color: #32bf55;
+                }
+
+                .colorBlue {
+                    background-color: #41a3e0;
+                }
+
+                .colorOrange {
+                    background-color: #f5bd45;
+                }
+
+                .colorYellow {
+                    background-color: #f2f545;
+                }
+
+                .colorPurple {
+                    background-color: #c941e0;
                 }
             }
         }
 
-        .productReviews {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            margin-top: 40px;
-            gap: 40px;
+        .productDescription {
+            margin-bottom: 40px;
+
+
+            @include xl {
+                display: block;
+            }
+
+            > h5 {
+                font-weight: $font-weight-semibold;
+                font-size: 16px;
+                color: $color-darkBlack;
+                margin-bottom: 15px;
+            }
+
+            > p {
+                font-size: 16px;
+                font-weight: $font-weight-regular;
+            }
+        }
+
+        .buttonContainer {
+            text-align: center;
 
             @include lg {
-                grid-column: 1 / -1;
+                text-align: start;
             }
+        }
+    }
 
-            > h3 {
-                font-weight: $font-weight-bold;
-                font-size: 20px;
-                color: $color-darkBlack;
-                margin: 0;
+    .productReviews {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 40px;
+        gap: 40px;
+
+        @include lg {
+            grid-column: 1 / -1;
+        }
+
+        > h3 {
+            font-weight: $font-weight-bold;
+            font-size: 20px;
+            color: $color-darkBlack;
+            margin: 0;
+        }
+
+        .productViewAllReviews {
+            text-decoration: none;
+            text-align: right;
+            margin-right: 20px;
+            color: $color-darkBlack;
+
+            &:hover {
+                text-decoration: underline;
             }
+        }
 
-            .productViewAllReviews {
-                text-decoration: none;
-                text-align: right;
-                margin-right: 20px;
-                color: $color-darkBlack;
+        .productReviewCard {
+            position: relative;
+            align-items: start;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgb(219, 227, 245);
+            grid-column: 1 / -1;
 
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
 
-            .productReviewCard {
-                position: relative;
+            .imageAndContentContainer {
+                display: flex;
                 align-items: start;
-                padding-bottom: 40px;
-                border-bottom: 1px solid rgb(219, 227, 245);
-                grid-column: 1 / -1;
 
-
-                .imageAndContentContainer {
-                    display: flex;
-                    align-items: start;
-
-                    > img {
-                        margin-right: 20px;
-                    }
-
-                    .productReviewCardContainer {
-
-
-                        .reviewName {
-                            font-size: 16px;
-                            font-weight: $font-weight-semibold;
-                            color: $color-darkBlack;
-                        }
-
-
-
-                        .reviewDate {
-                            font-size: 10px;
-                            grid-column: 1 / 2;
-                        }
-
-                        .reviewText {
-                            grid-column: 1 / -1;
-                            margin: 0px;
-                        }
-                    }
+                > img {
+                    margin-right: 20px;
                 }
 
-                .reviewStars {
-                    display: flex;
-                    position: absolute;
-                    right: 0;
-                    top: 0;
+                .productReviewCardContainer {
 
-                    > .star {
-                        color: $color-yellow;
+
+                    .reviewName {
+                        font-size: 16px;
+                        font-weight: $font-weight-semibold;
+                        color: $color-darkBlack;
                     }
+
+
+
+                    .reviewDate {
+                        font-size: 10px;
+                        grid-column: 1 / 2;
+                    }
+
+                    .reviewText {
+                        grid-column: 1 / -1;
+                        margin: 0px;
+                    }
+                }
+            }
+
+            .reviewStars {
+                display: flex;
+                position: absolute;
+                right: 0;
+                top: 0;
+
+                > .star {
+                    color: $color-yellow;
                 }
             }
         }
     }
 }
+
