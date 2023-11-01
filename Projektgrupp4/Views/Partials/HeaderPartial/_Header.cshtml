@@ -3,8 +3,13 @@
         <div class="bottom-menu">
             <button id="menu-toggle" class="fa-sharp fa-light fa-bars"></button>
 
-     @*     Logo image in header *@
-            <img src="~/images/logos/logo.svg" alt="logo">
+     @*     Header bild med länk till framsidan *@
+            <a asp-action="Index" asp-controller="Home">
+                <div class="mb-4 headerLogo">
+                    <h1>Detta syns inte sen. Men var tvungen att vara med för att loggan bilden ska visa sig! </h1>
+                    <img src="~/images/logos/logo.svg" alt="logo">
+                </div>
+            </a>
 
             <input class="main-search" type="text" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome" />
             <div class="shopping-cart">
