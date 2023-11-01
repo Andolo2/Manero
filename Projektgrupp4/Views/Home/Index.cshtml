@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+    var products = await productService.GetAllProductsAsync();
 }
 
 @* Add Header partial
@@ -26,89 +28,43 @@
             <div class="cardGrid">
                 <div class="cards">
 
-                    <!-- Card 1 -->
-                    <a class="card" href="#">
-                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
-                        <div class="text">
-                            <p class="ProductRating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-light fa-star"></i>
-                                <i class="fa-light fa-star"></i>
-                                (3)
-                            </p>
-                            <h2 class="productTitle">Black sneakers</h2>
-                            <div class="prices">
-                                <p class="productPrice">$29.95</p>
-                                <p class="productPrice oldPrice d-none">$29.95</p>
-                                <p class="productOfferPrice d-none">$29.95</p>
-                            </div>
-                        </div>
-                    </a>
+                    <!-- Card -->
+                    @foreach (var product in products)
+                    {
+                        if (product != null)
+                        {
+                            <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
+                                <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                                <div class="text">
+                                    <p class="ProductRating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-light fa-star"></i>
+                                        <i class="fa-light fa-star"></i>
+                                        (3)
+                                    </p>
+                                    <h2 class="productTitle">@product.ProductTitle</h2>
+                                    <div class="prices">
+                                        <p class="productPrice">$@product.ProductPrice</p>
+                                        <p class="productPrice oldPrice d-none">$@product.ProductPrice</p>
+                                        <p class="productOfferPrice d-none">$@product.ProductOfferPrice</p>
+                                    </div>
+                                </div>
+                            </a>
 
-                    <!-- Card 2 -->
-                    <a class="card product" href="#">
-                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
-                        <div class="text">
-                            <p class="ProductRating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-light fa-star"></i>
-                                <i class="fa-light fa-star"></i>
-                                (3)
-                            </p>
-                            <h2 class="productTitle">Summer dress</h2>
-                            <div class="prices">
-                                <p class="productPrice d-none">$29.95</p>
-                                <p class="productPrice oldPrice">$36</p>
-                                <p class="productOfferPrice">$15.98</p>
-                            </div>
-                        </div>
-                    </a>
+                            @* To display a certain number of products. Max 4 pcs. Start -->*@
 
-                    <!-- Card 3 -->
-                    <a class="card product" href="#">
-                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
-                        <div class="text">
-                            <p class="ProductRating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-light fa-star"></i>
-                                <i class="fa-light fa-star"></i>
-                                (3)
-                            </p>
-                            <h2 class="productTitle">Shoulder bag</h2>
-                            <div class="prices">
-                                <p class="productPrice d-none">$29.95</p>
-                                <p class="productPrice oldPrice">$38</p>
-                                <p class="productOfferPrice">$30</p>
-                            </div>
-                        </div>
-                    </a>
+                            productCount++; // Increments the productCounter.
 
-                    <!-- Card 4 -->
-                    <a class="card product" href="#">
-                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
-                        <div class="text">
-                            <p class="ProductRating">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-light fa-star"></i>
-                                <i class="fa-light fa-star"></i>
-                                (3)
-                            </p>
-                            <h2 class="productTitle">Warm hat</h2>
-                            <div class="prices">
-                                <p class="productPrice ">$6.93</p>
-                                <p class="productPrice oldPrice d-none">$38</p>
-                                <p class="productOfferPrice d-none">$30</p>
-                            </div>
-                        </div>
-                    </a>
+                            if (productCount >= 4) // Break out of the loop after showing 4 products.
+                            {
+                                break;
+                            }
+
+                            @* <-- End. *@
+                        }
+                    }
                 </div>
             </div>
         </div>
