@@ -98,7 +98,10 @@
                 margin-bottom: 20px;
 
                 > a {
-                    color: $color-yellow;
+
+                    .star {
+                        color: $color-yellow;
+                    }
                 }
 
 
