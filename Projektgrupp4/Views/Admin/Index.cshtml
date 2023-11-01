@@ -1,0 +1,10 @@
+﻿<section>
+    <div class="container">
+        <h1>Admin</h1>
+
+        @if (signInManager.IsSignedIn(User))
+        {
+            <a asp-action="Logout" asp-controller="Account">Logout<i class="fa-light fa-sign-out"></i></a>
+        }
+    </div>
+</section>

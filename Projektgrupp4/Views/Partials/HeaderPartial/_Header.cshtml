@@ -1,0 +1,59 @@
+﻿<section class="Header-Section">
+    <div class="container-fluid">
+        <div class="bottom-menu">
+            <button id="menu-toggle" class="fa-sharp fa-light fa-bars"></button>
+
+     @*     Header bild med länk till framsidan *@
+            <a asp-action="Index" asp-controller="Home">
+                <div class="mb-4 headerLogo">
+                    <h1>Detta syns inte sen. Men var tvungen att vara med för att loggan bilden ska visa sig! </h1>
+                    <img src="~/images/logos/logo.svg" alt="logo">
+                </div>
+            </a>
+
+            <input class="main-search" type="text" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome" />
+            <div class="shopping-cart">
+                <i class="fa-thin fa-basket-shopping"></i>
+                <div class="cart-items">
+                    <p>$0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-menu">
+            <div class="slide-menu-top">
+                <h1>Contact US</h1>
+
+                <div class="slider-menu-content">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>
+                        27 Division St, New York
+                    </p>
+                </div>
+
+                <div class="slider-menu-content">
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>
+                        manerosupport@mail.com
+                    </p>
+                </div>
+
+                <div class="slider-menu-content">
+                    <i class="fa-regular fa-phone-volume"></i>
+                    <p>
+                        +17 987654321
+                    </p>
+                </div>
+            </div>
+
+            <div class="slide-menu-bottom">
+                <fieldset>
+                    <legend>Order number</legend>
+                    <input placeholder="Search">
+                </fieldset>
+            </div>
+
+
+        </div>
+    </div>
+</section>

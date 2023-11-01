@@ -7,18 +7,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ProductDetails\**" />
+    <Content Remove="Views\ProductDetails\**" />
+    <EmbeddedResource Remove="Views\ProductDetails\**" />
+    <None Remove="Views\ProductDetails\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
-    <Folder Include="Views\Partials\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\logos\" />
+    <Folder Include="wwwroot\scss\core\" />
     <Folder Include="wwwroot\scss\components\" />
   </ItemGroup>
 
@@ -27,6 +32,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

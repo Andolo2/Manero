@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Projektgrupp4.Models.Entities;
 
 namespace Projektgrupp4.Contexts
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<UserEntity>
     {
-        private readonly string _connectionString = @"Server=tcp:grupp4-sqlserver.database.windows.net,1433;Initial Catalog=database-1;Persist Security Info=False;User ID=SqlAdmin;Password={Bytmig123!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
         public DataContext()
         {
         }
@@ -15,6 +15,25 @@ namespace Projektgrupp4.Contexts
         {
         }
 
+
+
+        // Users
         public DbSet<AddressEntity> Adresses { get; set; } = null!;
-    }
+        
+
+        // Products
+        public DbSet<ProductEntity> Products { get; set; } = null!;
+        public DbSet<ProductItemEntity> ProductItem { get; set; } = null!;
+        public DbSet<ColorEntity> Colors { get; set; } = null!;
+        public DbSet<SizeEntity> Sizes { get; set; } = null!;
+        public DbSet<CategoryEntity> Categories { get; set; } = null!;
+        public DbSet<ReviewEntity> Reviews { get; set; } = null!;
+        public DbSet<ProductCategoriesEntity> ProductCategories { get; set; } = null!;
+
+       
+    
+       
+
+     }
+
 }

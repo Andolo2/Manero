@@ -15,4 +15,5 @@ public class AddressEntity
     public int PostalCode { get; set; }
     public string CountryName { get; set; } = null!;
 
+    public ICollection<UserEntity> Users { get; set;} = new HashSet<UserEntity>();
 } 

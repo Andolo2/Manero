@@ -1,19 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-
     var products = await productService.GetAllProductsAsync();
 }
 
-@* Add Header partial
-<partial name="" /> *@
+<partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
 
 <div class="_13Home">
     <!-- Showcase section. Welcome To Manero! -->
     <section class="showcase">
         <h1>
-            Welcome To <br>
-            Manero! <br>
-            50% off
+            <a asp-action="Offer50" asp-controller="Product">
+                Welcome To <br>
+                Manero! <br>
+                50% off
+
+            </a>
+            
         </h1>
     </section>
 
@@ -22,16 +24,16 @@
         <div class="container">
             <div class="top">
                 <h2>Best Sellers</h2>
-                <a href="#">view all <i class="fa-solid fa-chevron-right"></i></a>
+                <a asp-action="BestSellers" asp-controller="Product">view all <i class="fa-solid fa-chevron-right"></i></a>
             </div>
 
             <div class="cardGrid">
                 <div class="cards">
 
-                    <!-- Card -->
-                    @foreach (var product in products)
+                    <!-- Card 1 -->
+                    @foreach(var product in products)
                     {
-                        if (product != null)
+                        if(product != null)
                         {
                             <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
                                 <img class="productImage" src="/images/productImage.svg" alt="Image of product">
@@ -52,8 +54,29 @@
                                     </div>
                                 </div>
                             </a>
+                        }
+                    }
 
-                            @* To display a certain number of products. Max 4 pcs. Start -->*@
+@*                     <!-- Card 2 -->
+                    <a class="card product" href="#">
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Summer dress</h2>
+                            <div class="prices">
+                                <p class="productPrice d-none">$29.95</p>
+                                <p class="productPrice oldPrice">$36</p>
+                                <p class="productOfferPrice">$15.98</p>
+                            </div>
+                        </div>
+                    </a>
 
                             productCount++; // Increments the productCounter.
 
@@ -62,9 +85,26 @@
                                 break;
                             }
 
-                            @* <-- End. *@
-                        }
-                    }
+                    <!-- Card 4 -->
+                    <a class="card product" href="#">
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Warm hat</h2>
+                            <div class="prices">
+                                <p class="productPrice ">$6.93</p>
+                                <p class="productPrice oldPrice d-none">$38</p>
+                                <p class="productOfferPrice d-none">$30</p>
+                            </div>
+                        </div>
+                    </a> *@
                 </div>
             </div>
         </div>
@@ -74,7 +114,7 @@
     <section class="take5OfNow">
         <div class="container">
             <h1>Take 50% off now!</h1>
-            <a class="buttonWhite" href="#">SHOP NOW</a>
+            <a asp-action="Offer50" asp-controller="Product" class="buttonWhite">SHOP NOW</a>
         </div>
     </section>
 
@@ -83,14 +123,14 @@
         <div class="container">
             <div class="top">
                 <h2>Featured Products</h2>
-                <a href="#">view all <i class="fa-solid fa-chevron-right"></i></a>
+                <a asp-action="FeaturedProducts" asp-controller="Product">view all <i class="fa-solid fa-chevron-right"></i></a>
             </div>
 
             <div class="cardGrid">
                 <div class="cards">
 
                     <!-- Card 1 -->
-                    <a class="card product" href="#">
+                    <a asp-controller="ProductDetail" class="card product" >
                         <img class="productImage" src="/images/productImage.svg" alt="Image of product">
                         <div class="text">
                             <p class="ProductRating">
@@ -178,5 +218,6 @@
     </section>
 </div>
 
-@* Add Header partial
-<partial name="" /> *@
+@* Footer *@
+<partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
+

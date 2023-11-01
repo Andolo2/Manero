@@ -1,0 +1,86 @@
+﻿@model ProductDetailViewModel
+
+@* Header *@
+<partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
+
+<section class="productDetails">
+    <div class="container">
+        <div class="productImage">
+            <img src="images/product-detail-placeholder.svg" />
+            <div class="productImageDots">
+                <div class="productImageDot"></div>
+                <div class="productImageDot"></div>
+                <div class="productImageDot"></div>
+            </div>
+
+        </div>
+
+        <div class="productInformation">
+            <div class="productInformationTop">
+                <h3 class="productTitle">@Model.ProductTitle</h3>
+                <i class="productAddToFavorite fa-sharp fa-light fa-heart"></i>
+            </div>
+            <div class="productReviewStars">
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                <span>(@Model.ProductReviews.Count())</span>
+            </div>
+            <div class="productPrice">
+                <p>$@Model.ProductPrice</p>
+                <div class="productQuantity">
+                    <button class="productSubtract"><i class="fa-regular fa-minus"></i></button>
+                    <span>1</span>
+                    <button class="productAdd"><i class="fa-regular fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="productSize">
+                <h5>Size</h5>
+                <div class="productSizeSelection">
+                    @foreach (var size in Model.ProductSizes!)
+                    {
+                        <div class="productSizeOption">
+                            <input type="radio" name="size" id="size@(size.SizeId)">
+                            <label for="size@(size.SizeId)">@size.SizeName</label>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="productColors">
+                <h5>Color</h5>
+                <div class="colorSelection">
+                    @foreach (var color in Model.ProductColors!)
+                    {
+                        <div class="colorOption color@(color.ColorName)">
+                            <input type="radio" name="color" id="color@(color.ColorId)">
+                            <label for="color@(color.ColorId)"></label>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="productDescription">
+                <h5>Description</h5>
+                <p>@Model.ProductDescription</p>
+            </div>
+            <div class="buttonContainer">
+                <button class="button335W">+ ADD TO CART</button>
+            </div>
+        </div>
+        <div class="productReviews">
+            <h3>Reviews (@Model.ProductReviews.Count())</h3>
+            <a class="productViewAllReviews" href="Reviews.html">view all <i class="fa-solid fa-chevron-right"></i></a>
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+            <partial name="/Views/Partials/_productReviewCard.cshtml" />
+
+        </div>
+    </div>
+</section>
+
+
+@* Footer *@
+<partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
