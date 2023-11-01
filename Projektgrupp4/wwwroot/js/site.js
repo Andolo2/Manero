@@ -98,3 +98,36 @@ toggleConfirmPasswordButton.addEventListener("click", (e) => {
         toggleConfirmPasswordButton.innerHTML = '<i class="fa-solid fa-eye"></i>';
     }
 });
+
+
+// Gör så att stjärnorna i Leave a Review blir gula när man hovrar och trycker på dem
+//const stars = document.querySelectorAll('.ratingStar');
+//let selectedRating = 0;
+
+//stars.forEach(star => {
+//    star.addEventListener('mouseover', () => {
+//        const rating = star.getAttribute('data-rating');
+//        for (let i = 0; i < stars.length; i++) {
+//            if (i < rating) {
+//                stars[i].classList.add('active');
+//            } else {
+//                stars[i].classList.remove('active');
+//            }
+//        }
+
+//        star.addEventListener('click', () => {
+//            selectedRating = star.getAttribute('data-rating')
+//            console.log(selectedRating)
+//        });
+
+//        star.addEventListener('mouseout', () => {
+//            for (let i = 0; i < stars.length; i++) {
+//                if (i < selectedRating) {
+//                    stars[i].classList.add('active')
+//                } else {
+//                    stars[i].classList.remove('active')
+//                }
+//            }
+//        })
+//    });
+//});

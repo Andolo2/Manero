@@ -61,10 +61,18 @@
 
             .rateProduct {
 
-                > i {
+                .ratingStar {
                     font-size: 34px;
                     color: $color-theme;
                     margin-bottom: 30px;
+
+                    &:hover {
+                        color: yellow;
+                    }
+
+                    &.active {
+                        color: yellow;
+                    }
                 }
             }
 
