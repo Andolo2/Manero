@@ -1,0 +1,89 @@
+﻿@model BackofficeProductViewModel
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+
+            <form asp-controller="Product" asp-action="CreateProduct" method="post" enctype="multipart/form-data" style="margin-top: 2rem;">
+
+                @*  <div class="form-group">
+                <label asp-for="ArticleNumber"></label>
+                <input asp-for="ArticleNumber" class="form-control" />
+                <span asp-validation-for="ArticleNumber" class="text-danger"></span>
+                </div> *@
+
+
+                <div class="form-group">
+                    <label asp-for="ProductTitle"></label>
+                    <input asp-for="ProductTitle" class="form-control" />
+                    <span asp-validation-for="ProductTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductPrice"></label>
+                    <input asp-for="ProductPrice" class="form-control" />
+                    <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                </div>
+
+                @* <div class="form-group">
+                <label asp-for="ProductImageUrl"></label>
+                <input asp-for="ProductImageUrl" class="form-control" />
+                <span asp-validation-for="ProductImageUrl" class="text-danger"></span>
+                </div> *@
+
+                <div class="form-group">
+                    <label asp-for="ProductImage"></label>
+                    <input asp-for="ProductImage" type="file" class="form-control-file" />
+                    <span asp-validation-for="ProductImage" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="ProductOfferPrice"></label>
+                    <input asp-for="ProductOfferPrice" class="form-control" />
+                    <span asp-validation-for="ProductOfferPrice" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="ProductDescription"></label>
+                    <textarea asp-for="ProductDescription" class="form-control"></textarea>
+                    <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductColor"></label>
+                    <select asp-for="ProductColor" asp-items="Html.GetEnumSelectList<Projektgrupp4.Enum.Color>()" class="form-control">
+                        <option value="">Select</option>
+                    </select>
+                    <span asp-validation-for="ProductColor" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductLabel"></label>
+                    <select asp-for="ProductLabel" asp-items="Html.GetEnumSelectList<Projektgrupp4.Enum.Label>()" class="form-control">
+                        <option value="">Select</option>
+                    </select>
+                    <span asp-validation-for="ProductLabel" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductSize"></label>
+                    <select asp-for="ProductSize" asp-items="Html.GetEnumSelectList<Projektgrupp4.Enum.Size>()" class="form-control">
+                        <option value="">Select</option>
+                    </select>
+                    <span asp-validation-for="ProductSize" class="text-danger"></span>
+                </div>
+
+
+                <!-- Add fields for other product properties as needed -->
+
+                <button type="submit" class="btn btn-primary">Create Product</button>
+            </form>
+
+        </div>
+    </div>
+</div>
