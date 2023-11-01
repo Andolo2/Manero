@@ -67,11 +67,12 @@
                     margin-bottom: 30px;
 
                     &:hover {
-                        color: yellow;
+                        color: $color-yellow;
+                        cursor: pointer;
                     }
 
                     &.active {
-                        color: yellow;
+                        color: $color-yellow;
                     }
                 }
             }
