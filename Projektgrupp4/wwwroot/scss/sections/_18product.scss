@@ -1,4 +1,3 @@
-
 @import "../core/_Fonts.scss";
 @import "../core/_Colors.scss";
 @import "../core/_Buttons.scss";
@@ -242,6 +241,7 @@
 
             .colorSelection {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 15px;
 
                 .colorOption {
@@ -306,23 +306,23 @@
                 }
 
                 .colorGreen {
-                    background-color: #32bf55
+                    background-color: #32bf55;
                 }
 
                 .colorBlue {
-                    background-color: #41a3e0
+                    background-color: #41a3e0;
                 }
 
                 .colorOrange {
-                    background-color: #f5bd45
+                    background-color: #f5bd45;
                 }
 
                 .colorYellow {
-                    background-color: #f2f545
+                    background-color: #f2f545;
                 }
 
                 .colorPurple {
-                    background-color: #c941e0
+                    background-color: #c941e0;
                 }
             }
         }
@@ -437,4 +437,4 @@
         }
     }
 }
-}
+

@@ -1,8 +1,237 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    var products = await productService.GetAllProductsAsync();
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
+
+<div class="_13Home">
+    <!-- Showcase section. Welcome To Manero! -->
+    <section class="showcase">
+        <h1>
+            <a asp-action="Offer50" asp-controller="Product">
+                Welcome To <br>
+                Manero! <br>
+                50% off
+
+            </a>
+            
+        </h1>
+    </section>
+
+    <!-- Best sellers section -->
+    <section class="cardSection">
+        <div class="container">
+            <div class="top">
+                <h2>Best Sellers</h2>
+                <a asp-action="BestSellers" asp-controller="Product">view all <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <div class="cardGrid">
+                <div class="cards">
+
+                    <!-- Card 1 -->
+                    @foreach(var product in products)
+                    {
+                        if(product != null)
+                        {
+                            <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
+                                <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                                <div class="text">
+                                    <p class="ProductRating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-light fa-star"></i>
+                                        <i class="fa-light fa-star"></i>
+                                        (3)
+                                    </p>
+                                    <h2 class="productTitle">@product.ProductTitle</h2>
+                                    <div class="prices">
+                                        <p class="productPrice">$@product.ProductPrice</p>
+                                        <p class="productPrice oldPrice d-none">$@product.ProductPrice</p>
+                                        <p class="productOfferPrice d-none">$@product.ProductOfferPrice</p>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    }
+
+@*                     <!-- Card 2 -->
+                    <a class="card product" href="#">
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Summer dress</h2>
+                            <div class="prices">
+                                <p class="productPrice d-none">$29.95</p>
+                                <p class="productPrice oldPrice">$36</p>
+                                <p class="productOfferPrice">$15.98</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 3 -->
+                    <a class="card product" href="#">
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Shoulder bag</h2>
+                            <div class="prices">
+                                <p class="productPrice d-none">$29.95</p>
+                                <p class="productPrice oldPrice">$38</p>
+                                <p class="productOfferPrice">$30</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 4 -->
+                    <a class="card product" href="#">
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Warm hat</h2>
+                            <div class="prices">
+                                <p class="productPrice ">$6.93</p>
+                                <p class="productPrice oldPrice d-none">$38</p>
+                                <p class="productOfferPrice d-none">$30</p>
+                            </div>
+                        </div>
+                    </a> *@
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Take 50% off now! -->
+    <section class="take5OfNow">
+        <div class="container">
+            <h1>Take 50% off now!</h1>
+            <a asp-action="Offer50" asp-controller="Product" class="buttonWhite">SHOP NOW</a>
+        </div>
+    </section>
+
+    <!-- Featured products section -->
+    <section class="cardSection">
+        <div class="container">
+            <div class="top">
+                <h2>Featured Products</h2>
+                <a asp-action="FeaturedProducts" asp-controller="Product">view all <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+
+            <div class="cardGrid">
+                <div class="cards">
+
+                    <!-- Card 1 -->
+                    <a asp-controller="ProductDetail" class="card product" >
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Warm hat</h2>
+                            <div class="prices">
+                                <p class="productPrice ">$6.93</p>
+                                <p class="productPrice oldPrice d-none">$38</p>
+                                <p class="productOfferPrice d-none">$30</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 2 -->
+                    <a class="card product" href="#">
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Summer dress</h2>
+                            <div class="prices">
+                                <p class="productPrice d-none">$29.95</p>
+                                <p class="productPrice oldPrice">$36</p>
+                                <p class="productOfferPrice">$15.98</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 3 -->
+                    <a class="card product" href="#">
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Shoulder bag</h2>
+                            <div class="prices">
+                                <p class="productPrice d-none">$29.95</p>
+                                <p class="productPrice oldPrice">$38</p>
+                                <p class="productOfferPrice">$30</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Card 4 -->
+                    <a class="card" href="#">
+                        <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                        <div class="text">
+                            <p class="ProductRating">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                <i class="fa-light fa-star"></i>
+                                (3)
+                            </p>
+                            <h2 class="productTitle">Black sneakers</h2>
+                            <div class="prices">
+                                <p class="productPrice">$29.95</p>
+                                <p class="productPrice oldPrice d-none">$29.95</p>
+                                <p class="productOfferPrice d-none">$29.95</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
+
+@* Footer *@
+<partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
+

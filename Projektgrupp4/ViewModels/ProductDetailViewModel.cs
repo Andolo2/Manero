@@ -1,4 +1,6 @@
-﻿namespace Projektgrupp4.ViewModels
+﻿using Projektgrupp4.Models.Entities;
+
+namespace Projektgrupp4.ViewModels
 {
 	public class ProductDetailViewModel
 	{

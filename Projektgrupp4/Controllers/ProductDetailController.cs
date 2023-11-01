@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
 
 namespace Projektgrupp4.Controllers
@@ -8,10 +9,14 @@ namespace Projektgrupp4.Controllers
 
         private readonly ProductService _productService;
 
-        [HttpGet]
-        public IActionResult ProductDetail()
-		{
+        public ProductDetailController(ProductService productService)
+        {
+            _productService = productService;
+        }
 
+        [HttpGet]
+        public async Task<IActionResult> ProductDetail(int articleNumber)
+		{
             var product = await _productService.GetProductAsync(articleNumber);
             if (product != null)
             {
@@ -23,7 +28,7 @@ namespace Projektgrupp4.Controllers
             }
 
             return NotFound();
-            
+
         }
     }
 }

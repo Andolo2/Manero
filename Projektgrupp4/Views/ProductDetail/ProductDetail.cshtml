@@ -1,5 +1,7 @@
-﻿
-@model ProductDetailViewModel
+﻿@model ProductDetailViewModel
+
+@* Header *@
+<partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
 
 <section class="productDetails">
     <div class="container">
@@ -37,52 +39,27 @@
             <div class="productSize">
                 <h5>Size</h5>
                 <div class="productSizeSelection">
-                    <div class="productSizeOption">
-                        <input type="radio" name="size" id="sizeXS">
-                        <label for="sizeXS">XS</label>
-                    </div>
-                    <div class="productSizeOption">
-                        <input type="radio" name="size" id="sizeS">
-                        <label for="sizeS">S</label>
-                    </div>
-                    <div class="productSizeOption">
-                        <input type="radio" name="size" id="sizeM">
-                        <label for="sizeM">M</label>
-                    </div>
-                    <div class="productSizeOption">
-                        <input type="radio" name="size" id="sizeL">
-                        <label for="sizeL">L</label>
-                    </div>
-                    <div class="productSizeOption">
-                        <input type="radio" name="size" id="sizeXL">
-                        <label for="sizeXL">XL</label>
-                    </div>
-                    <div class="productSizeOption">
-                        <input type="radio" name="size" id="sizeXXL">
-                        <label for="sizeXXL">XXL</label>
-                    </div>
+                    @foreach (var size in Model.ProductSizes!)
+                    {
+                        <div class="productSizeOption">
+                            <input type="radio" name="size" id="size@(size.SizeId)">
+                            <label for="size@(size.SizeId)">@size.SizeName</label>
+                        </div>
+                    }
+
                 </div>
             </div>
-            <div class="colorSelection">
-                <div class="colorOption colorRed">
-                    <input type="radio" name="color" id="colorRed">
-                    <label for="colorRed"></label>
-                </div>
-                <div class="colorOption colorBlue">
-                    <input type="radio" name="color" id="colorBlue">
-                    <label for="colorBlue"></label>
-                </div>
-                <div class="colorOption colorBeige">
-                    <input type="radio" name="color" id="colorBeige">
-                    <label for="colorBeige"></label>
-                </div>
-                <div class="colorOption colorDarkBlue">
-                    <input type="radio" name="color" id="colorDarkBlue">
-                    <label for="colorDarkBlue"></label>
-                </div>
-                <div class="colorOption colorBlack">
-                    <input type="radio" name="color" id="colorBlack">
-                    <label for="colorBlack"></label>
+            <div class="productColors">
+                <h5>Color</h5>
+                <div class="colorSelection">
+                    @foreach (var color in Model.ProductColors!)
+                    {
+                        <div class="colorOption color@(color.ColorName)">
+                            <input type="radio" name="color" id="color@(color.ColorId)">
+                            <label for="color@(color.ColorId)"></label>
+                        </div>
+                    }
+
                 </div>
             </div>
             <div class="productDescription">
@@ -103,3 +80,7 @@
         </div>
     </div>
 </section>
+
+
+@* Footer *@
+<partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
