@@ -6,7 +6,8 @@
         {
             <div class="col-md-4 mb-3">
                 <div class="card">
-                    <img src="@product.ProductImageUrl" class="card-img-top" alt="Product Image">
+                    <img src="data:image/jpeg;base64,@product.ProductImageBase64" alt="Product Image">
+
                     <div class="card-body">
                         <h5 class="card-title">@product.ProductTitle</h5>
                         <p class="card-text">@product.ProductDescription</p>
