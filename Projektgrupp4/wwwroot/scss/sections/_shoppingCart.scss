@@ -1,0 +1,145 @@
+﻿@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+.shoppingCart {
+
+    .container {
+        padding: 0px;
+        display: grid;
+
+        .navigateBack {
+            padding: 15px 20px;
+            display: grid;
+            grid-template-columns: auto 1fr auto; /* Dela utrymmet mellan <a> och <p> */
+            border-bottom: 1px solid $color-theme;
+            // @include lg {
+            //     display: none;
+            // }
+            a {
+                justify-self: start;
+                color: $color-darkBlack;
+
+                &:hover {
+                    color: $color-socialLightBlue;
+                }
+            }
+
+            p {
+                justify-self: center;
+                margin: 0;
+                font-size: 1.2rem;
+            }
+
+            i {
+                justify-self: end;
+                font-size: 20px;
+            }
+        }
+
+        .productItem {
+            padding: 15px 20px;
+            display: grid;
+            grid-template-columns: auto 1fr auto; /* Dela utrymmet mellan <a> och <p> */
+            border-bottom: 1px solid $color-theme;
+
+            .productImage {
+                justify-self: start;
+                position: relative;
+
+                .image {
+                    z-index: -1;
+                }
+
+                .sale {
+                    z-index: 1;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+            }
+
+            .productInfo {
+                padding: 5px 10px;
+                line-height: 0.6rem;
+
+                .price {
+                    display: flex;
+
+                    .normalPrice {
+                        text-decoration: line-through;
+                        margin-right: 10px;
+                    }
+
+                    .discountPrice {
+                        color: red;
+                    }
+                }
+            }
+
+            .productAmount {
+                justify-self: end;
+                margin-top: 5px;
+
+                .amount {
+                    margin: 10px 0px;
+                    padding: 0px 8px;
+                }
+
+                button {
+                    border: none;
+                    background-color: white;
+                }
+            }
+        }
+
+        .promocode {
+            padding: 25px 15px;
+            display: flex;
+
+            i {
+                padding: 3px 10px;
+            }
+        }
+
+        .receipt {
+
+            .subtotal {
+                padding: 0px 20px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .discount {
+                padding: 0px 20px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .delivery {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid $color-theme;
+
+                p {
+                    padding: 0px 20px;
+                }
+            }
+
+            .totalOrderCost {
+                padding: 10px 20px;
+                display: flex;
+                justify-content: space-between;
+                color: black;
+                font-size: 1.3rem;
+            }
+        }
+
+        .button335W {
+            justify-self: center;
+            margin-top: 80px;
+            margin-bottom: 15px;
+        }
+    }
+}
