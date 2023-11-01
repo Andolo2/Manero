@@ -20,6 +20,10 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Repositories\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Partials\" />
+    <Folder Include="Views\Partials\" />
+    <Folder Include="Views\Partials\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\logos\" />
