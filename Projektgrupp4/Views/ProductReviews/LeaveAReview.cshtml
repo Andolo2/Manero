@@ -1,0 +1,69 @@
+﻿@model LeaveAReviewViewModel
+
+<form class="leaveAReviewSection" method="POST">
+    <div class="container">
+        <div class="leaveAReviewTopsection">
+            <a href="Product.html"><i class="fa-solid fa-chevron-left"></i></a>
+            <h6>Leave a Review</h6>
+        </div>
+        <div class="reviewContainer">
+            <img src="/images/Review.png" alt="">
+            <div class="verticalLine"></div>
+            <h2>Please rate the quality of service for the order!</h2>
+            <div class="rateProduct">
+                <i class="ratingStar fa-sharp fa-solid fa-star" data-rating="1"></i>
+                <i class="ratingStar fa-sharp fa-solid fa-star" data-rating="2"></i>
+                <i class="ratingStar fa-sharp fa-solid fa-star" data-rating="3"></i>
+                <i class="ratingStar fa-sharp fa-solid fa-star" data-rating="4"></i>
+                <i class="ratingStar fa-sharp fa-solid fa-star" data-rating="5"></i>
+            </div>
+            <input id="ratingInput" type="hidden" asp-for="@Model.Rating" value="0" />
+            <p>Your comments and suggestions help us improve the service quality better!</p>
+            <div class="commentSection">
+                <label asp-for="@Model.Comment"></label>
+                <textarea asp-for="@Model.Comment" class="comment" placeholder="Enter your comment"></textarea>
+                <div>
+                    <button type="submit" class="button335W">SUBMIT</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+<script>
+    const stars = document.querySelectorAll('.ratingStar');
+    let selectedRating = 0;
+    const hiddenInput = document.querySelector('#ratingInput')
+
+    stars.forEach(star => {
+        star.addEventListener('mouseover', () => {
+            const rating = star.getAttribute('data-rating');
+            for (let i = 0; i < stars.length; i++) {
+                if (i < rating) {
+                    stars[i].classList.add('active');
+                } else {
+                    stars[i].classList.remove('active');
+                }
+            }
+
+            star.addEventListener('click', () => {
+                selectedRating = star.getAttribute('data-rating')
+                hiddenInput.value = selectedRating;
+                console.log(selectedRating);
+                console.log(hiddenInput);
+            });
+
+            star.addEventListener('mouseout', () => {
+                for (let i = 0; i < stars.length; i++) {
+                    if (i < selectedRating) {
+                        stars[i].classList.add('active')
+                    } else {
+                        stars[i].classList.remove('active')
+                    }
+                }
+            })
+        });
+    });
+
+</script>
