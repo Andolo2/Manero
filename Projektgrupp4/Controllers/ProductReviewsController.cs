@@ -22,10 +22,10 @@ namespace Projektgrupp4.Controllers
 		}
 
         [HttpGet]
-		public IActionResult LeaveAReview(int articleNumber)
+		public IActionResult LeaveAReview()
 		{
 
-			return View(articleNumber);
+			return View();
 		}
 
 		[HttpPost]
@@ -37,7 +37,7 @@ namespace Projektgrupp4.Controllers
 
             }
 
-            return View();
+            return View(viewModel);
         }
     }
 }

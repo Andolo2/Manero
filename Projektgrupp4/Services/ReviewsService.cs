@@ -25,8 +25,11 @@ public class ReviewsService
                 Rating = viewModel.Rating,
                 Comment = viewModel.Comment,
 
-
+                
             };
+
+            _dataContext.Reviews.Add(entity);
+            await _dataContext.SaveChangesAsync();
 
             return true;
 

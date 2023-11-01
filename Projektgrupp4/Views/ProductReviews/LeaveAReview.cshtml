@@ -1,6 +1,6 @@
 ﻿@model LeaveAReviewViewModel
 
-<form class="leaveAReviewSection">
+<form class="leaveAReviewSection" method="POST">
     <div class="container">
         <div class="leaveAReviewTopsection">
             <a href="Product.html"><i class="fa-solid fa-chevron-left"></i></a>
@@ -21,9 +21,9 @@
             <p>Your comments and suggestions help us improve the service quality better!</p>
             <div class="commentSection">
                 <label asp-for="@Model.Comment"></label>
-                <textarea class="comment" placeholder="Enter your comment"></textarea>
+                <textarea asp-for="@Model.Comment" class="comment" placeholder="Enter your comment"></textarea>
                 <div>
-                    <button class="button335W">SUBMIT</button>
+                    <button type="submit" class="button335W">SUBMIT</button>
                 </div>
             </div>
         </div>
