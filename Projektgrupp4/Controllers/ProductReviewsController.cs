@@ -34,6 +34,7 @@ namespace Projektgrupp4.Controllers
             if(ModelState.IsValid)
             {
                 await _reviewService.CreateReviewAsync(viewModel);
+                
 
             }
 
