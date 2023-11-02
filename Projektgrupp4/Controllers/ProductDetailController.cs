@@ -8,19 +8,23 @@ namespace Projektgrupp4.Controllers
 	{
 
         private readonly ProductService _productService;
+        private readonly ReviewsService _reviewService;
 
-        public ProductDetailController(ProductService productService)
+        public ProductDetailController(ProductService productService, ReviewsService reviewService)
         {
             _productService = productService;
+            _reviewService = reviewService;
         }
 
         [HttpGet]
         public async Task<IActionResult> ProductDetail(int articleNumber)
 		{
             var product = await _productService.GetProductAsync(articleNumber);
+            
             if (product != null)
             {
                 ProductDetailViewModel viewModel = product;
+                viewModel.ProductReviews = await _reviewService.GetReviewsAsync(articleNumber);
                 viewModel.ProductSizes = product.ProductEntries.Select(x => x.Size).Distinct().ToList();
                 viewModel.ProductColors = product.ProductEntries.Select(x => x.Color).Distinct().ToList();
 

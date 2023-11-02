@@ -16,15 +16,23 @@ namespace Projektgrupp4.Controllers
             _reviewService = reviewService;
         }
 
-
-        public IActionResult ProductReviews()
+        [HttpGet]
+        public async Task<IActionResult> ProductReviews(int articleNumber)
 		{
-			return View();
+            var reviews = await _reviewService.GetReviewsAsync(articleNumber);
+
+            ProductReviewsViewModel viewModel = new ProductReviewsViewModel
+            {
+                Reviews = reviews
+            };
+
+            return View(viewModel);
 		}
 
-        
+
 		public IActionResult LeaveAReview()
 		{
+
 
             return View();
 		}

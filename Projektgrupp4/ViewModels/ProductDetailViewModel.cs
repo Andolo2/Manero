@@ -11,7 +11,7 @@ namespace Projektgrupp4.ViewModels
         public bool ProductPriceOrOffer { get; set; }
         public string? ProductDescription { get; set; } = null!;
 
-        public ICollection<ReviewEntity> ProductReviews { get; set; } = new HashSet<ReviewEntity>();
+        public List<ProductReviewCardViewModel>? ProductReviews { get; set; }
 
         public ICollection<ProductItemEntity> ProductEntries { get; set; } = new HashSet<ProductItemEntity>();
 
@@ -30,7 +30,6 @@ namespace Projektgrupp4.ViewModels
                 ProductPrice = entity.ProductPrice,
                 ProductOfferPrice = entity.ProductOfferPrice,
                 ProductDescription = entity.ProductDescription,
-                ProductReviews = entity.ProductReviews,
                 ProductEntries = entity.ProductEntries,
                 ProductCategories = entity.ProductCategories
             };
