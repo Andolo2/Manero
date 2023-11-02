@@ -1,4 +1,5 @@
-﻿using Projektgrupp4.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using Projektgrupp4.Contexts;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.ViewModels;
 
@@ -37,5 +38,21 @@ public class ReviewsService
         {
             return false;
         }
+    }
+
+    public async Task<List<ProductReviewCardViewModel>> GetReviewsAsync(int articleNumber)
+    {
+        try
+        {
+            var reviews = await _dataContext.Reviews.Where(x => x.ProductId == articleNumber).ToListAsync();
+            var reviewList = new List<ProductReviewCardViewModel>();
+            foreach (var review in reviews)
+            {
+                reviewList.Add(review);
+            }
+
+            return reviewList;
+        }
+        catch (Exception ex) { return null!; }
     }
 }

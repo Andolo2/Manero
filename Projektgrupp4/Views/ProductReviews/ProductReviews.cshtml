@@ -1,45 +1,18 @@
-﻿<section class="review-section">
+﻿@model ProductReviewsViewModel
+
+<section class="reviewSection">
     <div class="container">
-        <div class="review-top-section">
+        <div class="reviewTopSection">
             <a><i class="fa-solid fa-chevron-left"></i></a>
             <h6>Reviews</h6>
         </div>
-        <div class="product-reviews">
+        <div class="productReviews">
 
-            <div class="product-review-card">
-                <div class="image-and-content-container">
-                    <img src="images/review-image.svg" alt="">
-                    <div class="product-review-card-container">
-                        <h6 class="review-name">Jenny Wilson</h6>
-                        <p class="review-date">23 Jan 2022</p>
-                        <p class="review-text">Consequat ut ea dolor aliqua laborum tempor Lorem culpa. Commodo veniam sint est mollit proident commodo.</p>
-                    </div>
-                </div>
-                <div class="review-stars">
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-light fa-star"></i>
-                    <i class="star fa-sharp fa-light fa-star"></i>
-                </div>
-            </div>
-            <div class="product-review-card">
-                <div class="image-and-content-container">
-                    <img src="images/review-image.svg" alt="">
-                    <div class="product-review-card-container">
-                        <h6 class="review-name">Jenny Wilson</h6>
-                        <p class="review-date">23 Jan 2022</p>
-                        <p class="review-text">Consequat ut ea dolor aliqua laborum tempor Lorem culpa. Commodo veniam sint est mollit proident commodo.</p>
-                    </div>
-                </div>
-                <div class="review-stars">
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-solid fa-star"></i>
-                    <i class="star fa-sharp fa-light fa-star"></i>
-                    <i class="star fa-sharp fa-light fa-star"></i>
-                </div>
-            </div>
+            @foreach (var review in Model.Reviews)
+            {
+                <partial name="/Views/Partials/_productReviewCard.cshtml" model="@review" />
+            }
+
         </div>
     </div>
 </section>

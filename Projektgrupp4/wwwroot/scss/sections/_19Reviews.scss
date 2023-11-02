@@ -1,15 +1,15 @@
-﻿
-@import "../core/_Fonts.scss";
+﻿@import "../core/_Fonts.scss";
 @import "../core/_Colors.scss";
+@import "../core/_Buttons.scss";
 @import "../core/_Mixins.scss";
 @import "../core/_Base.scss";
 
-.review-section {
+.reviewSection {
 
     .container {
         padding-top: 50px;
 
-        .review-top-section {
+        .reviewTopSection {
             display: flex;
             align-items: center;
             margin-bottom: 50px;
@@ -40,7 +40,7 @@
         }
 
 
-        .product-reviews {
+        .productReviews {
             display: grid;
             margin-top: 40px;
             gap: 40px;
@@ -55,7 +55,7 @@
                 margin: 0;
             }
 
-            .product-view-all-reviews {
+            .productViewAllReviews {
                 text-decoration: none;
                 text-align: right;
                 margin-right: 20px;
@@ -66,7 +66,7 @@
                 }
             }
 
-            .product-review-card {
+            .productReviewCard {
                 position: relative;
                 align-items: start;
                 padding-bottom: 40px;
@@ -75,7 +75,7 @@
 
 
 
-                .image-and-content-container {
+                .imageAndContentContainer {
                     display: flex;
                     align-items: start;
 
@@ -83,10 +83,10 @@
                         margin-right: 20px;
                     }
 
-                    .product-review-card-container {
+                    .productReviewCardContainer {
 
 
-                        .review-name {
+                        .reviewName {
                             font-size: 16px;
                             font-weight: $font-weight-semibold;
                             color: $color-darkBlack;
@@ -94,19 +94,19 @@
 
 
 
-                        .review-date {
+                        .reviewDate {
                             font-size: 10px;
                             grid-column: 1 / 2;
                         }
 
-                        .review-text {
+                        .reviewText {
                             grid-column: 1 / -1;
                             margin: 0px;
                         }
                     }
                 }
 
-                .review-stars {
+                .reviewStars {
                     display: flex;
                     position: absolute;
                     right: 0;
