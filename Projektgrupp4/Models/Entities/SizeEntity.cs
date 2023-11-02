@@ -10,4 +10,6 @@ public class SizeEntity
     [Required]
     public string SizeName { get; set; } = null!;
 
+    public ICollection<ProductItemEntity> ProductSizes { get; set; } = new HashSet<ProductItemEntity>();
+
 }

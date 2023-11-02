@@ -15,7 +15,7 @@ builder.Services.AddScoped<AuthenticationService>();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
 
-string connectionString = "Server=tcp:grupp4-sqlserver.database.windows.net,1433;Initial Catalog=database-1;Persist Security Info=False;User ID=SqlAdmin;Password={Bytmig123!};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=\"C:\\Users\\Andreas Olofsson\\Documents\\TestProductDB01.mdf\";Integrated Security=True;Connect Timeout=30";
 
 
 //authentication
@@ -31,6 +31,9 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
 builder.Services.AddScoped<UserEntity>();
 builder.Services.AddScoped<SignUpViewModel>();
 builder.Services.AddScoped<SignInViewModel>();
+builder.Services.AddScoped<SizeService>(); //Added for Dependency injecttion
+builder.Services.AddScoped<ColorService>();//Added for Dependency injecttion
+builder.Services.AddScoped<CategoryService>();//Added for Dependency injecttion
 
 builder.Services.AddScoped<ProductService>();  //Added for Dependency injecttion
 

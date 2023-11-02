@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Projektgrupp4.Contexts;
+using Projektgrupp4.Models.Dtos;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
@@ -12,12 +13,14 @@ namespace Projektgrupp4.Controllers
 
         private readonly DataContext _dataContext;
         private readonly ProductService _productService;
+        private readonly SizeService _sizeService;
 
 
-        public ProductController(DataContext dataContext, ProductService productService)
+        public ProductController(DataContext dataContext, ProductService productService, SizeService sizeService)
         {
             _dataContext = dataContext;
             _productService = productService;
+            _sizeService = sizeService;
         }
 
         public ActionResult ProductBackoffice()  // LIST ALL PRODUCTS AVAILIBLE IN DATABASE
@@ -38,6 +41,13 @@ namespace Projektgrupp4.Controllers
         }
 
 
+        public async Task<IActionResult> CreateProduct()
+        {
+            var selectedSizes = new string[] { };
+            ViewBag.Sizes = await _sizeService.GetSizesAsync(selectedSizes);
+
+            var viewModel = new BackofficeProductViewModel();
+
         //[Authorize(Roles = "system-admin")] 
         public IActionResult CreateProduct(BackofficeProductViewModel productViewModel)
     {
@@ -55,6 +65,9 @@ namespace Projektgrupp4.Controllers
                 ProductEntries = new List<ProductItemEntity>(),
                 ProductCategories = new List<ProductCategoriesEntity>()
             };
+            return View(viewModel);
+            
+        }
 
             // Handle the image upload
             if (productViewModel.ProductImage != null && productViewModel.ProductImage.Length > 0)
@@ -66,8 +79,15 @@ namespace Projektgrupp4.Controllers
                 }
             }
 
-            // Call the CreateProduct method in the ProductService
-            bool success = _productService.CreateProduct(productEntity);
+        ////[Authorize(Roles = "system-admin")] 
+        //public IActionResult CreateProduct(BackofficeProductViewModel productViewModel, string[] sizes)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var product = await _productService.CreateProductAsync(viewModel);
+
+
+
 
             if (success)
             {
@@ -80,9 +100,22 @@ namespace Projektgrupp4.Controllers
                 // You should define the appropriate error handling logic here.
             }
         }
+        //        if (success)
+        //        {
+        //            // Redirect to a success page 
+        //            return RedirectToAction("ProductBackoffice");
+        //        }
+        //        else
+        //        {
+        //            // Redirect to an error message/page
+        //            // You should define the appropriate error handling logic here.
+        //        }
+        //    }
 
         return View(productViewModel);
     }
+        //    return View(productViewModel);
+        //}
 
 
 
@@ -132,3 +165,6 @@ namespace Projektgrupp4.Controllers
         }
     }
 }
+
+
+

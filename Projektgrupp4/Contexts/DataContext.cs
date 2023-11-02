@@ -30,10 +30,15 @@ namespace Projektgrupp4.Contexts
         public DbSet<ReviewEntity> Reviews { get; set; } = null!;
         public DbSet<ProductCategoriesEntity> ProductCategories { get; set; } = null!;
 
-       
-    
+     
+
        
 
-     }
+        
+
+
+
+
+    }
 
 }
