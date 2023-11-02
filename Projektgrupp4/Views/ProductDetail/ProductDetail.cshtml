@@ -72,7 +72,7 @@
         </div>
         <div class="productReviews">
             <h3>Reviews (@Model.ProductReviews.Count())</h3>
-            <a class="productViewAllReviews" href="Reviews.html">view all <i class="fa-solid fa-chevron-right"></i></a>
+            <a class="productViewAllReviews" asp-controller="ProductReviews" asp-action="ProductReviews" asp-route-ArticleNumber="@Model.ArticleNumber">view all <i class="fa-solid fa-chevron-right"></i></a>
             @foreach(var review in Model.ProductReviews)
             {
                 <partial name="/Views/Partials/_productReviewCard.cshtml" model="@review" />
