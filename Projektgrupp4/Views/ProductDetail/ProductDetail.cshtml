@@ -24,12 +24,130 @@
                 <i class="productAddToFavorite fa-sharp fa-light fa-heart"></i>
             </div>
             <div class="productReviewStars">
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                @{
+                    double? averageRating = Model.AverageRating;
+
+                    if(averageRating < 0)
+                    {
+                        averageRating = 0;
+                    }
+                    else if(averageRating > 5)
+                    {
+                        averageRating = 5;
+                    }
+
+                    int fullstars = (int)averageRating;
+                    bool hasHalfStar = (averageRating - fullstars) >= 0.5;
+                }
+
+                @for(int i = 0; i < 5; i++)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path">
+                        @if(i < fullstars)
+                        {
+                            <i class="star fa-sharp fa-solid fa-star"></i>
+                        }
+                        else if(i == fullstars && hasHalfStar)
+                        {
+                            <i class="star fa-regular fa-star-sharp-half-stroke"></i>
+                        }
+                        else
+                        {
+                            <i class="star fa-sharp fa-light fa-star"></i>
+                        }
+                        </a>
+                }
+                @*                @if(Model.AverageRating == 0)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating <= 0.5)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-regular fa-star-sharp-half-stroke"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating > 0.5 && Model.AverageRating <= 1)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating > 1 && Model.AverageRating <= 1.5)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-regular fa-star-sharp-half-stroke"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating > 1.5 && Model.AverageRating <= 2)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating > 2 && Model.AverageRating <= 2.5)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-regular fa-star-sharp-half-stroke"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating > 2.5 && Model.AverageRating <= 3)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating > 3 && Model.AverageRating <= 3.5)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-regular fa-star-sharp-half-stroke"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating > 3.5 && Model.AverageRating <= 4)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                }
+                else if(Model.AverageRating > 4 && Model.AverageRating <= 4.5)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-regular fa-star-sharp-half-stroke"></i></a>
+                }
+                else if(Model.AverageRating > 4.5)
+                {
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+
+                }*@
                 <span>(@Model.ProductReviews.Count())</span>
+                
             </div>
             <div class="productPrice">
                 <p>$@Model.ProductPrice</p>

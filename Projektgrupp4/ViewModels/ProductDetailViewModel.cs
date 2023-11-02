@@ -13,6 +13,7 @@ namespace Projektgrupp4.ViewModels
 
         public List<ProductReviewCardViewModel>? ProductReviews { get; set; }
 
+        public double? AverageRating { get; set; }
         public ICollection<ProductItemEntity> ProductEntries { get; set; } = new HashSet<ProductItemEntity>();
 
         public ICollection<ProductCategoriesEntity> ProductCategories { get; set; } = new HashSet<ProductCategoriesEntity>();

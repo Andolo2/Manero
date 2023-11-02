@@ -25,6 +25,7 @@ namespace Projektgrupp4.Controllers
             {
                 ProductDetailViewModel viewModel = product;
                 viewModel.ProductReviews = await _reviewService.GetReviewsAsync(articleNumber);
+                viewModel.AverageRating = await _reviewService.GetAverageRatingAsync(articleNumber);
                 viewModel.ProductSizes = product.ProductEntries.Select(x => x.Size).Distinct().ToList();
                 viewModel.ProductColors = product.ProductEntries.Select(x => x.Color).Distinct().ToList();
 

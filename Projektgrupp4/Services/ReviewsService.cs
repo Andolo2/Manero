@@ -55,4 +55,19 @@ public class ReviewsService
         }
         catch (Exception ex) { return null!; }
     }
+
+    public async Task<double?> GetAverageRatingAsync(int articleNumber)
+    {
+        try
+        {
+            var averageRating = await _dataContext.Reviews.Where(x => x.ProductId == articleNumber).AverageAsync(x => x.Rating);
+
+            return averageRating;
+
+        }
+        catch
+        {
+            return null!;
+        }
+    }
 }
