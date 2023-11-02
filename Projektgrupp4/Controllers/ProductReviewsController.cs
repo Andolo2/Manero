@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
 
@@ -21,11 +22,11 @@ namespace Projektgrupp4.Controllers
 			return View();
 		}
 
-        [HttpGet]
+        
 		public IActionResult LeaveAReview()
 		{
 
-			return View();
+            return View();
 		}
 
 		[HttpPost]
@@ -34,8 +35,8 @@ namespace Projektgrupp4.Controllers
             if(ModelState.IsValid)
             {
                 await _reviewService.CreateReviewAsync(viewModel);
-                
 
+                return RedirectToAction("ProductDetail", "ProductDetail", new { viewModel.ArticleNumber });
             }
 
             return View(viewModel);

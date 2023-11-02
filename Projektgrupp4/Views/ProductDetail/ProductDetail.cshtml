@@ -21,11 +21,11 @@
                 <i class="productAddToFavorite fa-sharp fa-light fa-heart"></i>
             </div>
             <div class="productReviewStars">
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-solid fa-star"></i></a>
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-solid fa-star"></i></a>
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-solid fa-star"></i></a>
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-solid fa-star"></i></a>
-                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
+                <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-solid fa-star"></i></a>
                 <span>(@Model.ProductReviews.Count())</span>
             </div>
             <div class="productPrice">
