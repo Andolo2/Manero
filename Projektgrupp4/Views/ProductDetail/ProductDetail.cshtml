@@ -75,11 +75,9 @@
             <a class="productViewAllReviews" href="Reviews.html">view all <i class="fa-solid fa-chevron-right"></i></a>
             @foreach(var review in Model.ProductReviews)
             {
-                <partial name="/Views/Partials/_productReviewCard.cshtml" />
+                <partial name="/Views/Partials/_productReviewCard.cshtml" model="@review" />
             }
             
-
-
         </div>
     </div>
 </section>

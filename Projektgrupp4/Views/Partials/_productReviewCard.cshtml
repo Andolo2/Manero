@@ -1,17 +1,56 @@
-﻿<div class="productReviewCard">
+﻿
+<div class="productReviewCard">
     <div class="imageAndContentContainer">
         <img src="images/review-image.svg" alt="">
-        <div class="product-review-card-container">
-            <h6 class="reviewName">Jenny Wilson</h6>
-            <p class="reviewDate">23 Jan 2022</p>
-            <p class="reviewText">Consequat ut ea dolor aliqua laborum tempor Lorem culpa. Commodo veniam sint est mollit proident commodo.</p>
+        <div class="productReviewCardContainer">
+            <h6 class="reviewName">@Model.Name</h6>
+            <p class="reviewDate">@Model.Created.ToString("dd/MM/yyyy")</p>
+            <p class="reviewText">@Model.Comment</p>
         </div>
     </div>
     <div class="reviewStars">
-        <i class="star fa-sharp fa-solid fa-star"></i>
-        <i class="star fa-sharp fa-solid fa-star"></i>
-        <i class="star fa-sharp fa-solid fa-star"></i>
-        <i class="star fa-sharp fa-light fa-star"></i>
-        <i class="star fa-sharp fa-light fa-star"></i>
+        @switch(Model.Rating)
+        {
+            case 1:
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                 break;
+
+            case 2:
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                 break;
+
+            case 3:
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                break;
+
+            case 4:
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-light fa-star"></i>
+                break;
+
+            case 5:
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                <i class="star fa-sharp fa-solid fa-star"></i>
+                break;
+        }
+
     </div>
 </div>
