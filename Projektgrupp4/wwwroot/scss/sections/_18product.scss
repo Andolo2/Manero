@@ -10,6 +10,36 @@
     .container {
         padding-top: 20px;
 
+        .productDetailTopsection {
+            display: flex;
+            align-items: center;
+            margin-bottom: 50px;
+
+            @include lg {
+                display: none;
+            }
+
+            > a {
+
+                &:hover {
+
+                    i {
+                        color: #7c7c7c;
+                    }
+                }
+
+                > i {
+                    color: $color-darkBlack;
+                }
+            }
+
+            > h6 {
+                margin: auto;
+                font-size: 18px;
+                font-weight: $font-weight-semibold;
+            }
+        }
+
         @include lg {
             display: grid;
             grid-template-columns: 1fr 1fr;

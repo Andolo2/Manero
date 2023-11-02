@@ -1,9 +1,9 @@
 ﻿@model LeaveAReviewViewModel
 
-<form class="leaveAReviewSection" method="POST">
+<form id="form" class="leaveAReviewSection" method="POST" >
     <div class="container">
         <div class="leaveAReviewTopsection">
-            <a href="Product.html"><i class="fa-solid fa-chevron-left"></i></a>
+            <a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>
             <h6>Leave a Review</h6>
         </div>
         <div class="reviewContainer">
@@ -23,7 +23,7 @@
                 <label asp-for="@Model.Comment"></label>
                 <textarea asp-for="@Model.Comment" class="comment" placeholder="Enter your comment"></textarea>
                 <div>
-                    <button type="submit" class="button335W">SUBMIT</button>
+                    <button id="submitButton"  type="submit" class="button335W">SUBMIT</button>
                 </div>
             </div>
         </div>
@@ -34,7 +34,8 @@
 <script>
     const stars = document.querySelectorAll('.ratingStar');
     let selectedRating = 0;
-    const hiddenInput = document.querySelector('#ratingInput')
+    const hiddenInput = document.querySelector('#ratingInput');
+
 
     stars.forEach(star => {
         star.addEventListener('mouseover', () => {
@@ -65,5 +66,7 @@
             })
         });
     });
+
+    
 
 </script>
