@@ -23,12 +23,14 @@ namespace Projektgrupp4.Contexts
 
         // Products
         public DbSet<ProductEntity> Products { get; set; } = null!;
-        public DbSet<ProductItemEntity> ProductItem { get; set; } = null!;
         public DbSet<ColorEntity> Colors { get; set; } = null!;
         public DbSet<SizeEntity> Sizes { get; set; } = null!;
         public DbSet<CategoryEntity> Categories { get; set; } = null!;
         public DbSet<ReviewEntity> Reviews { get; set; } = null!;
         public DbSet<ProductCategoriesEntity> ProductCategories { get; set; } = null!;
+        public DbSet<ProductColorEntity> ProductColors { get; set; } = null!;   
+        public DbSet<ProductSizeEntity> ProductSizes { get; set; } = null!;
+        
 
        
     
