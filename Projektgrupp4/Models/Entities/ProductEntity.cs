@@ -25,7 +25,9 @@ public class ProductEntity
 
     public ICollection<ReviewEntity> ProductReviews { get; set; } = new HashSet<ReviewEntity>();
 
-    public ICollection<ProductItemEntity> ProductEntries { get; set; } = new HashSet<ProductItemEntity>();
+    public ICollection<ProductColorEntity> ProductColors { get; set; } = new HashSet<ProductColorEntity>();
+
+    public ICollection<ProductSizeEntity> ProductSizes { get; set; } = new HashSet<ProductSizeEntity>();
 
     public ICollection<ProductCategoriesEntity> ProductCategories { get; set; } = new HashSet<ProductCategoriesEntity>();
 
