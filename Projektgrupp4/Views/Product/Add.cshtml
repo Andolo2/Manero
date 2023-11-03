@@ -1,0 +1,94 @@
+﻿@model BackofficeProductViewModel
+
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+
+            <form asp-controller="Product" asp-action="Add" method="post" enctype="multipart/form-data" style="margin-top: 2rem;">
+
+             
+
+                <div class="form-group">
+                    <label asp-for="ProductTitle"></label>
+                    <input asp-for="ProductTitle" class="form-control" />
+                    <span asp-validation-for="ProductTitle" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProductPrice"></label>
+                    <input asp-for="ProductPrice" class="form-control" />
+                    <span asp-validation-for="ProductPrice" class="text-danger"></span>
+                </div>
+
+             
+
+                <div class="form-group">
+                    <label asp-for="ProductImage"></label>
+                    <input asp-for="ProductImage" type="file" class="form-control-file" />
+                    <span asp-validation-for="ProductImage" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group">
+                    <label asp-for="ProductOfferPrice"></label>
+                    <input asp-for="ProductOfferPrice" class="form-control" />
+                    <span asp-validation-for="ProductOfferPrice" class="text-danger"></span>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="ProductDescription"></label>
+                    <textarea asp-for="ProductDescription" class="form-control"></textarea>
+                    <span asp-validation-for="ProductDescription" class="text-danger"></span>
+                </div>
+
+                <div class="categorySelect mb-5">
+                    @foreach (SelectListItem size in ViewBag.Sizes)
+                    {
+                        <div class="form-check form-check-inline mb-2">
+                            <input type="checkbox" name="Sizes" id="size-@size.Text-@size.Value" value="@size.Value" checked="@size.Selected" id="@size.Value" class="form-check-input" />
+                            <label for="@size.Text-@size.Value" class="small form-check-label mr-2">@size.Text</label>
+                        </div>
+                    }
+                </div>
+
+                <input type="hidden" name="selectedSizes" id="selectedSizes" value="" />
+
+                <div class="categorySelect mb-5">
+                    @foreach (SelectListItem color in ViewBag.Colors)
+                    {
+                        <div class="form-check form-check-inline mb-2">
+                            <input type="checkbox" name="Colors" id="color-@color.Text-@color.Value" value="@color.Value" checked="@color.Selected" id="@color.Value" class="form-check-input" />
+                            <label for="color-@color.Text-@color.Value" class="small form-check-label mr-2">@color.Text</label>
+                        </div>
+                    }
+                </div>
+
+                <input type="hidden" name="selectedColors" id="selectedColors" value="" />
+
+                <div class="categorySelect mb-5">
+                    @foreach (SelectListItem category in ViewBag.Categories)
+                    {
+                        <div class="form-check form-check-inline mb-2">
+                            <input type="checkbox" name="Categories" id="category-@category.Text-@category.Value" value="@category.Value" checked="@category.Selected" id="@category.Value" class="form-check-input" />
+                            <label for="category-@category.Text-@category.Value" class="small form-check-label mr-2">@category.Text</label>
+                        </div>
+                    }
+                </div>
+
+                <input type="hidden" name="selectedCategories" id="selectedCategories" value="" />
+
+            
+
+              
+
+                <button type="submit" class="btn btn-primary">Create Product</button>
+            </form>
+
+        </div>
+    </div>
+</div>

@@ -48,10 +48,10 @@ namespace Projektgrupp4.ViewModels
             public List <string>? selectedCategories { get; set; }
 
             [Display(Name = "Available Sizes")]
-            public List<string> AvailableSizes { get; set; }
+            public List<string>? AvailableSizes { get; set; }
 
             [Display(Name = "Selected Sizes")]
-            public List<string> SelectedSizes { get; set; }
+            public List<string>? SelectedSizes { get; set; }
 
 
         //public static implicit operator ProductEntity(BackofficeProductViewModel viewModel)

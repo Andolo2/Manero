@@ -1,0 +1,24 @@
+﻿@model ColorViewModel
+<section>
+    <form method="post" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label asp-for="ColorName" class="form-label">Color Name</label>
+            <input asp-for="ColorName" class="form-control" />
+            <span asp-validation-for="ColorName" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Color</button>
+
+        <div class="mt-4">
+            <h4>Existing Colors:</h4>
+            <ul>
+                @foreach (var color in Model.Colors)
+                {
+                    <li>@color</li>
+                }
+            </ul>
+        </div>
+    </form>
+
+
+</section>

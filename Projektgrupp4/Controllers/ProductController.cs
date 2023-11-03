@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Projektgrupp4.Contexts;
 using Projektgrupp4.Models.Dtos;
 using Projektgrupp4.Models.Entities;
@@ -14,13 +15,16 @@ namespace Projektgrupp4.Controllers
         private readonly DataContext _dataContext;
         private readonly ProductService _productService;
         private readonly SizeService _sizeService;
+        private readonly ColorService _colorService;
+        private readonly CategoryService _categoryService;
 
-
-        public ProductController(DataContext dataContext, ProductService productService, SizeService sizeService)
+        public ProductController(DataContext dataContext, ProductService productService, SizeService sizeService, ColorService colorService, CategoryService categoryService)
         {
             _dataContext = dataContext;
             _productService = productService;
             _sizeService = sizeService;
+            _colorService = colorService;
+            _categoryService = categoryService;
         }
 
         public ActionResult ProductBackoffice()  // LIST ALL PRODUCTS AVAILIBLE IN DATABASE
@@ -41,99 +45,79 @@ namespace Projektgrupp4.Controllers
         }
 
 
-        public async Task<IActionResult> CreateProduct()
+        [HttpGet]
+        public async Task<IActionResult> Add()
         {
+            var selectedColors = new string[] { };
             var selectedSizes = new string[] { };
+            var selectedCategories = new string[] { };
+
+            ViewBag.Colors = await _colorService.GetColorsAsync(selectedColors);
             ViewBag.Sizes = await _sizeService.GetSizesAsync(selectedSizes);
+            ViewBag.Categories = await _categoryService.GetCategoryAsync(selectedCategories);
 
             var viewModel = new BackofficeProductViewModel();
 
-        //[Authorize(Roles = "system-admin")] 
-        public IActionResult CreateProduct(BackofficeProductViewModel productViewModel)
-    {
-        if (ModelState.IsValid)
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        //[Authorize(Roles = "admin")]
+        public async Task<IActionResult> Add(BackofficeProductViewModel viewModel, string[] colors, string[] sizes, string[] categories)
         {
             var productEntity = new ProductEntity
             {
-                ProductTitle = productViewModel.ProductTitle,
-                ProductPrice = productViewModel.ProductPrice,
-                ProductOfferPrice = productViewModel.ProductOfferPrice,
-                ProductPriceOrOffer = productViewModel.ProductPriceOrOffer,
-                ProductDescription = productViewModel.ProductDescription,
-
-                ProductReviews = new List<ReviewEntity>(),
-                ProductEntries = new List<ProductItemEntity>(),
-                ProductCategories = new List<ProductCategoriesEntity>()
+                ProductTitle = viewModel.ProductTitle,
+                ProductPrice = viewModel.ProductPrice,
+                ProductOfferPrice = viewModel.ProductOfferPrice,
+                ProductPriceOrOffer = viewModel.ProductPriceOrOffer,
+                ProductDescription = viewModel.ProductDescription,
             };
-            return View(viewModel);
-            
-        }
 
-            // Handle the image upload
-            if (productViewModel.ProductImage != null && productViewModel.ProductImage.Length > 0)
+            if (viewModel.ProductImage != null && viewModel.ProductImage.Length > 0)
             {
                 using (var stream = new MemoryStream())
                 {
-                    productViewModel.ProductImage.CopyTo(stream);
+                    viewModel.ProductImage.CopyTo(stream);
                     productEntity.ProductImage = stream.ToArray();
                 }
             }
 
-        ////[Authorize(Roles = "system-admin")] 
-        //public IActionResult CreateProduct(BackofficeProductViewModel productViewModel, string[] sizes)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var product = await _productService.CreateProductAsync(viewModel);
-
-
-
-
-            if (success)
+            if (ModelState.IsValid)
             {
-                // Redirect to a success page 
-                return RedirectToAction("ProductBackoffice");
+                var product = await _productService.CreateProductAsync(productEntity);
+
+                if (product != null)
+                {
+                    await _productService.AddProductItemAsync(productEntity, colors, sizes, categories);
+                    return RedirectToAction("Add");
+                }
+
+                ModelState.AddModelError("", "Something Went Wrong.");
             }
-            else
-            {
-                // Redirect to an error message/page
-                // You should define the appropriate error handling logic here.
-            }
+
+            return View(viewModel);
         }
-        //        if (success)
-        //        {
-        //            // Redirect to a success page 
-        //            return RedirectToAction("ProductBackoffice");
-        //        }
-        //        else
-        //        {
-        //            // Redirect to an error message/page
-        //            // You should define the appropriate error handling logic here.
-        //        }
-        //    }
 
-        return View(productViewModel);
-    }
-        //    return View(productViewModel);
+
         //}
 
 
-
         //[Authorize(Roles = "system-admin")]
-        [HttpPost]
-        public IActionResult DeleteProduct(int productId)
-        {
-            if (_productService.DeleteProduct(productId))
-            {
-                // Deletion was successful
-                return RedirectToAction("ProductBackoffice");
-            }
-            else
-            {
-               
-                return View();
-            }
-        }
+        //[HttpPost]
+        //public IActionResult DeleteProduct(int productId)
+        //{
+        //    if (_productService.DeleteProduct(productId))
+        //    {
+        //        // Deletion was successful
+        //        return RedirectToAction("ProductBackoffice");
+        //    }
+        //    else
+        //    {
+
+        //        return View();
+        //    }
+        //}
 
 
 
