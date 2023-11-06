@@ -1,0 +1,27 @@
+﻿@using Projektgrupp4.ViewModels﻿
+@model SizeViewModel
+
+
+<section>
+    <form method="post" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label asp-for="SizeName" class="form-label">Size Name</label>
+            <input asp-for="SizeName" class="form-control" />
+            <span asp-validation-for="SizeName" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Size</button>
+
+        <div class="mt-4">
+            <h4>Existing Sizes:</h4>
+            <ul>
+                @foreach (var size in Model.Sizes)
+                {
+                    <li>@size</li>
+                }
+            </ul>
+        </div>
+    </form>
+
+
+</section>

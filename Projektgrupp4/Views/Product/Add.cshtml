@@ -1,5 +1,4 @@
-﻿@model BackofficeProductViewModel
-
+﻿  @model BackofficeProductViewModel
 
 
 <div class="container">
@@ -7,13 +6,8 @@
         <div class="col-md-8">
 
 
-            <form asp-controller="Product" asp-action="CreateProduct" method="post" enctype="multipart/form-data" style="margin-top: 2rem;">
+            <form asp-controller="Product" asp-action="Add" method="post" enctype="multipart/form-data" style="margin-top: 2rem;">
 
-                @*  <div class="form-group">
-                <label asp-for="ArticleNumber"></label>
-                <input asp-for="ArticleNumber" class="form-control" />
-                <span asp-validation-for="ArticleNumber" class="text-danger"></span>
-                </div> *@
 
 
                 <div class="form-group">
@@ -28,11 +22,7 @@
                     <span asp-validation-for="ProductPrice" class="text-danger"></span>
                 </div>
 
-                @* <div class="form-group">
-                <label asp-for="ProductImageUrl"></label>
-                <input asp-for="ProductImageUrl" class="form-control" />
-                <span asp-validation-for="ProductImageUrl" class="text-danger"></span>
-                </div> *@
+
 
                 <div class="form-group">
                     <label asp-for="ProductImage"></label>
@@ -91,7 +81,9 @@
 
                 <input type="hidden" name="selectedCategories" id="selectedCategories" value="" />
 
-              
+
+
+
 
                 <button type="submit" class="btn btn-primary">Create Product</button>
             </form>

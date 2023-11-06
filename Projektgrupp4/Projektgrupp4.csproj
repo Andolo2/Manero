@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
     <Folder Include="Views\Partials\" />
     <Folder Include="Views\Partials\" />
     <Folder Include="Views\Partials\" />
