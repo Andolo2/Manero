@@ -27,7 +27,7 @@ public class ProductEntity
 
     public ICollection<ProductItemEntity> ProductEntries { get; set; } = new HashSet<ProductItemEntity>();
 
-    public ICollection<ProductCategoriesEntity> ProductCategories { get; set; } = new HashSet<ProductCategoriesEntity>();
+    
 
   
 

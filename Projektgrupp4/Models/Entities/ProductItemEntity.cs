@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projektgrupp4.Models.Entities;
 
@@ -6,8 +7,9 @@ public class ProductItemEntity
 {
     [Key]
     public int ProductEntryId { get; set; }
-    
-    public int ArticleNumber { get; set; }
+
+  
+    public int ProductId { get; set; }
     public ProductEntity Product { get; set; } = null!;
 
     public int SizeId { get; set; }
@@ -19,3 +21,6 @@ public class ProductItemEntity
     public int CategoryId { get; set; }
     public CategoryEntity Category { get; set; } = null!;  
 }
+
+
+

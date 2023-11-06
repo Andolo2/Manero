@@ -27,6 +27,8 @@ namespace Projektgrupp4.Controllers
             _categoryService = categoryService;
         }
 
+
+   
         public ActionResult ProductBackoffice()  // LIST ALL PRODUCTS AVAILIBLE IN DATABASE
         {
             var products = _dataContext.Products.ToList();
@@ -38,8 +40,10 @@ namespace Projektgrupp4.Controllers
                 ProductOfferPrice = x.ProductOfferPrice,
                 ProductPriceOrOffer = x.ProductPriceOrOffer,
                 ProductDescription = x.ProductDescription,
-                ProductImageBase64 = Convert.ToBase64String(x.ProductImage) // Img is saved as Byte[] in database, needed to convert.
-
+                ProductImageBase64 = Convert.ToBase64String(x.ProductImage),
+                
+               
+                
             }).ToList();
             return View(viewModels);
         }
@@ -62,42 +66,48 @@ namespace Projektgrupp4.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "admin")]
         public async Task<IActionResult> Add(BackofficeProductViewModel viewModel, string[] colors, string[] sizes, string[] categories)
         {
-            var productEntity = new ProductEntity
-            {
-                ProductTitle = viewModel.ProductTitle,
-                ProductPrice = viewModel.ProductPrice,
-                ProductOfferPrice = viewModel.ProductOfferPrice,
-                ProductPriceOrOffer = viewModel.ProductPriceOrOffer,
-                ProductDescription = viewModel.ProductDescription,
-            };
-
-            if (viewModel.ProductImage != null && viewModel.ProductImage.Length > 0)
-            {
-                using (var stream = new MemoryStream())
-                {
-                    viewModel.ProductImage.CopyTo(stream);
-                    productEntity.ProductImage = stream.ToArray();
-                }
-            }
-
             if (ModelState.IsValid)
             {
-                var product = await _productService.CreateProductAsync(productEntity);
+                var productEntity = new ProductEntity
+                {
+                    ProductTitle = viewModel.ProductTitle,
+                    ProductPrice = viewModel.ProductPrice,
+                    ProductOfferPrice = viewModel.ProductOfferPrice,
+                    ProductPriceOrOffer = viewModel.ProductPriceOrOffer,
+                    ProductDescription = viewModel.ProductDescription,
+                };
+
+                if (viewModel.ProductImage != null && viewModel.ProductImage.Length > 0)
+                {
+                    using (var stream = new MemoryStream())
+                    {
+                        viewModel.ProductImage.CopyTo(stream);
+                        productEntity.ProductImage = stream.ToArray();
+                    }
+                }
+
+                var product = await _productService.CreateProductAsync(productEntity, categories, colors, sizes);
+
 
                 if (product != null)
                 {
-                    await _productService.AddProductItemAsync(productEntity, colors, sizes, categories);
+                    await _productService.AddProductItemAsync(product, colors, sizes, categories);
                     return RedirectToAction("Add");
                 }
 
                 ModelState.AddModelError("", "Something Went Wrong.");
             }
 
+            // Repopulate the dropdowns with selected values if there are validation errors
+            ViewBag.Colors = await _colorService.GetColorsAsync(colors);
+            ViewBag.Sizes = await _sizeService.GetSizesAsync(sizes);
+            ViewBag.Categories = await _categoryService.GetCategoryAsync(categories);
+
             return View(viewModel);
         }
+
 
 
         //}
@@ -105,19 +115,19 @@ namespace Projektgrupp4.Controllers
 
         //[Authorize(Roles = "system-admin")]
         //[HttpPost]
-        //public IActionResult DeleteProduct(int productId)
-        //{
-        //    if (_productService.DeleteProduct(productId))
-        //    {
-        //        // Deletion was successful
-        //        return RedirectToAction("ProductBackoffice");
-        //    }
-        //    else
-        //    {
+        public IActionResult DeleteProduct(int productId)
+        {
+            if (_productService.DeleteProduct(productId))
+            {
+                // Deletion was successful
+                return RedirectToAction("ProductBackoffice");
+            }
+            else
+            {
 
-        //        return View();
-        //    }
-        //}
+                return View();
+            }
+        }
 
 
 

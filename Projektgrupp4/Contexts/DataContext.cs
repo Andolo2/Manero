@@ -28,7 +28,7 @@ namespace Projektgrupp4.Contexts
         public DbSet<SizeEntity> Sizes { get; set; } = null!;
         public DbSet<CategoryEntity> Categories { get; set; } = null!;
         public DbSet<ReviewEntity> Reviews { get; set; } = null!;
-        public DbSet<ProductCategoriesEntity> ProductCategories { get; set; } = null!;
+      
 
      
 

@@ -4,7 +4,7 @@ namespace Projektgrupp4.ViewModels
 {
     public class ColorViewModel
     {
-        [Display(Name = "Size")]
+        [Display(Name = "Color")]
         [Required(ErrorMessage = "You must enter a color")]
         public string ColorName { get; set; } = null!;
 
