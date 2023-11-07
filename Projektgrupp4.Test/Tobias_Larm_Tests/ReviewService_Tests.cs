@@ -2,11 +2,10 @@
 using Moq;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.ViewModels;
-using Projektgrupp4.Test;
 using Xunit;
 using Projektgrupp4.Interfaces;
 
-namespace Projektgrupp4.Test;
+namespace Projektgrupp4.Test.Tobias_Larm_Tests;
 
 public class ReviewService_Tests
 {
