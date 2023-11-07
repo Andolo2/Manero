@@ -1,4 +1,6 @@
-﻿<section class="shoppingCart">
+﻿@model ShoppingCartViewModel;
+@inject ProductEntity product;
+<section class="shoppingCart">
     <div class="container">
         <div class="navigateBack">
             <a href=""><i class="fa-solid fa-less-than"></i></a>
@@ -13,8 +15,8 @@
             <div class="productInfo">
                 <p class="productTitle">Shoulder bag</p>
                 <div class="price">
-                    <p class="normalPrice">$38.00</p>
-                    <p class="discountPrice">$30.00</p>
+                    <p class="normalPrice">@product.ProductPrice</p>
+                    <p class="discountPrice">@product.ProductOfferPrice</p>
                 </div>
                 <p class="size">Size: -</p>
                 <p class="color">Color: Black</p>
