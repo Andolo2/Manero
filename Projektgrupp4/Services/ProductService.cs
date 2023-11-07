@@ -14,8 +14,6 @@ namespace Projektgrupp4.Services
             _dataContext = dataContext;
         }
 
-      
-
         public bool CreateProduct(ProductEntity product)
         {
             try
