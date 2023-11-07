@@ -67,9 +67,15 @@ public class ReviewsService
     {
         try
         {
-            var averageRating = await _dataContext.Reviews.Where(x => x.ProductId == articleNumber).AverageAsync(x => x.Rating);
+            var reviews = await _dataContext.Reviews.Where(x => x.ProductId == articleNumber).ToListAsync();
 
-            return averageRating;
+            if (reviews.Any())
+            {
+                var averageRating = reviews.Average(x => x.Rating);
+                return averageRating;
+            }
+
+            return null!;
 
         }
         catch
@@ -77,4 +83,5 @@ public class ReviewsService
             return null!;
         }
     }
+
 }
