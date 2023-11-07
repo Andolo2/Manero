@@ -138,5 +138,15 @@ namespace Projektgrupp4.Services
             return null!;
         }
 
+       public async Task<List<ProductItemEntity>> GetProductsByCategoryIdAsync(int categoryId)
+        {
+            var products = await _dataContext.ProductItem
+                .Where(x => x.CategoryId == categoryId)
+                .ToListAsync();
+
+            return products;
+        }
+
+
     }
 }

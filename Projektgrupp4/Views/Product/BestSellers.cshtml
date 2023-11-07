@@ -1,25 +1,51 @@
-﻿@{
+﻿@inject ProductService ProductService;
+@{
+
     ViewData["Title"] = "Product Best sellers page";
+
     var products = await productService.GetAllProductsAsync();
+
+}
+@{
+    int categoryId = 11; // ID of BestSeller in database
+    var Selectedproducts = await ProductService.GetProductsByCategoryIdAsync(categoryId);
 }
 
-<partial name="/Views/Partials/HeaderPartial/_Header.cshtml" /> 
+
+
+
+
+
+
+
+<partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
 
 <section class="_17ShopSection">
+
     <div class="container">
+
         <div class="top">
+
             <div class="title">
-                <a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-chevron-left"></i></a> 
+
+                <a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-chevron-left"></i></a>
+
                 <h2>Best Sellers</h2>
+
             </div>
-     
+
             <div class="filterSort">
+
                 <p><i class="fa-regular fa-sliders-up"></i> Filters</p>
+
                 <p>Sorting by  <i class="fa-solid fa-chevron-down"></i></p>
+
             </div>
+
         </div>
 
         <div class="cardGrid">
+
             <div class="cards">
 
                 <!-- Card -->
@@ -27,44 +53,44 @@
                 {
                     if (product != null)
                     {
-
-                  @*    if(productCategory == product.bestseller)    //Eller vad det nu blir sen.
+                        var isProductSelected = Selectedproducts.Any(item => item.Product.ArticleNumber == product.ArticleNumber);
+                        if (isProductSelected)
                         {
-                            Flytta in kod nedan.
-                        } *@
-
-                        <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
-                            <img class="productImage" src="/images/productImage.svg" alt="Image of product">
-                            <div class="text">
-                                <p class="ProductRating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-light fa-star"></i>
-                                    <i class="fa-light fa-star"></i>
-                                    (3)
-                                </p>
-                                <h2 class="productTitle">@product.ProductTitle</h2>
-                                <div class="prices">
-                                    @if (product.ProductOfferPrice == null)
-                                    {
-                                        <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
-                                    }
-
-                                    @if (product.ProductOfferPrice != null)
-                                    {
-                                        <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
-                                        <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
-                                    }
+                            <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
+                                <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                                <div class="text">
+                                    <p class="ProductRating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-light fa-star"></i>
+                                        <i class="fa-light fa-star"></i>
+                                        (3)
+                                    </p>
+                                    <h2 class="productTitle">@product.ProductTitle</h2>
+                                    <div class="prices">
+                                        @if (product.ProductOfferPrice == null)
+                                        {
+                                            <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                        }
+                                        @if (product.ProductOfferPrice != null)
+                                        {
+                                            <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                            <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        }
                     }
                 }
 
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 <partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
