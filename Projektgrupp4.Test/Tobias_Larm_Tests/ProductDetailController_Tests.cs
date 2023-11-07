@@ -7,7 +7,7 @@ using Projektgrupp4.Models.Entities;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
 
-namespace Projektgrupp4.Test;
+namespace Projektgrupp4.Test.Tobias_Larm_Tests;
 
 public class ProductDetailController_Tests
 {
