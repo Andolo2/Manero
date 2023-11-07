@@ -46,12 +46,19 @@ public class ReviewsService
         {
             var reviews = await _dataContext.Reviews.Where(x => x.ProductId == articleNumber).ToListAsync();
             var reviewList = new List<ProductReviewCardViewModel>();
-            foreach (var review in reviews)
+            if (reviews.Any())
             {
-                reviewList.Add(review);
+                foreach (var review in reviews)
+                {
+                    reviewList.Add(review);
+                }
+
+                return reviewList;
+
             }
 
-            return reviewList;
+            return null!;
+            
         }
         catch { return null!; }
     }
