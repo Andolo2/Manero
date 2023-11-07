@@ -51,9 +51,16 @@
                                     </p>
                                     <h2 class="productTitle">@product.ProductTitle</h2>
                                     <div class="prices">
-                                        <p class="productPrice">$@product.ProductPrice</p>
-                                        <p class="productPrice oldPrice d-none">$@product.ProductPrice</p>
-                                        <p class="productOfferPrice d-none">$@product.ProductOfferPrice</p>
+                                        @if (product.ProductOfferPrice == null)
+                                        {
+                                            <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                        }
+
+                                        @if (product.ProductOfferPrice != null)
+                                        {
+                                            <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                            <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
+                                        }
                                     </div>
                                 </div>
                             </a>
@@ -110,9 +117,16 @@
                                     </p>
                                     <h2 class="productTitle">@product.ProductTitle</h2>
                                     <div class="prices">
-                                        <p class="productPrice">$@product.ProductPrice</p>
-                                        <p class="productPrice oldPrice d-none">$@product.ProductPrice</p>
-                                        <p class="productOfferPrice d-none">$@product.ProductOfferPrice</p>
+                                        @if (product.ProductOfferPrice == null)
+                                        {
+                                            <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                        }
+
+                                        @if (product.ProductOfferPrice != null)
+                                        {
+                                            <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                            <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
+                                        }
                                     </div>
                                 </div>
                             </a>
