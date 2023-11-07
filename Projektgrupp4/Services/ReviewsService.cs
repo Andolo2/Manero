@@ -34,7 +34,7 @@ public class ReviewsService
 
             return true;
 
-        } catch (Exception ex)
+        } catch
         {
             return false;
         }
@@ -53,7 +53,7 @@ public class ReviewsService
 
             return reviewList;
         }
-        catch (Exception ex) { return null!; }
+        catch { return null!; }
     }
 
     public async Task<double?> GetAverageRatingAsync(int articleNumber)

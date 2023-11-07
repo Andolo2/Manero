@@ -9,7 +9,7 @@
             <a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>
         </div>
         <div class="productImage">
-            <img src="images/product-detail-placeholder.svg" />
+            <img src="data:image/jpeg;base64,@Model.ProductImageBase64" />
             <div class="productImageDots">
                 <div class="productImageDot"></div>
                 <div class="productImageDot"></div>
@@ -44,7 +44,7 @@
 
                     @for(int i = 0; i < 5; i++)
                     {
-                        <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path">
+                        <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber">
                             @if(i < fullstars)
                             {
                                 <i class="star fa-sharp fa-solid fa-star"></i>
@@ -62,17 +62,30 @@
                 }
                 else
                 {
-                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
-                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
-                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
-                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
-                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    @for(int i = 0; i < 5; i++)
+                    {
+                        <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    }
                 }
-                <span>(@Model.ProductReviews.Count())</span>
+                <span>(@Model.ProductReviews!.Count())</span>
                 
             </div>
             <div class="productPrice">
-                <p>$@Model.ProductPrice</p>
+                @if (Model.ProductPriceOrOffer == true)
+                {
+                    <div class="productOffer">
+                        <p class="productCurrentPrice crossOver">$@Model.ProductPrice</p>
+                        <p class="productOfferPrice">$@Model.ProductOfferPrice</p>
+                    </div>
+                    
+                    
+                }
+                else
+                {
+                    <p class="productCurrentPrice">$@Model.ProductPrice</p>
+                }
+                
+
                 <div class="productQuantity">
                     <button class="productSubtract"><i class="fa-regular fa-minus"></i></button>
                     <span>1</span>
@@ -114,9 +127,9 @@
             </div>
         </div>
         <div class="productReviews">
-            <h3>Reviews (@Model.ProductReviews.Count())</h3>
+            <h3>Reviews (@Model.ProductReviews!.Count())</h3>
             <a class="productViewAllReviews" asp-controller="ProductReviews" asp-action="ProductReviews" asp-route-ArticleNumber="@Model.ArticleNumber">view all <i class="fa-solid fa-chevron-right"></i></a>
-            @foreach(var review in Model.ProductReviews)
+            @foreach(var review in Model.ProductReviews!)
             {
                 <partial name="/Views/Partials/_productReviewCard.cshtml" model="@review" />
             }
