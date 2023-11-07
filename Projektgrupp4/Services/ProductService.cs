@@ -9,10 +9,10 @@ namespace Projektgrupp4.Services
     {
         private readonly DataContext _dataContext;
 
-        public ProductService(DataContext dataContext, SizeService sizeService)
+        public ProductService(DataContext dataContext)
         {
             _dataContext = dataContext;
-            sizeService = sizeService;
+           
         }
 
 

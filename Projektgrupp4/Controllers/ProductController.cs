@@ -15,6 +15,7 @@ namespace Projektgrupp4.Controllers
         private readonly ColorService _colorService;
         private readonly CategoryService _categoryService;
 
+      
 
         public ProductController(DataContext dataContext, ProductService productService, SizeService sizeService, ColorService colorService, CategoryService categoryService)
         {
@@ -24,6 +25,8 @@ namespace Projektgrupp4.Controllers
             _colorService = colorService;
             _categoryService = categoryService;
         }
+
+      
 
         public ActionResult ProductBackoffice()  // LIST ALL PRODUCTS AVAILIBLE IN DATABASE
         {
