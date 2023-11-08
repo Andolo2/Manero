@@ -16,6 +16,7 @@ public interface IAuthenticationService
     Task<ServiceResponse<UserEntity>> SignUpAsync(SignUpViewModel viewModel);
     Task<bool> UserAlreadyExistsAsync(Expression<Func<UserEntity, bool>> expression);
 
+    Task<UserEntity> GetUserAsync(ClaimsPrincipal user);
 }
 
 public class AuthenticationService : IAuthenticationService

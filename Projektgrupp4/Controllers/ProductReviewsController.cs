@@ -14,10 +14,10 @@ namespace Projektgrupp4.Controllers
 	{
 
         private readonly ReviewsService _reviewService;
-        private readonly AuthenticationService _authService;
+        private readonly IAuthenticationService _authService;
 
 
-        public ProductReviewsController(ReviewsService reviewService, AuthenticationService authService)
+        public ProductReviewsController(ReviewsService reviewService, IAuthenticationService authService)
         {
             _reviewService = reviewService;
             _authService = authService;
