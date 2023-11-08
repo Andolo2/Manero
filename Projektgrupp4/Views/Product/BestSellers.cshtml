@@ -1,51 +1,30 @@
 ﻿@inject ProductService ProductService;
 @{
-
     ViewData["Title"] = "Product Best sellers page";
-
     var products = await productService.GetAllProductsAsync();
-
 }
 @{
     int categoryId = 11; // ID of BestSeller in database
     var Selectedproducts = await ProductService.GetProductsByCategoryIdAsync(categoryId);
 }
 
-
-
-
-
-
-
-
 <partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
 
 <section class="_17ShopSection">
-
     <div class="container">
-
         <div class="top">
-
             <div class="title">
-
                 <a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-chevron-left"></i></a>
-
                 <h2>Best Sellers</h2>
-
             </div>
 
             <div class="filterSort">
-
                 <p><i class="fa-regular fa-sliders-up"></i> Filters</p>
-
                 <p>Sorting by  <i class="fa-solid fa-chevron-down"></i></p>
-
             </div>
-
         </div>
 
         <div class="cardGrid">
-
             <div class="cards">
 
                 <!-- Card -->

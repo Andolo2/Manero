@@ -1,10 +1,18 @@
-﻿@{
+﻿@inject ProductService ProductService;
+@{
     ViewData["Title"] = "Home Page";
     var products = await productService.GetAllProductsAsync();
 
     // Used to display a certain number of products
     int productCountBestSellers = 0; // Initialize a counter
     int productFeatured = 0; // Initialize a counter
+}
+
+@{
+    int categoryIdFeatured = 10; // ID of BestSeller in database
+    int categoryIdBestSeller = 11; // ID of BestSeller in database
+    var SelectedproductsFeatured = await ProductService.GetProductsByCategoryIdAsync(categoryIdFeatured);
+    var SelectedproductsBestSeller = await ProductService.GetProductsByCategoryIdAsync(categoryIdBestSeller);
 }
 
 <partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
@@ -16,8 +24,7 @@
             <a asp-action="Offer50" asp-controller="Product">
                 Welcome To <br>
                 Manero! <br>
-                50% off
-
+                Up to 50% off
             </a>
             
         </h1>
@@ -38,41 +45,46 @@
                     {
                         if (product != null)
                         {
-                            <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
-                                <img class="productImage" src="/images/productImage.svg" alt="Image of product">
-                                <div class="text">
-                                    <p class="ProductRating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-light fa-star"></i>
-                                        <i class="fa-light fa-star"></i>
-                                        (3)
-                                    </p>
-                                    <h2 class="productTitle">@product.ProductTitle</h2>
-                                    <div class="prices">
-                                        @if (product.ProductOfferPrice == null)
-                                        {
-                                            <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
-                                        }
+                            var isProductSelected = SelectedproductsBestSeller.Any(item => item.Product.ArticleNumber == product.ArticleNumber);
+                            if (isProductSelected)
+                            {
+                                <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
+                                    <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                                    <div class="text">
+                                        <p class="ProductRating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-light fa-star"></i>
+                                            <i class="fa-light fa-star"></i>
+                                            (3)
+                                        </p>
+                                        <h2 class="productTitle">@product.ProductTitle</h2>
+                                        <div class="prices">
+                                            @if (product.ProductOfferPrice == null)
+                                            {
+                                                <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                            }
 
-                                        @if (product.ProductOfferPrice != null)
-                                        {
-                                            <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
-                                            <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
-                                        }
+                                            @if (product.ProductOfferPrice != null)
+                                            {
+                                                <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                                <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            }             
 
                             @* To display a certain number of products. Max 4 pcs. Start -->*@
 
-                            productCountBestSellers++; // Increments the productCounter.
-
-                            if (productCountBestSellers >= 4) // Break out of the loop after showing 4 products.
+                            if (productCountBestSellers > 4) // Break out of the loop after showing 4 products.
                             {
                                 break;
                             }
+
+                            productCountBestSellers++; // Increments the productCounter.
+
                             @* <-- End. *@
                         }
                     }
@@ -84,7 +96,7 @@
     <!-- Take 50% off now! -->
     <section class="take5OfNow">
         <div class="container">
-            <h1>Take 50% off now!</h1>
+            <h1>Up to 50% off now!</h1>
             <a asp-action="Offer50" asp-controller="Product" class="buttonWhite">SHOP NOW</a>
         </div>
     </section>
@@ -104,41 +116,45 @@
                     {
                         if (product != null)
                         {
-                            <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
-                                <img class="productImage" src="/images/productImage.svg" alt="Image of product">
-                                <div class="text">
-                                    <p class="ProductRating">
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-solid fa-star"></i>
-                                        <i class="fa-light fa-star"></i>
-                                        <i class="fa-light fa-star"></i>
-                                        (3)
-                                    </p>
-                                    <h2 class="productTitle">@product.ProductTitle</h2>
-                                    <div class="prices">
-                                        @if (product.ProductOfferPrice == null)
-                                        {
-                                            <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
-                                        }
+                            var isProductSelected = SelectedproductsFeatured.Any(item => item.Product.ArticleNumber == product.ArticleNumber);
+                            if (isProductSelected)
+                            {
+                                <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
+                                    <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                                    <div class="text">
+                                        <p class="ProductRating">
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-light fa-star"></i>
+                                            <i class="fa-light fa-star"></i>
+                                            (3)
+                                        </p>
+                                        <h2 class="productTitle">@product.ProductTitle</h2>
+                                        <div class="prices">
+                                            @if (product.ProductOfferPrice == null)
+                                            {
+                                                <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                            }
 
-                                        @if (product.ProductOfferPrice != null)
-                                        {
-                                            <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
-                                            <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
-                                        }
+                                            @if (product.ProductOfferPrice != null)
+                                            {
+                                                <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                                <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
+                                            }
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            }
 
                             @* To display a certain number of products. Max 4 pcs. Start -->*@
 
-                            productFeatured++; // Increments the productCounter.
-
-                            if (productFeatured >= 4) // Break out of the loop after showing 4 products.
+                            if (productFeatured > 5) // Break out of the loop after showing 4 products.
                             {
                                 break;
                             }
+
+                            productFeatured++; // Increments the productCounter.
 
                             @* <-- End. *@
                         }
