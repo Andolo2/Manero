@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Projektgrupp4.Enum;
+using Projektgrupp4.Models;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.ViewModels;
 using System.Diagnostics;
@@ -8,11 +10,19 @@ using System.Linq.Expressions;
 
 namespace Projektgrupp4.Services;
 
-public class AuthenticationService
+public interface IAuthenticationService
+{
+    Task<ServiceResponse<UserEntity>> SignUpAsync(SignUpViewModel viewModel);
+    Task<bool> UserAlreadyExistsAsync(Expression<Func<UserEntity, bool>> expression);
+
+}
+
+public class AuthenticationService : IAuthenticationService
 {
     private readonly UserManager<UserEntity> _userManager;
     private readonly SignInManager<UserEntity> _signInManager;
     private readonly SeedService _seedService;
+    private readonly UserEntity viewModel;
 
     public AuthenticationService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, SeedService seedService)
     {
@@ -21,8 +31,10 @@ public class AuthenticationService
         _seedService = seedService;
     }
 
-    public async Task<bool> SignUpAsync(SignUpViewModel viewModel)
+    /*public async Task<bool> SignUpAsync(SignUpViewModel viewModel)
     {
+        var response = new ServiceResponse<UserEntity>();
+
         try
         {
             await _seedService.SeedRoles();
@@ -39,50 +51,69 @@ public class AuthenticationService
 
             if (result.Succeeded)
             {
-                return true;
+                response.StatusCode = StatusCode.Created;
+                response.Content = userEntity; // Set the created user in the response
+            }
+            else
+            {
+                response.StatusCode = StatusCode.BadRequest; // You might want to use a different status code for a failed signup.
+                response.Content = null;
+                // You can also loop through the errors in `result.Errors` and add them to the response for more details on what went wrong.
             }
         }
         catch (Exception ex)
         {
             Debug.WriteLine(ex.Message);
+            response.StatusCode = StatusCode.InternalServerError;
+            response.Content = null;
         }
-        return false;
 
-    }
+        return response;
+
+    }*/
 
     public async Task<bool> UserAlreadyExistsAsync(Expression<Func<UserEntity, bool>> expression)
     {
         return await _userManager.Users.AnyAsync(expression);
     }
 
-
-    //Function to sign in
-    public async Task<bool> SignInAsync(SignInViewModel model)
+    public async Task<ServiceResponse<UserEntity>> SignUpAsync(SignUpViewModel viewModel)
     {
+        var response = new ServiceResponse<UserEntity>();
+
         try
         {
-            var userExists = await _userManager.Users.FirstOrDefaultAsync(x => x.Email == model.Email);
+            await _seedService.SeedRoles();
+            var roleName = "user";
 
-            if (userExists != null)
+            if (!await _userManager.Users.AnyAsync())
+                roleName = "admin";
+
+            UserEntity userEntity = viewModel;
+
+            var result = await _userManager.CreateAsync(userEntity, viewModel.Password);
+
+            await _userManager.AddToRoleAsync(userEntity, roleName);
+
+            if (result.Succeeded)
             {
-                var result = await _signInManager.PasswordSignInAsync(userExists, model.Password, model.RememberMe, false);
-                return result.Succeeded;
+                response.StatusCode = StatusCode.Created;
+                response.Content = userEntity; // Set the created user in the response
             }
-
+            else
+            {
+                response.StatusCode = StatusCode.BadRequest; // You might want to use a different status code for a failed signup.
+                response.Content = null;
+                // You can also loop through the errors in `result.Errors` and add them to the response for more details on what went wrong.
+            }
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return false;
-    }
-
-    //Function to sign out
-    public async Task<bool> SignOutAsync()
-    {
-        try
+        catch (Exception ex)
         {
-            await _signInManager.SignOutAsync();
-            return true;
+            Debug.WriteLine(ex.Message);
+            response.StatusCode = StatusCode.InternalServerError;
+            response.Content = null;
         }
-        catch (Exception ex) { Debug.WriteLine(ex.Message); }
-        return false;
+
+        return response;
     }
 }
