@@ -6,9 +6,9 @@ namespace Projektgrupp4.Controllers
 {
     public class SignInController : Controller
     {
-        private readonly AuthenticationService _authService;
+        private readonly AuthService _authService;
 
-        public SignInController(AuthenticationService authService)
+        public SignInController(AuthService authService)
         {
             _authService = authService;
         }

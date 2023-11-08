@@ -75,7 +75,7 @@ const togglePasswordButton = document.getElementById("togglePassword");
 const passwordInput = document.getElementById("password");
 
 togglePasswordButton.addEventListener("click", (e) => {
-    e.preventDefault(); // Prevent the default button click behavior
+    e.preventDefault(); 
     if (passwordInput.getAttribute("type") === "password") {
         passwordInput.setAttribute("type", "text");
         togglePasswordButton.innerHTML = '<i class="fa-sharp fa-solid fa-eye-slash"></i>';
@@ -89,7 +89,7 @@ const toggleConfirmPasswordButton = document.getElementById("toggleConfirmPasswo
 const confirmPasswordInput = document.getElementById("confirmPassword");
 
 toggleConfirmPasswordButton.addEventListener("click", (e) => {
-    e.preventDefault(); // Prevent the default button click behavior
+    e.preventDefault(); 
     if (confirmPasswordInput.getAttribute("type") === "password") {
         confirmPasswordInput.setAttribute("type", "text");
         toggleConfirmPasswordButton.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';

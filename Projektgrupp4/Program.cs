@@ -11,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Services
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<AuthenticationService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<SeedService>();
 builder.Services.AddScoped<ReviewsService>();
 // Context
