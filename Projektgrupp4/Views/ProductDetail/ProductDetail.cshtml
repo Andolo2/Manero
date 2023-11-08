@@ -145,7 +145,10 @@
                 <h3>Reviews (0)</h3>
             }
             
-            <a class="productViewAllReviews" asp-controller="ProductReviews" asp-action="ProductReviews" asp-route-ArticleNumber="@Model.ArticleNumber">view all <i class="fa-solid fa-chevron-right"></i></a>
+            @if(Model.ProductReviews != null)
+            {
+                <a class="productViewAllReviews" asp-controller="ProductReviews" asp-action="ProductReviews" asp-route-ArticleNumber="@Model.ArticleNumber">view all <i class="fa-solid fa-chevron-right"></i></a>
+            }
             @if(Model.ProductReviews != null)
             {
                 @foreach (var review in Model.ProductReviews!)
