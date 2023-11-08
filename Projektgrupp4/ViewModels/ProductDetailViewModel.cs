@@ -6,6 +6,8 @@ namespace Projektgrupp4.ViewModels
 	{
         public int ArticleNumber { get; set; }
         public string ProductTitle { get; set; } = null!;
+        public IFormFile? ProductImage { get; set; }
+        public string? ProductImageBase64 { get; set; }
         public decimal ProductPrice { get; set; }
         public decimal? ProductOfferPrice { get; set; }
         public bool ProductPriceOrOffer { get; set; }
@@ -32,7 +34,8 @@ namespace Projektgrupp4.ViewModels
                 ProductOfferPrice = entity.ProductOfferPrice,
                 ProductDescription = entity.ProductDescription,
                 ProductEntries = entity.ProductEntries,
-                ProductCategories = entity.ProductCategories
+                ProductCategories = entity.ProductCategories,
+                ProductImageBase64 = Convert.ToBase64String(entity.ProductImage),
             };
         }
 

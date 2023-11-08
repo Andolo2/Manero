@@ -9,7 +9,8 @@
             <a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>
         </div>
         <div class="productImage">
-            <img src="images/product-detail-placeholder.svg" />
+@*             <img src="data:image/jpeg;base64,@Model.ProductImageBase64" /> *@
+            <img src="/images/productImage.svg" alt="Image of product">
             <div class="productImageDots">
                 <div class="productImageDot"></div>
                 <div class="productImageDot"></div>
@@ -24,7 +25,9 @@
                 <i class="productAddToFavorite fa-sharp fa-light fa-heart"></i>
             </div>
             <div class="productReviewStars">
-                @{
+                @if(Model.AverageRating != null)
+                {
+                    
                     double? averageRating = Model.AverageRating;
 
                     if(averageRating < 0)
@@ -38,30 +41,59 @@
 
                     int fullstars = (int)averageRating;
                     bool hasHalfStar = (averageRating - fullstars) >= 0.5;
+                
+
+                    @for(int i = 0; i < 5; i++)
+                    {
+                        <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber">
+                            @if(i < fullstars)
+                            {
+                                <i class="star fa-sharp fa-solid fa-star"></i>
+                            }
+                            else if(i == fullstars && hasHalfStar)
+                            {
+                                <i class="star fa-regular fa-star-sharp-half-stroke"></i>
+                            }
+                            else
+                            {
+                                <i class="star fa-sharp fa-light fa-star"></i>
+                            }
+                            </a>
+                    }
+                }
+                else
+                {
+                    @for(int i = 0; i < 5; i++)
+                    {
+                        <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-light fa-star"></i></a>
+                    }
+                }
+                @if(Model.ProductReviews != null)
+                {
+                    <span>(@Model.ProductReviews!.Count())</span>
+                }
+                else
+                {
+                    <span>(0)</span>
                 }
 
-                @for(int i = 0; i < 5; i++)
-                {
-                    <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber" asp-route-ReferringUrl="@Context.Request.PathBase@Context.Request.Path">
-                        @if(i < fullstars)
-                        {
-                            <i class="star fa-sharp fa-solid fa-star"></i>
-                        }
-                        else if(i == fullstars && hasHalfStar)
-                        {
-                            <i class="star fa-regular fa-star-sharp-half-stroke"></i>
-                        }
-                        else
-                        {
-                            <i class="star fa-sharp fa-light fa-star"></i>
-                        }
-                        </a>
-                }
-                <span>(@Model.ProductReviews.Count())</span>
-                
             </div>
             <div class="productPrice">
-                <p>$@Model.ProductPrice</p>
+                @if (Model.ProductPriceOrOffer == true)
+                {
+                    <div class="productOffer">
+                        <p class="productCurrentPrice crossOver">$@Model.ProductPrice</p>
+                        <p class="productOfferPrice">$@Model.ProductOfferPrice</p>
+                    </div>
+                    
+                    
+                }
+                else
+                {
+                    <p class="productCurrentPrice">$@Model.ProductPrice</p>
+                }
+                
+
                 <div class="productQuantity">
                     <button class="productSubtract"><i class="fa-regular fa-minus"></i></button>
                     <span>1</span>
@@ -103,11 +135,26 @@
             </div>
         </div>
         <div class="productReviews">
-            <h3>Reviews (@Model.ProductReviews.Count())</h3>
-            <a class="productViewAllReviews" asp-controller="ProductReviews" asp-action="ProductReviews" asp-route-ArticleNumber="@Model.ArticleNumber">view all <i class="fa-solid fa-chevron-right"></i></a>
-            @foreach(var review in Model.ProductReviews)
+
+            @if(Model.ProductReviews != null)
             {
-                <partial name="/Views/Partials/_productReviewCard.cshtml" model="@review" />
+                <h3>Reviews (@Model.ProductReviews!.Count())</h3>
+            }
+            else
+            {
+                <h3>Reviews (0)</h3>
+            }
+            
+            @if(Model.ProductReviews != null)
+            {
+                <a class="productViewAllReviews" asp-controller="ProductReviews" asp-action="ProductReviews" asp-route-ArticleNumber="@Model.ArticleNumber">view all <i class="fa-solid fa-chevron-right"></i></a>
+            }
+            @if(Model.ProductReviews != null)
+            {
+                @foreach (var review in Model.ProductReviews!)
+                {
+                    <partial name="/Views/Partials/_productReviewCard.cshtml" model="@review" />
+                }
             }
             
         </div>

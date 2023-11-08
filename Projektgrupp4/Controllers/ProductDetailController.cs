@@ -18,9 +18,9 @@ namespace Projektgrupp4.Controllers
 
         [HttpGet]
         public async Task<IActionResult> ProductDetail(int articleNumber)
-		{
+        {
             var product = await _productService.GetProductAsync(articleNumber);
-            
+
             if (product != null)
             {
                 ProductDetailViewModel viewModel = product;

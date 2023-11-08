@@ -8,9 +8,12 @@
         </div>
         <div class="productReviews">
 
-            @foreach (var review in Model.Reviews)
+            @if(Model.Reviews != null)
             {
-                <partial name="/Views/Partials/_productReviewCard.cshtml" model="@review" />
+                @foreach (var review in Model.Reviews)
+                {
+                    <partial name="/Views/Partials/_productReviewCard.cshtml" model="@review" />
+                }
             }
 
         </div>

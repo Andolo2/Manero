@@ -12,23 +12,95 @@ namespace Projektgrupp4.Services
         public ProductService(DataContext dataContext)
         {
             _dataContext = dataContext;
+           
         }
 
-      
 
-        public bool CreateProduct(ProductEntity product)
+
+        public async Task<ProductEntity> CreateProductAsync(ProductEntity entity, string[] categories, string[] colors, string[] sizes)
         {
-            try
+            var newProduct = new ProductEntity
             {
-                _dataContext.Products.Add(product);
-                _dataContext.SaveChanges();
-                return true;
+                ProductImage = entity.ProductImage,
+                ProductTitle = entity.ProductTitle,
+                ProductPrice = entity.ProductPrice,
+                ProductOfferPrice = entity.ProductOfferPrice,
+                ProductPriceOrOffer = entity.ProductPriceOrOffer,
+                ProductDescription = entity.ProductDescription,
+            };
+
+            _dataContext.Products.Add(newProduct);
+
+            await _dataContext.SaveChangesAsync();
+
+            foreach (var categoryId in categories)
+            {
+                foreach (var colorId in colors)
+                {
+                    foreach (var sizeId in sizes)
+                    {
+                        var productItem = new ProductItemEntity
+                        {
+                            Product = newProduct,
+                            SizeId = int.Parse(sizeId),
+                            CategoryId = int.Parse(categoryId),
+                            ColorId = int.Parse(colorId),
+                        };
+                        _dataContext.ProductItem.Add(productItem);
+                    }
+                }
             }
-            catch
+
+            await _dataContext.SaveChangesAsync();
+
+            return newProduct;
+        }
+
+
+        public async Task<bool> AddProductItemAsync(ProductEntity entity, string[] categories, string[] colors, string[] sizes)
+        {
+            var product = await _dataContext.Products.FirstOrDefaultAsync(x => x.ArticleNumber == entity.ArticleNumber);
+
+            if (product == null)
             {
                 return false;
             }
+
+            foreach (var category in categories)
+            {
+                foreach (var color in colors)
+                {
+                    foreach (var size in sizes)
+                    {
+                        var productItem = new ProductItemEntity
+                        {
+                            ProductId = product.ArticleNumber,
+                            CategoryId = int.Parse(category),
+                            ColorId = int.Parse(color),
+                            SizeId = int.Parse(size)
+                        };
+
+                        await _dataContext.AddAsync(productItem);
+                    }
+                }
+            }
+
+            try
+            {
+                await _dataContext.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception as needed, e.g., log it
+                Console.WriteLine("Error: " + ex.Message);
+                return false;
+            }
         }
+
+
+
+
 
         public bool DeleteProduct(int articleNumber)
         {
@@ -65,6 +137,16 @@ namespace Projektgrupp4.Services
 
             return null!;
         }
+
+       public async Task<List<ProductItemEntity>> GetProductsByCategoryIdAsync(int categoryId)
+        {
+            var products = await _dataContext.ProductItem
+                .Where(x => x.CategoryId == categoryId)
+                .ToListAsync();
+
+            return products;
+        }
+
 
     }
 }

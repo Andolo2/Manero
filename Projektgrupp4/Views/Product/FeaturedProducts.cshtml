@@ -1,6 +1,12 @@
-﻿@{
+﻿@inject ProductService ProductService;
+@{
     ViewData["Title"] = "Featured products page";
     var products = await productService.GetAllProductsAsync();
+}
+
+@{
+    int categoryId = 10; // ID of Featured in database
+    var Selectedproducts = await ProductService.GetProductsByCategoryIdAsync(categoryId);
 }
 
 <partial name="/Views/Partials/HeaderPartial/_Header.cshtml" />
@@ -27,31 +33,39 @@
                 {
                     if (product != null)
                     {
-
-                  @*    if(productCategory == product.featured)    //Eller vad det nu blir sen.
+                        var isProductSelected = Selectedproducts.Any(item => item.Product.ArticleNumber == product.ArticleNumber);
+                        if (isProductSelected)
                         {
-                            Flytta in kod nedan.
-                        } *@
+                            <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
+                                <img class="productImage" src="/images/productImage.svg" alt="Image of product">
+                                <div class="text">
+                                    <p class="ProductRating">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-light fa-star"></i>
+                                        <i class="fa-light fa-star"></i>
+                                        (3)
+                                    </p>
+                                    <h2 class="productTitle">@product.ProductTitle</h2>
+                                    <div class="prices">
+                                        @if (product.ProductOfferPrice == null)
+                                        {
+                                            <p class="productPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                        }
 
-                        <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
-                            <img class="productImage" src="/images/productImage.svg" alt="Image of product">
-                            <div class="text">
-                                <p class="ProductRating">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-light fa-star"></i>
-                                    <i class="fa-light fa-star"></i>
-                                    (3)
-                                </p>
-                                <h2 class="productTitle">@product.ProductTitle</h2>
-                                <div class="prices">
-                                    <p class="productPrice">$@product.ProductPrice</p>
-                                    <p class="productPrice oldPrice d-none">$@product.ProductPrice</p>
-                                    <p class="productOfferPrice d-none">$@product.ProductOfferPrice</p>
+                                        @if (product.ProductOfferPrice != null)
+                                        {
+                                            <p class="productPrice oldPrice">$@product.ProductPrice.ToString("00.00")</p>
+                                            <p class="productOfferPrice">$@product.ProductOfferPrice?.ToString("00.00")</p>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        }
+                
+
+              
                     }
                 }
 

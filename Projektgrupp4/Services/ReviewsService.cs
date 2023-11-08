@@ -34,7 +34,7 @@ public class ReviewsService
 
             return true;
 
-        } catch (Exception ex)
+        } catch
         {
             return false;
         }
@@ -46,23 +46,36 @@ public class ReviewsService
         {
             var reviews = await _dataContext.Reviews.Where(x => x.ProductId == articleNumber).ToListAsync();
             var reviewList = new List<ProductReviewCardViewModel>();
-            foreach (var review in reviews)
+            if (reviews.Any())
             {
-                reviewList.Add(review);
+                foreach (var review in reviews)
+                {
+                    reviewList.Add(review);
+                }
+
+                return reviewList;
+
             }
 
-            return reviewList;
+            return null!;
+            
         }
-        catch (Exception ex) { return null!; }
+        catch { return null!; }
     }
 
     public async Task<double?> GetAverageRatingAsync(int articleNumber)
     {
         try
         {
-            var averageRating = await _dataContext.Reviews.Where(x => x.ProductId == articleNumber).AverageAsync(x => x.Rating);
+            var reviews = await _dataContext.Reviews.Where(x => x.ProductId == articleNumber).ToListAsync();
 
-            return averageRating;
+            if (reviews.Any())
+            {
+                var averageRating = reviews.Average(x => x.Rating);
+                return averageRating;
+            }
+
+            return null!;
 
         }
         catch
@@ -70,4 +83,5 @@ public class ReviewsService
             return null!;
         }
     }
+
 }

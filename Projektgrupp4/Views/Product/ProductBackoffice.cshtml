@@ -12,10 +12,24 @@
                         <h5 class="card-title">@product.ProductTitle</h5>
                         <p class="card-text">@product.ProductDescription</p>
                         <p class="card-text">Price: @product.ProductPrice</p>
-                        @if (product.ProductPriceOrOffer && product.ProductOfferPrice != null)
+                     @*    <p class="card-text">Offer Price: @product.ProductOfferPrice</p> *@
+                    @*     <p class="card-text">Category: @product.Categories.ToString()</p> *@
+                        <p class="card-text">ProductPriceOrOffer Bool: @product.ProductPriceOrOffer</p>
+                        <hr >
+
+                        @if (product.ProductOfferPrice != null)
                         {
+                            <p>Test if price has offer. If not empty, it will be true.</p>
+                            product.ProductPriceOrOffer = true;
+                            <p class="card-text">ProductPriceOrOffer Bool2: @product.ProductPriceOrOffer</p>
                             <p class="card-text">Offer Price: @product.ProductOfferPrice</p>
+                            <hr />
                         }
+
+                        <p>Final ProductOfferPrice bool value</p>
+                        <p class="card-text">ProductPriceOrOffer Bool3: @product.ProductPriceOrOffer</p>
+        
+
                         <form asp-controller="Product" asp-action="DeleteProduct" method="post">
                             <input type="hidden" name="productId" value="@product.ArticleNumber" />
                             <button type="submit" class="btn btn-danger">Remove from Cart</button>
@@ -25,4 +39,4 @@
             </div>
         }
     </div>
-</div>
+</div>   

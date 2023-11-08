@@ -11,13 +11,22 @@ namespace Projektgrupp4.Controllers
 
         private readonly DataContext _dataContext;
         private readonly ProductService _productService;
+        private readonly SizeService _sizeService;
+        private readonly ColorService _colorService;
+        private readonly CategoryService _categoryService;
 
+      
 
-        public ProductController(DataContext dataContext, ProductService productService)
+        public ProductController(DataContext dataContext, ProductService productService, SizeService sizeService, ColorService colorService, CategoryService categoryService)
         {
             _dataContext = dataContext;
             _productService = productService;
+            _sizeService = sizeService;
+            _colorService = colorService;
+            _categoryService = categoryService;
         }
+
+      
 
         public ActionResult ProductBackoffice()  // LIST ALL PRODUCTS AVAILIBLE IN DATABASE
         {
@@ -30,63 +39,81 @@ namespace Projektgrupp4.Controllers
                 ProductOfferPrice = x.ProductOfferPrice,
                 ProductPriceOrOffer = x.ProductPriceOrOffer,
                 ProductDescription = x.ProductDescription,
-                ProductImageBase64 = Convert.ToBase64String(x.ProductImage) // Img is saved as Byte[] in database, needed to convert.
+                ProductImageBase64 = Convert.ToBase64String(x.ProductImage),
+
+
 
             }).ToList();
-
             return View(viewModels);
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            var selectedColors = new string[] { };
+            var selectedSizes = new string[] { };
+            var selectedCategories = new string[] { };
 
+            ViewBag.Colors = await _colorService.GetColorsAsync(selectedColors);
+            ViewBag.Sizes = await _sizeService.GetSizesAsync(selectedSizes);
+            ViewBag.Categories = await _categoryService.GetCategoryAsync(selectedCategories);
 
-        //[Authorize(Roles = "system-admin")] 
-        public IActionResult CreateProduct(BackofficeProductViewModel productViewModel)
+            var viewModel = new BackofficeProductViewModel();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(BackofficeProductViewModel viewModel, string[] colors, string[] sizes, string[] categories)
         {
             if (ModelState.IsValid)
             {
                 var productEntity = new ProductEntity
                 {
-                    ProductTitle = productViewModel.ProductTitle,
-                    ProductPrice = productViewModel.ProductPrice,
-                    ProductOfferPrice = productViewModel.ProductOfferPrice,
-                    ProductPriceOrOffer = productViewModel.ProductPriceOrOffer,
-                    ProductDescription = productViewModel.ProductDescription,
-
-                    ProductReviews = new List<ReviewEntity>(),
-                    ProductEntries = new List<ProductItemEntity>(),
-                    ProductCategories = new List<ProductCategoriesEntity>()
+                    ProductTitle = viewModel.ProductTitle,
+                    ProductPrice = viewModel.ProductPrice,
+                    ProductOfferPrice = viewModel.ProductOfferPrice,
+                    ProductPriceOrOffer = viewModel.ProductPriceOrOffer,
+                    ProductDescription = viewModel.ProductDescription,
                 };
 
-                // Handle the image upload
-                if (productViewModel.ProductImage != null && productViewModel.ProductImage.Length > 0)
+                if (viewModel.ProductImage != null && viewModel.ProductImage.Length > 0)
                 {
                     using (var stream = new MemoryStream())
                     {
-                        productViewModel.ProductImage.CopyTo(stream);
+                        viewModel.ProductImage.CopyTo(stream);
                         productEntity.ProductImage = stream.ToArray();
                     }
                 }
 
-                // Call the CreateProduct method in the ProductService
-                bool success = _productService.CreateProduct(productEntity);
+                var product = await _productService.CreateProductAsync(productEntity, categories, colors, sizes);
 
-                if (success)
+
+                if (product != null)
                 {
-                    // Redirect to a success page 
-                    return RedirectToAction("ProductBackoffice");
+                    await _productService.AddProductItemAsync(product, colors, sizes, categories);
+                    return RedirectToAction("Add");
                 }
-                else
-                {
-                    // Redirect to an error message/page
-                    // You should define the appropriate error handling logic here.
-                }
+
+                ModelState.AddModelError("", "Something Went Wrong.");
             }
 
-            return View(productViewModel);
+            // Repopulate the dropdowns with selected values if there are validation errors
+            ViewBag.Colors = await _colorService.GetColorsAsync(colors);
+            ViewBag.Sizes = await _sizeService.GetSizesAsync(sizes);
+            ViewBag.Categories = await _categoryService.GetCategoryAsync(categories);
+
+            return View(viewModel);
         }
 
-        [HttpPost]
+
+
+        //}
+
+
+        //[Authorize(Roles = "system-admin")]
+        //[HttpPost]
         public IActionResult DeleteProduct(int productId)
         {
             if (_productService.DeleteProduct(productId))
@@ -96,7 +123,7 @@ namespace Projektgrupp4.Controllers
             }
             else
             {
-               
+
                 return View();
             }
         }

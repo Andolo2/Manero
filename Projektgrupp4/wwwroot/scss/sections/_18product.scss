@@ -7,7 +7,7 @@
 .productDetails {
     margin-bottom: 500px;
 
-    .container {
+    > .container {
         padding-top: 20px;
 
         .productDetailTopsection {
@@ -161,14 +161,37 @@
                     grid-template-columns: 1fr 1fr;
                 }
 
-                > p {
+                .productCurrentPrice {
                     font-size: 20px;
                     font-weight: $font-weight-semibold;
                     color: $color-darkBlack;
                     margin: 0;
 
                     @include md {
-                        margin-right: 75px;
+                        margin-right: 40px;
+                    }
+                }
+
+                .productOffer {
+                    display: flex;
+                    align-items:center;
+
+                    @include md {
+                        margin-right: 50px;
+                    }
+
+                    .crossOver {
+                        text-decoration: line-through;
+                        font-size: 16px;
+                        color: #626262;
+                        margin-bottom: 0;
+                        margin-right: 25px;
+                    }
+
+                    .productOfferPrice {
+                        margin-bottom: 0;
+                        font-size: 20px;
+                        color: $color-red;
                     }
                 }
 
