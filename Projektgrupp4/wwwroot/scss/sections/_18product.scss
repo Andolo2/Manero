@@ -80,7 +80,6 @@
 
         .productInformation {
 
-
             @include lg {
                 margin-left: 50px;
                 gap: 20px;
@@ -110,14 +109,40 @@
                     }
                 }
 
-                .productAddToFavorite {
-                    font-size: 20px;
-                    margin-right: 12px;
+                .hearts {
+                    display: flex;
+                    position: relative;
+                    align-items: center;
+                    text-decoration: none;
 
-                    @include md {
-                        font-size: 25px;
-                        margin-right: 0px;
+                    &:hover {
+                        cursor: pointer;
                     }
+
+                    .productAddToFavorite {
+                        position: relative;
+                        font-size: 20px;
+
+                        @include md {
+                            font-size: 25px;
+                            margin-right: 0px;
+                        }
+                    }
+
+                    .heartFull {
+                        opacity: 0%;
+                        color: red;
+                        transform: translateX(100%);
+
+                        transition: 0.3s ease-in-out;
+                    }
+
+                    .heartEmpty {
+                        color: $color-darkBlack;
+
+                        transition: 0.3s ease-in-out;
+                    }
+
                 }
             }
 
@@ -174,7 +199,7 @@
 
                 .productOffer {
                     display: flex;
-                    align-items:center;
+                    align-items: center;
 
                     @include md {
                         margin-right: 50px;
@@ -232,6 +257,7 @@
 
                 .productSizeSelection {
                     display: flex;
+                    flex-wrap: wrap;
                     gap: 10px;
                     margin-bottom: 40px;
 

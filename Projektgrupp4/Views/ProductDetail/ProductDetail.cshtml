@@ -22,7 +22,10 @@
         <div class="productInformation">
             <div class="productInformationTop">
                 <h3 class="productTitle">@Model.ProductTitle</h3>
-                <i class="productAddToFavorite fa-sharp fa-light fa-heart"></i>
+                <a id="hearts" class="hearts">
+                    <i id="heartFull" class="productAddToFavorite heartFull fa-solid fa-heart"></i>
+                    <i id="heartEmpty" class="productAddToFavorite heartEmpty fa-light fa-heart"></i>
+                </a>
             </div>
             <div class="productReviewStars">
                 @if(Model.AverageRating != null)
@@ -123,9 +126,9 @@
                 
 
                 <div class="productQuantity">
-                    <button class="productSubtract"><i class="fa-regular fa-minus"></i></button>
-                    <span>1</span>
-                    <button class="productAdd"><i class="fa-regular fa-plus"></i></button>
+                    <button id="decrement" class="productSubtract"><i class="fa-regular fa-minus"></i></button>
+                    <span id="quantity">1</span>
+                    <button id="increment" class="productAdd"><i class="fa-regular fa-plus"></i></button>
                 </div>
             </div>
             <div class="productSize">
@@ -192,3 +195,39 @@
 
 @* Footer *@
 <partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
+
+<script>
+
+    //quantity
+    const incrementQuantity = document.querySelector('#increment');
+    const decrementQuantity = document.querySelector('#decrement');
+    const quantity = document.querySelector('#quantity')
+
+    incrementQuantity.addEventListener('click', () => {
+        quantity.innerHTML = parseInt(quantity.innerHTML) + 1
+    })
+
+    decrementQuantity.addEventListener('click', () => {
+        if(quantity.innerHTML > 1) {
+            quantity.innerHTML = parseInt(quantity.innerHTML) - 1
+        }
+    })
+
+    //add to favorite
+    const heartFull = document.querySelector('#heartFull');
+    const heartEmpty = document.querySelector('#heartEmpty');
+    const hearts = document.querySelector('#hearts');
+    let isFavorite = false;
+
+    hearts.addEventListener('click', () => {
+        if (isFavorite == false) {
+            isFavorite = true;
+            heartFull.style.opacity = '100%';
+        }
+        else if (isFavorite == true) {
+            isFavorite = false;
+            heartEmpty.style.opacity = '100%';
+            heartFull.style.opacity = '0%';
+        }
+    });
+</script>
