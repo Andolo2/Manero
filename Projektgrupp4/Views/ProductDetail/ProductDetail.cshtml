@@ -123,9 +123,9 @@
                 
 
                 <div class="productQuantity">
-                    <button class="productSubtract"><i class="fa-regular fa-minus"></i></button>
-                    <span>1</span>
-                    <button class="productAdd"><i class="fa-regular fa-plus"></i></button>
+                    <button id="decrement" class="productSubtract"><i class="fa-regular fa-minus"></i></button>
+                    <span id="quantity">1</span>
+                    <button id="increment" class="productAdd"><i class="fa-regular fa-plus"></i></button>
                 </div>
             </div>
             <div class="productSize">
@@ -192,3 +192,19 @@
 
 @* Footer *@
 <partial name="/Views/Partials/FooterPartial/_footerPartial.cshtml" />
+
+<script>
+    const incrementQuantity = document.querySelector('#increment');
+    const decrementQuantity = document.querySelector('#decrement');
+    const quantity = document.querySelector('#quantity')
+
+    incrementQuantity.addEventListener('click', () => {
+        quantity.innerHTML = parseInt(quantity.innerHTML) + 1
+    })
+
+    decrementQuantity.addEventListener('click', () => {
+        if(quantity.innerHTML > 1) {
+            quantity.innerHTML = parseInt(quantity.innerHTML) - 1
+        }
+    })
+</script>
