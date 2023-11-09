@@ -6,6 +6,7 @@ using Projektgrupp4.Models;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
+using System.Linq.Expressions;
 using Xunit;
 
 public class SignUpController_Tests
@@ -33,6 +34,24 @@ public class SignUpController_Tests
         // Assert
         var redirectToActionResult = Assert.IsType<RedirectToActionResult>(result);
         Assert.Equal("AccountCreated", redirectToActionResult.ActionName);
+    }
+
+    [Fact]
+    public async Task SignUpAsync_UserAlreadyExists_ReturnModelStateError()
+    {
+        // Arrange
+        var authenticationServiceMock = new Mock<IAuthenticationService>();
+        var controller = new SignUpController(authenticationServiceMock.Object);
+
+        authenticationServiceMock.Setup(x => x.UserAlreadyExistsAsync(It.IsAny<Expression<Func<UserEntity, bool>>>())).ReturnsAsync(true);
+
+        // Act
+        var result = await controller.Index(new SignUpViewModel());
+
+        // Assert
+        var viewResult = Assert.IsType<ViewResult>(result);
+        Assert.False(viewResult.ViewData.ModelState.ContainsKey("Email"));
+        
     }
 }
 

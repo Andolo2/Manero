@@ -27,6 +27,12 @@ namespace Projektgrupp4.Controllers
         {
             var response = await _authService.SignUpAsync(model);
 
+            if (response == null)
+            {
+                ModelState.AddModelError("", "Error occurred while signing up. Please try again.");
+                return View(model);
+            }
+
             if (ModelState.IsValid)
             {
                 if (await _authService.UserAlreadyExistsAsync(x => x.Email == model.Email))

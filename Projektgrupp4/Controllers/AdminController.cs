@@ -8,7 +8,9 @@ public class AdminController : Controller
 {
     public IActionResult Index()
     {
-        ViewData["Title"] = "Admin";
+        ViewData["Title"] = "Admin Panel";
         return View();
     }
+
+
 }

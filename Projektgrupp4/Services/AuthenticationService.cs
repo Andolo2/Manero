@@ -98,13 +98,12 @@ public class AuthenticationService : IAuthenticationService
             if (result.Succeeded)
             {
                 response.StatusCode = StatusCode.Created;
-                response.Content = userEntity; // Set the created user in the response
+                response.Content = userEntity; 
             }
             else
             {
-                response.StatusCode = StatusCode.BadRequest; // You might want to use a different status code for a failed signup.
+                response.StatusCode = StatusCode.Conflict; 
                 response.Content = null;
-                // You can also loop through the errors in `result.Errors` and add them to the response for more details on what went wrong.
             }
         }
         catch (Exception ex)

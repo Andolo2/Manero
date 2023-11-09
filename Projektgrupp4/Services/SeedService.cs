@@ -2,6 +2,8 @@
 
 namespace Projektgrupp4.Services;
 
+
+
 public class SeedService
 {
     private readonly RoleManager<IdentityRole> _roleManager;
@@ -15,8 +17,5 @@ public class SeedService
     {
         if (!await _roleManager.RoleExistsAsync("admin"))
             await _roleManager.CreateAsync(new IdentityRole("admin"));
-
-        if (!await _roleManager.RoleExistsAsync("user"))
-            await _roleManager.CreateAsync(new IdentityRole("user"));
     }
 }
