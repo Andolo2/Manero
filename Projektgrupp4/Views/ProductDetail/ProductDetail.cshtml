@@ -41,31 +41,59 @@
 
                     int fullstars = (int)averageRating;
                     bool hasHalfStar = (averageRating - fullstars) >= 0.5;
-                
+
+
 
                     @for(int i = 0; i < 5; i++)
                     {
-                        <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber">
-                            @if(i < fullstars)
-                            {
-                                <i class="star fa-sharp fa-solid fa-star"></i>
-                            }
-                            else if(i == fullstars && hasHalfStar)
-                            {
-                                <i class="star fa-regular fa-star-sharp-half-stroke"></i>
-                            }
-                            else
-                            {
-                                <i class="star fa-sharp fa-light fa-star"></i>
-                            }
+                        if (signInManager.IsSignedIn(User))
+                        {
+                            <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber">
+                                @if (i < fullstars)
+                                {
+                                    <i class="star fa-sharp fa-solid fa-star"></i>
+                                }
+                                else if (i == fullstars && hasHalfStar)
+                                {
+                                    <i class="star fa-regular fa-star-sharp-half-stroke"></i>
+                                }
+                                else
+                                {
+                                    <i class="star fa-sharp fa-light fa-star"></i>
+                                }
                             </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="SignIn" asp-action="Index" asp-route-ArticleNumber="@Model.ArticleNumber">
+                                @if (i < fullstars)
+                                {
+                                    <i class="star fa-sharp fa-solid fa-star"></i>
+                                }
+                                else if (i == fullstars && hasHalfStar)
+                                {
+                                    <i class="star fa-regular fa-star-sharp-half-stroke"></i>
+                                }
+                                else
+                                {
+                                    <i class="star fa-sharp fa-light fa-star"></i>
+                                }
+                            </a>
+                        }
                     }
                 }
                 else
                 {
                     @for(int i = 0; i < 5; i++)
                     {
-                        <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-light fa-star"></i></a>
+                        if(signInManager.IsSignedIn(User))
+                        {
+                            <a asp-controller="ProductReviews" asp-action="LeaveAReview" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-light fa-star"></i></a>
+                        }
+                        else
+                        {
+                            <a asp-controller="SignIn" asp-action="Index" asp-route-ArticleNumber="@Model.ArticleNumber"><i class="star fa-sharp fa-light fa-star"></i></a>
+                        }
                     }
                 }
                 @if(Model.ProductReviews != null)

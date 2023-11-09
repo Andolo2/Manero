@@ -7,6 +7,7 @@ using Projektgrupp4.Models.Entities;
 using Projektgrupp4.ViewModels;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Security.Claims;
 
 namespace Projektgrupp4.Services;
 
@@ -15,6 +16,7 @@ public interface IAuthenticationService
     Task<ServiceResponse<UserEntity>> SignUpAsync(SignUpViewModel viewModel);
     Task<bool> UserAlreadyExistsAsync(Expression<Func<UserEntity, bool>> expression);
 
+    Task<UserEntity> GetUserAsync(ClaimsPrincipal user);
 }
 
 public class AuthenticationService : IAuthenticationService
@@ -71,6 +73,28 @@ public class AuthenticationService : IAuthenticationService
         return response;
 
     }*/
+
+    public async Task<UserEntity> GetUserAsync(ClaimsPrincipal user)
+    {
+        try
+        {
+            var currentUser = await _userManager.GetUserAsync(user);
+            if (currentUser != null)
+            {
+                return currentUser;
+            }
+            else
+            {
+                return null!;
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return null!;
+        }
+        
+    }
 
     public async Task<bool> UserAlreadyExistsAsync(Expression<Func<UserEntity, bool>> expression)
     {

@@ -2,6 +2,7 @@
 using Projektgrupp4.Contexts;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.ViewModels;
+using System.Diagnostics;
 
 namespace Projektgrupp4.Services;
 
@@ -14,13 +15,13 @@ public class ReviewsService
         _dataContext = dataContext;
     }
 
-    public async Task<bool> CreateReviewAsync(LeaveAReviewViewModel viewModel)
+    public async Task<bool> CreateReviewAsync(LeaveAReviewViewModel viewModel, UserEntity user)
     {
         try
         {
             var entity = new ReviewEntity
             {
-                Name = "Temp Name",
+                Name = user.Name,
                 ProductId = viewModel.ArticleNumber,
                 Created = viewModel.Created,
                 Rating = viewModel.Rating,
@@ -34,8 +35,9 @@ public class ReviewsService
 
             return true;
 
-        } catch
+        } catch(Exception ex)
         {
+            Debug.WriteLine(ex);
             return false;
         }
     }

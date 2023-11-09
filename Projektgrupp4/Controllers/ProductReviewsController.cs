@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Projektgrupp4.Models.Entities;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
 
@@ -10,10 +14,13 @@ namespace Projektgrupp4.Controllers
 	{
 
         private readonly ReviewsService _reviewService;
+        private readonly IAuthenticationService _authService;
 
-        public ProductReviewsController(ReviewsService reviewService)
+
+        public ProductReviewsController(ReviewsService reviewService, IAuthenticationService authService)
         {
             _reviewService = reviewService;
+            _authService = authService;
         }
 
         [HttpGet]
@@ -29,11 +36,9 @@ namespace Projektgrupp4.Controllers
             return View(viewModel);
 		}
 
-
-		public IActionResult LeaveAReview()
+        [Authorize(Roles = "user")]
+        public IActionResult LeaveAReview()
 		{
-
-
             return View();
 		}
 
@@ -42,7 +47,11 @@ namespace Projektgrupp4.Controllers
         {
             if(ModelState.IsValid)
             {
-                await _reviewService.CreateReviewAsync(viewModel);
+                var user = await _authService.GetUserAsync(User);
+                if(user != null)
+                {
+                    await _reviewService.CreateReviewAsync(viewModel, user);
+                }
 
                 return RedirectToAction("ProductDetail", "ProductDetail", new { viewModel.ArticleNumber });
             }
