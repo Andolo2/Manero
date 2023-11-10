@@ -67,7 +67,7 @@
                 <p>@Model.ProductDescription</p>
             </div>
             <div class="buttonContainer">
-                <button class="button335W">+ ADD TO CART</button>
+                <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post"><button type="submit" class="button335W">+ ADD TO CART</button></form>
             </div>
         </div>
         <div class="productReviews">

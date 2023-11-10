@@ -13,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<AuthenticationService>();
 builder.Services.AddScoped<SeedService>();
+builder.Services.AddScoped<ReviewsService>();
+builder.Services.AddScoped<ShoppingCartService>();
 // Context
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
@@ -33,7 +35,9 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
 builder.Services.AddScoped<UserEntity>();
 builder.Services.AddScoped<SignUpViewModel>();
 builder.Services.AddScoped<SignInViewModel>();
-
+builder.Services.AddScoped<SizeService>(); //Added for Dependency injecttion
+builder.Services.AddScoped<ColorService>();//Added for Dependency injecttion
+builder.Services.AddScoped<CategoryService>();//Added for Dependency injecttion
 builder.Services.AddScoped<ProductService>();  //Added for Dependency injecttion
 
 using (var connection = new SqlConnection(connectionString))

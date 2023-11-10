@@ -19,6 +19,8 @@ namespace Projektgrupp4.Contexts
 
         // Users
         public DbSet<AddressEntity> Adresses { get; set; } = null!;
+
+        public DbSet<ProductEntity> ShoppingCart { get; set; } = null!;
         
 
         // Products
