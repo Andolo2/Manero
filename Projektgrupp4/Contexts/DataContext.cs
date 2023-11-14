@@ -16,9 +16,9 @@ namespace Projektgrupp4.Contexts
         }
 
 
-
         // Users
         public DbSet<AddressEntity> Adresses { get; set; } = null!;
+        public DbSet<ShoppingCartEntity> ShoppingCart { get; set; } = null!;
         
 
         // Products
@@ -30,10 +30,18 @@ namespace Projektgrupp4.Contexts
         public DbSet<ReviewEntity> Reviews { get; set; } = null!;
         public DbSet<ProductCategoriesEntity> ProductCategories { get; set; } = null!;
 
-       
-    
-       
+/*        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
 
-     }
+            modelBuilder.Entity<ShoppingCartEntity>()
+                .HasKey(sc => sc.ShoppingCartId);
+
+            modelBuilder.Entity<ShoppingCartEntity>()
+                .HasOne(sc => sc.ShoppingCartUser)
+                .WithOne(u => u.ShoppingCart)
+                .HasForeignKey<ShoppingCartEntity>(sc => sc.ShoppingCartId);
+        }*/
+    }
 
 }
