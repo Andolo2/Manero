@@ -69,7 +69,8 @@ namespace Projektgrupp4.Controllers
                 Rating = 3, // Alltid 3 för det är lagom
                 ProductTitle = product.ProductTitle,
                 ProductPrice = product.ProductPrice,
-                ProductOfferPrice = product.ProductOfferPrice
+                ProductOfferPrice = product.ProductOfferPrice,
+                ProductImage = product.ProductImage,
             }).ToList();
 
             // Create and pass a list of ProductCardViewModel instances to the view

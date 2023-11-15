@@ -6,25 +6,37 @@
             @foreach (var category in Model.Categories.Take(2))
             {
                 <div class="col-4">
-                    <div class="categoryTitle"><h4 class="categoryTitleText">@category</h4></div>
+                    <a asp-controller="Product" asp-action="Index" asp-route-category="@category" class="categoryLink">
+                        <div class="categoryTitle">
+                            <h4 class="categoryTitleText">@category</h4>
+                        </div>
+                    </a>
                 </div>
             }
         </div>
 
         <div class="row">
-            @foreach (var category in Model.Categories.Skip(2).Take(1)) 
+            @foreach (var category in Model.Categories.Skip(2).Take(1))
             {
                 <div class="col-8">
-                    <div class="categoryTitle"><h4 class="categoryTitleText">@category</h4></div>
+                    <a asp-controller="Product" asp-action="Index" asp-route-category="@category" class="categoryLink">
+                        <div class="categoryTitle">
+                            <h4 class="categoryTitleText">@category</h4>
+                        </div>
+                    </a>
                 </div>
             }
         </div>
 
         <div class="row">
-            @foreach (var category in Model.Categories.Skip(3).Take(2)) 
+            @foreach (var category in Model.Categories.Skip(3).Take(2))
             {
                 <div class="col-4">
-                    <div class="categoryTitle"><h4 class="categoryTitleText">@category</h4></div>
+                    <a asp-controller="Product" asp-action="Index" asp-route-category="@category" class="categoryLink">
+                        <div class="categoryTitle">
+                            <h4 class="categoryTitleText">@category</h4>
+                        </div>
+                    </a>
                 </div>
             }
         </div>
