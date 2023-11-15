@@ -53,12 +53,12 @@ namespace Projektgrupp4.Controllers
 
             if (string.IsNullOrEmpty(category))
             {
-                // If no category is provided, get all products
+                
                 products = await _productService.GetAllProductsAsync();
             }
             else
             {
-                // Get products for the specified category
+               
                 products = await _productService.GetProductsByCategoryAsync(category);
             }
 

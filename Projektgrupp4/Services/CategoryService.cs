@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Projektgrupp4.Contexts;
-
+using Projektgrupp4.Interfaces;
 using Projektgrupp4.Models.Entities;
 
 namespace Projektgrupp4.Services
 {
-    public class CategoryService
+    public class CategoryService : ICategoryService
     {
         private readonly DataContext _dataContext;
 
@@ -49,12 +49,6 @@ namespace Projektgrupp4.Services
             return await _dataContext.Set<CategoryEntity>().ToListAsync();
         }
 
-        private List<string> GetCategories()
-        {
-            // Implement logic to retrieve categories
-            // This could involve querying a database or some other data source
-            // For simplicity, I'm using a dummy list here.
-            return new List<string> { "MEN", "WOMEN", "KIDS", "ACCESSORIES" };
-        }
+  
     }
 }
