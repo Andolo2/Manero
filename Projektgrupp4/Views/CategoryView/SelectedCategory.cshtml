@@ -14,7 +14,7 @@
                 @foreach (var productCard in Model)
                 {
                     <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@productCard.ArticleNumber" class="card">
-                        <img class="productImage" src="@productCard.ProductImageSrc" alt="Image of product">
+                        <img class="productImage" src="data:image/png;base64,@Convert.ToBase64String(productCard.ProductImage)" alt="Image of product">
                         <div class="text">
                             <p class="ProductRating">
                                 @for (int i = 0; i < productCard.Rating; i++)

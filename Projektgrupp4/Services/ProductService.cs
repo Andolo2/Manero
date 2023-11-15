@@ -12,7 +12,7 @@ namespace Projektgrupp4.Services
         public ProductService(DataContext dataContext)
         {
             _dataContext = dataContext;
-           
+
         }
 
 
@@ -119,7 +119,7 @@ namespace Projektgrupp4.Services
         public async Task<List<ProductEntity>> GetAllProductsAsync()
         {
             var products = await _dataContext.Products.ToListAsync();
-            if(products != null)
+            if (products != null)
             {
                 return products;
             }
@@ -130,7 +130,7 @@ namespace Projektgrupp4.Services
         public async Task<ProductEntity> GetProductAsync(int ArticleNumber)
         {
             var product = await _dataContext.Products.Include(x => x.ProductEntries).ThenInclude(x => x.Size).Include(x => x.ProductEntries).ThenInclude(x => x.Color).Include(x => x.ProductReviews).FirstOrDefaultAsync(x => x.ArticleNumber == ArticleNumber);
-            if(product != null)
+            if (product != null)
             {
                 return product;
             }
@@ -138,10 +138,21 @@ namespace Projektgrupp4.Services
             return null!;
         }
 
-       public async Task<List<ProductItemEntity>> GetProductsByCategoryIdAsync(int categoryId)
+        public async Task<List<ProductItemEntity>> GetProductsByCategoryIdAsync(int categoryId)
         {
             var products = await _dataContext.ProductItem
                 .Where(x => x.CategoryId == categoryId)
+                .ToListAsync();
+
+            return products;
+        }
+        //Hämtar produkt-entiter kopplade med ett visst categoryName
+        public async Task<IEnumerable<ProductEntity>> GetProductsByCategoryAsync(string category)
+        {
+          
+
+            var products = await _dataContext.Products
+                .Where(p => p.ProductEntries.Any(pc => pc.Category.CategoryName == category))
                 .ToListAsync();
 
             return products;

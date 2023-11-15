@@ -42,7 +42,7 @@ namespace Projektgrupp4.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Failed to create the Color.");
+                    ModelState.AddModelError("", "Failed to create the Category.");
                 }
 
             }

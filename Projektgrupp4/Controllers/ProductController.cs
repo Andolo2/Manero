@@ -66,8 +66,7 @@ namespace Projektgrupp4.Controllers
             var productCards = products.Select(product => new ProductCardViewModel
             {
                 ArticleNumber = product.ArticleNumber,
-                ProductImageSrc = "/images/productImage.svg", // Replace with the actual image source
-                Rating = 3, // Alltid 3
+                Rating = 3, // Alltid 3 för det är lagom
                 ProductTitle = product.ProductTitle,
                 ProductPrice = product.ProductPrice,
                 ProductOfferPrice = product.ProductOfferPrice
