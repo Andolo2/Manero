@@ -25,7 +25,7 @@ namespace Projektgrupp4.Services
             return entity;
         }
 
-        //Används för att populera CreateProduct vy-modellen med färger
+        //Används för att populera CreateProduct vy-modellen med Categories
         public async Task<List<SelectListItem>> GetCategoryAsync(string[] selectedCategories)
         {
             var category = new List<SelectListItem>();
@@ -47,6 +47,14 @@ namespace Projektgrupp4.Services
         public async Task<IEnumerable<CategoryEntity>> GetAllCategoriesAsync()
         {
             return await _dataContext.Set<CategoryEntity>().ToListAsync();
+        }
+
+        private List<string> GetCategories()
+        {
+            // Implement logic to retrieve categories
+            // This could involve querying a database or some other data source
+            // For simplicity, I'm using a dummy list here.
+            return new List<string> { "MEN", "WOMEN", "KIDS", "ACCESSORIES" };
         }
     }
 }

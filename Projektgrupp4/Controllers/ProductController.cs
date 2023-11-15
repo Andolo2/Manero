@@ -46,6 +46,38 @@ namespace Projektgrupp4.Controllers
             }).ToList();
             return View(viewModels);
         }
+        //För att dynamiskt rendera productkort 
+        public async Task<IActionResult> Index(string category = null)
+        {
+            IEnumerable<ProductEntity> products;
+
+            if (string.IsNullOrEmpty(category))
+            {
+                // If no category is provided, get all products
+                products = await _productService.GetAllProductsAsync();
+            }
+            else
+            {
+                // Get products for the specified category
+                products = await _productService.GetProductsByCategoryAsync(category);
+            }
+
+            // Map ProductEntity instances to ProductCardViewModel instances
+            var productCards = products.Select(product => new ProductCardViewModel
+            {
+                ArticleNumber = product.ArticleNumber,
+                ProductImageSrc = "/images/productImage.svg", // Replace with the actual image source
+                Rating = 3, // Alltid 3
+                ProductTitle = product.ProductTitle,
+                ProductPrice = product.ProductPrice,
+                ProductOfferPrice = product.ProductOfferPrice
+            }).ToList();
+
+            // Create and pass a list of ProductCardViewModel instances to the view
+            var viewModel = new List<ProductCardViewModel>(productCards);
+
+            return View(viewModel);
+        }
 
 
         [HttpGet]
