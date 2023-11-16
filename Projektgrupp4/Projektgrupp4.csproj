@@ -20,9 +20,6 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Repositories\" />
-    <Folder Include="Views\Partials\" />
-    <Folder Include="Views\Partials\" />
-    <Folder Include="Views\Partials\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\logos\" />
@@ -32,6 +29,8 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="Views\EditProfile\Index.cshtml" />
+    <None Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

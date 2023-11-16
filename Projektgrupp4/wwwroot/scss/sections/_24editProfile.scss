@@ -1,0 +1,118 @@
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Buttons.scss";
+@import "../core/_Base.scss";
+@import "../core/_Mixins.scss";
+
+.EditProfile {
+    margin: 20px;
+
+    .container {
+
+        .line {
+            border: 1px solid black;
+            height: 30px;
+            width: 1px;
+            margin: 0 auto;
+            margin-top: 60px;
+            margin-bottom: 20px;
+        }
+
+        .pfp-container {
+            width: 150px;
+            height: 150px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+
+            img {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        .editProfileForm {
+            @include xl {
+                border: 1px solid $color-theme;
+                padding: 25px;
+                box-shadow: 0 0 20px $color-theme;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: 32px;
+                font-weight: $font-weight-bold;
+                color: $color-darkBlack;
+                margin-bottom: 40px;
+            }
+
+            .formSections {
+                position: relative;
+                margin-bottom: 20px;
+
+                label {
+                    position: absolute;
+                    background-color: white;
+                    left: 20px;
+                    top: -8px;
+                    z-index: 1;
+                    padding: 0 15px;
+                    font-weight: $font-weight-semibold;
+                    font-size: 12px;
+                    color: $color-darkGrey1;
+                }
+
+                input {
+                    border: 1px solid $color-theme;
+                    border-radius: 50px;
+                    width: 100%;
+                    padding: 10px 30px;
+                    z-index: 0;
+                }
+
+                small {
+                    display: block;
+                    margin-top: 5px;
+                }
+            }
+
+            button {
+                @include xl {
+                    width: 100%;
+                }
+            }
+
+            .edit-photo-label {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .edit-photo-input {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                width: 100%;
+                height: 100%;
+                cursor: pointer;
+            }
+
+            .edit-photo-button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 45px;
+                height: 45px;
+                cursor: pointer;
+
+                img {
+                    width: 80%;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+

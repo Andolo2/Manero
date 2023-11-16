@@ -1,0 +1,62 @@
+﻿<section class="MyProfile">
+    <div class="container">
+        <div class="line"></div>
+        <div class="pfp-container">
+            <img id="profile-image" src="images/ProfileImages/pfp-Placeholder.png">
+        </div>
+        <a asp-controller="EditProfile" asp-action="Index"><input type="image" src="images/ProfileImages/EditProfile.png" class="img-edit"></a>
+        <div class="user-details">
+            <h1 class="username">User</h1>
+            <p class="useremail">User@domain.com</p>
+        </div>
+        <div class="profile-menu">
+            <div class="order-history">
+                <span><img src="images/ProfileImages/OrderIcon.png" alt="">Order history</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="order-history">
+                <span><img src="images/ProfileImages/PaymentIcon.png" alt="">Payment method</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="order-history">
+                <span><img src="images/ProfileImages/AddressIcon.png" alt="">My address</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="order-history">
+                <span><img src="images/ProfileImages/PromocodeIcon.png" alt="">My promocodes</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="order-history" id="logoutButton">
+                <span><img src="images/ProfileImages/SignOutIcon.png" alt="">Sign out</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id="logoutPopup" class="popup" style="display: none;">
+    <div class="popup-content">
+        <p>Are you sure you want to sign out?</p>
+        <button> <a asp-action="Logout" asp-controller="Account">Sure</a></button>
+        <button onclick="closePopup()">Cancel</button>
+    </div>
+</div>
+
+
+<script>
+    document.getElementById('logoutButton').addEventListener('click', function () {
+        var blurContainer = document.createElement('div');
+        blurContainer.className = 'popup-container';
+        document.body.appendChild(blurContainer);
+        document.getElementById('logoutPopup').style.display = 'block';
+    });
+
+    function closePopup() {
+        document.getElementById('logoutPopup').style.display = 'none';
+
+        var blurContainer = document.querySelector('.popup-container');
+        if (blurContainer) {
+            blurContainer.parentNode.removeChild(blurContainer);
+        }
+    }
+</script>
