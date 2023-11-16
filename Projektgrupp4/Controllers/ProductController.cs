@@ -3,6 +3,7 @@ using Projektgrupp4.Contexts;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
+using Projektgrupp4.Interfaces;
 
 namespace Projektgrupp4.Controllers
 {
@@ -13,11 +14,11 @@ namespace Projektgrupp4.Controllers
         private readonly ProductService _productService;
         private readonly SizeService _sizeService;
         private readonly ColorService _colorService;
-        private readonly CategoryService _categoryService;
+        private readonly ICategoryService _categoryService;
 
       
 
-        public ProductController(DataContext dataContext, ProductService productService, SizeService sizeService, ColorService colorService, CategoryService categoryService)
+        public ProductController(DataContext dataContext, ProductService productService, SizeService sizeService, ColorService colorService, ICategoryService categoryService)
         {
             _dataContext = dataContext;
             _productService = productService;

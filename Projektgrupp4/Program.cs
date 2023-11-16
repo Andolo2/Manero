@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Projektgrupp4.Contexts;
+using Projektgrupp4.Interfaces;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.Models.Identity;
 using Projektgrupp4.Services;
@@ -15,6 +16,9 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<SeedService>();
 builder.Services.AddScoped<ReviewsService>();
+builder.Services.AddScoped<SizeService>(); //Added for Dependency injecttion
+builder.Services.AddScoped<ColorService>();//Added for Dependency injecttion
+builder.Services.AddScoped<ICategoryService, CategoryService>();//Added for Dependency injecttion
 // Context
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("Sql")));
@@ -35,9 +39,7 @@ builder.Services.AddIdentity<UserEntity, IdentityRole>(x =>
 builder.Services.AddScoped<UserEntity>();
 builder.Services.AddScoped<SignUpViewModel>();
 builder.Services.AddScoped<SignInViewModel>();
-builder.Services.AddScoped<SizeService>(); //Added for Dependency injecttion
-builder.Services.AddScoped<ColorService>();//Added for Dependency injecttion
-builder.Services.AddScoped<CategoryService>();//Added for Dependency injecttion
+
 
 builder.Services.AddScoped<ProductService>();  //Added for Dependency injecttion
 
