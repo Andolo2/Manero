@@ -2,5 +2,13 @@
   {
     "outputFile": "wwwroot/css/style.min.css",
     "inputFile": "wwwroot/scss/style.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/sections/_myAddress.css",
+    "inputFile": "wwwroot/scss/sections/_myAddress.scss"
+  },
+  {
+    "outputFile": "wwwroot/scss/sections/_newAddress.css",
+    "inputFile": "wwwroot/scss/sections/_newAddress.scss"
   }
 ]

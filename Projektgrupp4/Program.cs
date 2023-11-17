@@ -1,19 +1,27 @@
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Projektgrupp4.Contexts;
 using Projektgrupp4.Models.Entities;
 using Projektgrupp4.Models.Identity;
+using Projektgrupp4.Repositories;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
+using Uppgift.Helpers.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Repos
+builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<UserAddressRepository>();
 
 // Services
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<SeedService>();
+builder.Services.AddScoped<AddressService>();
 builder.Services.AddScoped<ReviewsService>();
 // Context
 
@@ -38,7 +46,6 @@ builder.Services.AddScoped<SignInViewModel>();
 builder.Services.AddScoped<SizeService>(); //Added for Dependency injecttion
 builder.Services.AddScoped<ColorService>();//Added for Dependency injecttion
 builder.Services.AddScoped<CategoryService>();//Added for Dependency injecttion
-
 builder.Services.AddScoped<ProductService>();  //Added for Dependency injecttion
 
 using (var connection = new SqlConnection(connectionString))

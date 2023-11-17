@@ -1,0 +1,86 @@
+@import "../core/_Fonts.scss";
+@import "../core/_Colors.scss";
+@import "../core/_Mixins.scss";
+@import "../core/_Base.scss";
+
+._27MyAddress {
+    @media (min-width: 570px) {
+        margin-top: 50px;
+    }
+
+    .container {
+        padding: 0px;
+        border: none;
+
+        @media (min-width: 570px) {
+            border: 1px solid $color-theme;
+        }
+
+        .previousPage {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            padding-top: 60px;
+
+            a {
+                justify-self: start;
+                margin-left: 20px;
+                color: $color-darkBlack;
+
+                &:hover {
+                    color: $color-darkGrey2;
+                }
+            }
+
+            h1 {
+                justify-self: center;
+                font-size: 18px;
+                font-weight: $font-weight-semibold;
+            }
+        }
+
+        .newAddress {
+            text-align: center;
+            padding-top: 40px;
+
+            a {
+                text-decoration: none;
+                font-size: 18px;
+                color: $color-darkBlack;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+        @mixin address {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid $color-theme;
+            margin-top: 40px;
+
+            i {
+                margin-left: 25px;
+                color: $color-darkGrey1;
+                font-size: 1.3em;
+            }
+
+            a {
+                margin-right: 20px;
+            }
+
+            .address-description {
+                h2 {
+                    color: $color-darkBlack;
+                    font-weight: $font-weight-semibold;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .addresses {
+            @include address;
+        }
+    }
+}

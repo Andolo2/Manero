@@ -100,6 +100,15 @@ toggleConfirmPasswordButton.addEventListener("click", (e) => {
 });
 
 
+function handleCheckboxClick() {
+    var checkbox = document.getElementById("myCheckbox");
+    if (checkbox.ariaChecked) {
+        alert("Checkbox is checked!")
+    } else {
+        alert("Checkbox is unchecked");
+    }
+}
+
 // Gör så att stjärnorna i Leave a Review blir gula när man hovrar och trycker på dem
 //const stars = document.querySelectorAll('.ratingStar');
 //let selectedRating = 0;

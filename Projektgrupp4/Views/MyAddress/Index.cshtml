@@ -1,0 +1,58 @@
+﻿@model MyAddressViewModel
+@inject AddressService addressService;
+
+@{
+    ViewData["Title"] = "My Addresses";
+
+    var _addresses = await addressService.GetAllAddressesAsync();
+}
+
+<section class="_27MyAddress">
+    <div class="container">
+        <div class="previousPage">
+            <a asp-action="Index" asp-controller="Home"><i class="fa-solid fa-chevron-left"></i></a>
+            <h1>My address</h1>
+        </div>
+            @if (_addresses.Any())
+            {
+                @foreach (var address in _addresses)
+                {
+                    <div class="addresses">
+                        <i class="fa-regular fa-suitcase"></i>
+                        <div class="address-description">
+                            <h2>@address.Title</h2>
+                            <p>@address.StreetName</p>
+                        </div>
+                        <a href="#"><i class="fa-light fa-pen-line"></i></a>
+                    </div>
+            }
+            }
+            else
+            {
+                <p>No addresses found.</p>
+            }
+        <div class="newAddress">
+            <a asp-controller="NewAddress" asp-action="Index">+</a>
+            <p><a asp-controller="NewAddress" asp-action="Index">Add a new address</a></p>
+        </div>
+    </div>
+</section>
+
+
+
+@*<div class="addresses">
+    <i class="fa-regular fa-suitcase"></i>
+    <div class="address-description">
+        <h2>Work</h2>
+        <p>8000 S Kirkland Ave, Chicago...</p>
+    </div>
+    <a href="#"><i class="fa-light fa-pen-line"></i></a>
+</div>
+<div class="addresses">
+    <i class="fa-sharp fa-light fa-location-dot"></i>
+    <div class="address-description">
+        <h2>Other</h2>
+        <p>8000 S Kirkland Ave, Chicago...</p>
+    </div>
+    <a href=""><i class="fa-light fa-pen-line"></i></a>
+</div>*@

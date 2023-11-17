@@ -1,0 +1,31 @@
+﻿@model NewAddressViewModel
+
+<section class="_28NewAddress">
+    <div class="container">
+        <div class="previousPage">
+            <a asp-action="Index" asp-controller="MyAddress"><i class="fa-solid fa-chevron-left"></i></a>
+            <h1>Add a new address</h1>
+        </div>
+        <div class="colorBox"></div>
+        <form method="post" asp-action="Index" asp-controller="NewAddress" enctype="multipart/form-data" novalidate>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="addressForms">
+                <label asp-for="Title">TITLE</label>
+                <input asp-for="Title" type="text" required>
+            </div>
+            <div class="addressForms">
+                <label asp-for="StreetName" for="newAddressUser">ENTER A NEW ADDRESS</label>
+                <input asp-for="StreetName" type="text" required>
+            </div>
+            <div class="currentBox">
+                <input asp-for="Checked" id="myCheckbox" onclick="handleCheckboxClick()" type="checkbox">
+                <label asp-for="Checked">Use current location</label>
+            </div>
+            <div class="addressForms">
+                <button class="button335W" type="submit">SAVE ADDRESS</button>
+            </div>
+        </form>
+    </div>
+</section>
