@@ -1,0 +1,70 @@
+﻿@using Projektgrupp4.ViewModels;
+@model ProfileEditViewModel
+
+<section class="EditProfile">
+    <div class="container">
+        <div class="line"></div>
+        <div class="pfp-container" id="pfp-container">
+            <img id="profile-image" src="images/ProfileImages/pfp-Placeholder.png">
+        </div>
+
+        <form class="editProfileForm" method="post" asp-action="Index" asp-controller="EditProfile" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <label class="edit-label">
+                <input class="edit-photo-input" id="imageupload" type="file" name="profile_photo" accept="image/png, image/gif, image/jpeg" onchange="updateProfileImage(event)">
+                <div class="edit-photo-button" onclick="triggerFileInput()">
+                    <img src="/images/ProfileImages/EditProfile.png" alt="Edit Photo">
+                </div>
+            </label>
+            <div class="formSections">
+                <label asp-for="Name">NAME</label>
+                <input asp-for="Name" type="text">
+                <small class="text-danger"><span asp-validation-for="Name"></span></small>
+            </div>
+            <div class="formSections">
+                <label asp-for="Email">EMAIL</label>
+                <input asp-for="Email" type="email">
+                <small class="text-danger"><span asp-validation-for="Email"></span></small>
+            </div>
+            <div class="formSections">
+                <label asp-for="PhoneNumber">PHONE NUMBER</label>
+                <input asp-for="PhoneNumber" type="text">
+                <small class="text-danger"><span asp-validation-for="PhoneNumber"></span></small>
+            </div>
+            <div class="formSections">
+                <label asp-for="Location">LOCATION</label>
+                <input asp-for="Location" type="text">
+                <small class="text-danger"><span asp-validation-for="Location"></span></small>
+            </div>
+            <div>
+                <button type="submit" class="button335W">SAVE CHANGES</button>
+            </div>
+        </form>
+
+
+        
+    </div>
+</section>
+
+
+<script>
+    function triggerFileInput() {
+        document.getElementById('imageupload').click();
+    }
+
+    function updateProfileImage(event) {
+        var input = event.target;
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var imgEdit = document.querySelector('.img-edit img');
+            imgEdit.src = reader.result;
+
+            var profileImage = document.getElementById('profile-image');
+            profileImage.src = reader.result;
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>

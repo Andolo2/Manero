@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Projektgrupp4.Contexts;
+using Projektgrupp4.Interfaces;
 using Projektgrupp4.Services;
 using Projektgrupp4.ViewModels;
 
@@ -8,12 +9,10 @@ namespace Projektgrupp4.Controllers
     public class CategoryController : Controller
     {
 
-        private readonly CategoryService _categoryService;
+        private readonly ICategoryService _categoryService;
 
-        public CategoryController(CategoryService categoryService)
+        public CategoryController(ICategoryService categoryService)
         {
-
-
             _categoryService = categoryService;
         }
 

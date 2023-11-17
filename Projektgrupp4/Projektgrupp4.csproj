@@ -19,18 +19,19 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-    <Folder Include="Views\Partials\" />
-    <Folder Include="Views\Partials\" />
-    <Folder Include="Views\Partials\" />
+    <Folder Include="Repositories\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\images\logos\" />
     <Folder Include="wwwroot\scss\core\" />
     <Folder Include="wwwroot\scss\components\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="Views\EditProfile\Index.cshtml" />
+    <None Include="Views\Profile\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
