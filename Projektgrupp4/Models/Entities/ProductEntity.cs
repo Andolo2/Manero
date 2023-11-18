@@ -27,6 +27,9 @@ public class ProductEntity
 
     public ICollection<ProductItemEntity> ProductEntries { get; set; } = new HashSet<ProductItemEntity>();
 
+    [NotMapped]
+    public ProductItemEntity? ProductEntry { get; set; }
+
     public ICollection<ProductCategoriesEntity> ProductCategories { get; set; } = new HashSet<ProductCategoriesEntity>();
 
   

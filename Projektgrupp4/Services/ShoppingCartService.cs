@@ -1,55 +1,61 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Projektgrupp4.Contexts;
 using Projektgrupp4.Models.Entities;
-using System.Security.Claims;
 
 namespace Projektgrupp4.Services;
 
 public class ShoppingCartService
 {
     private readonly DataContext _context;
-    private readonly IHttpContextAccessor _httpContextAccessor;
-    private readonly UserManager<UserEntity> _userManager;
 
-    public ShoppingCartService(DataContext context, UserManager<UserEntity> userManager, IHttpContextAccessor httpContextAccessor)
+    public ShoppingCartService(DataContext context)
     {
         _context = context;
-        _userManager = userManager;
-        _httpContextAccessor = httpContextAccessor;
     }
 
-    public async Task<string?> GetCurrentUserIdAsync()
+    public void AddToCartAsync(string userId, int productId)
     {
-        // Get the current user's claims principal
-        ClaimsPrincipal? userPrincipal = _httpContextAccessor.HttpContext?.User;
 
-        // Check if the user is authenticated
-        if (userPrincipal?.Identity?.IsAuthenticated == true)
+        if (userId != null)
         {
-            // Get the user's ID using UserManager
-            UserEntity? currentUser = await _userManager.GetUserAsync(userPrincipal);
+            if (_context.ShoppingCart.Any(x => x.ProductId == productId && x.UserId == userId))
+            {
+                return;
+            }
+             
+            var shoppingCartEntity = new ShoppingCartEntity
+            {
+                UserId = userId,
+                ProductId = productId
+            };
 
-            // Return the user's ID
-            return currentUser?.Id;
+            _context.ShoppingCart.Add(shoppingCartEntity);
+            _context.SaveChanges();
+        }
+    }
+
+    public IEnumerable<ProductEntity> GetShoppingCart(string userId)
+    {
+
+        var cart = _context.ShoppingCart
+            .Where(x => x.UserId == userId)
+            .Select(x => x.Product)
+            .ToList();
+
+        foreach (var product in cart)
+        {
+            product.ProductEntry = _context.ProductItem
+                .Include(x => x.Color)
+                .Include(x => x.Size)
+                .FirstOrDefault(x => x.ProductId == product.ArticleNumber);
         }
 
-        // If the user is not authenticated, return null
-        return null;
-    }
-
-    public async Task<IEnumerable<ProductEntity>> GetCartAsync()
-    {
-        var userId = await GetCurrentUserIdAsync();
-        var cartEntity = await _context.ShoppingCart.FirstOrDefaultAsync(x => x.ShoppingCartUser.Id == userId);
-
-        if (cartEntity != null)
+        if (cart != null)
         {
-            var cart = cartEntity.ShoppingCartProducts;
             return cart;
         }
 
-        else return null!;
+        return Enumerable.Empty<ProductEntity>();
     }
 
     public decimal OrderPrice(IEnumerable<ProductEntity> cart)
@@ -59,7 +65,7 @@ public class ShoppingCartService
             decimal orderPrice = 0;
             foreach (var product in cart)
             {
-                product.ProductPrice += orderPrice;
+                orderPrice += product.ProductPrice;
             }
             return orderPrice;
         }
@@ -70,15 +76,16 @@ public class ShoppingCartService
     {
         if (cart != null)
         {
-            decimal orderPrice = 0;
-            decimal normalPrice = 0;
             decimal orderDiscount = 0;
             foreach (var product in cart)
             {
-                product.ProductPrice += normalPrice;
-                product.ProductOfferPrice += orderPrice;
+                if (product.ProductOfferPrice != null)
+                {
+                    
+                    orderDiscount = product.ProductPrice -= (decimal)product.ProductOfferPrice;
+                    
+                }
             }
-            normalPrice -= orderPrice = orderDiscount;
             return orderDiscount;
         }
         else return 0;
@@ -93,12 +100,12 @@ public class ShoppingCartService
             {
                 if (product.ProductOfferPrice != null)
                 {
-                    product.ProductOfferPrice += totalOrderPrice;
+                     totalOrderPrice += product.ProductOfferPrice ?? 0;
                 }
 
                 else
                 {
-                    product.ProductPrice += totalOrderPrice;
+                    totalOrderPrice += product.ProductPrice;
                 }
             }
             

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Projektgrupp4.Contexts;
 
@@ -11,9 +12,11 @@ using Projektgrupp4.Contexts;
 namespace Projektgrupp4.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20231114205056_Hej")]
+    partial class Hej
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -288,7 +291,12 @@ namespace Projektgrupp4.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ShoppingCartEntityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("ArticleNumber");
+
+                    b.HasIndex("ShoppingCartEntityUserId");
 
                     b.ToTable("Products");
                 });
@@ -363,15 +371,7 @@ namespace Projektgrupp4.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasKey("UserId");
 
                     b.ToTable("ShoppingCart");
                 });
@@ -548,6 +548,13 @@ namespace Projektgrupp4.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductEntity", b =>
+                {
+                    b.HasOne("Projektgrupp4.Models.Entities.ShoppingCartEntity", null)
+                        .WithMany("ShoppingCartProducts")
+                        .HasForeignKey("ShoppingCartEntityUserId");
+                });
+
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ProductItemEntity", b =>
                 {
                     b.HasOne("Projektgrupp4.Models.Entities.CategoryEntity", "Category")
@@ -596,19 +603,11 @@ namespace Projektgrupp4.Migrations
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.ShoppingCartEntity", b =>
                 {
-                    b.HasOne("Projektgrupp4.Models.Entities.ProductEntity", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Projektgrupp4.Models.Entities.UserEntity", "ShoppingCartUser")
                         .WithOne("ShoppingCart")
                         .HasForeignKey("Projektgrupp4.Models.Entities.ShoppingCartEntity", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
 
                     b.Navigation("ShoppingCartUser");
                 });
@@ -620,6 +619,11 @@ namespace Projektgrupp4.Migrations
                     b.Navigation("ProductEntries");
 
                     b.Navigation("ProductReviews");
+                });
+
+            modelBuilder.Entity("Projektgrupp4.Models.Entities.ShoppingCartEntity", b =>
+                {
+                    b.Navigation("ShoppingCartProducts");
                 });
 
             modelBuilder.Entity("Projektgrupp4.Models.Entities.UserEntity", b =>

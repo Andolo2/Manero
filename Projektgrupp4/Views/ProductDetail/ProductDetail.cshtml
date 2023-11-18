@@ -162,7 +162,10 @@
                 <p>@Model.ProductDescription</p>
             </div>
             <div class="buttonContainer">
-                <button class="button335W">+ ADD TO CART</button>
+                <form asp-action="AddProduct" asp-controller="ShoppingCart" method="post">
+                    <input type="text" name="ArticleNumber" value="@Model.ArticleNumber" hidden/>
+                    <button type="submit" class="button335W">+ ADD TO CART</button>
+                </form>>
             </div>
         </div>
         <div class="productReviews">

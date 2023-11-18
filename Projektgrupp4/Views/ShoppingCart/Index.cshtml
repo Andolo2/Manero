@@ -1,20 +1,18 @@
-﻿@inject ShoppingCartService _shoppingCartService;
-
+﻿@using Projektgrupp4.Controllers;
+@using System.Security.Claims;
+@inject ShoppingCartService _shoppingCartService;
 
 @{
-    var cart = _shoppingCartService.GetCartAsync();
-    var orderPrice = _shoppingCartService.OrderPrice(await cart);
-    var orderDiscount = _shoppingCartService.OrderDiscount(await cart);
-    var totalOrderPrice = _shoppingCartService.TotalOrderPrice(await cart);
+    
+    
+    ClaimsPrincipal currentUser = User;
+    var userId = currentUser.FindFirst(ClaimTypes.NameIdentifier).Value;
+    var cart = _shoppingCartService.GetShoppingCart(userId);
 
-    if (totalOrderPrice < 50)
-    {
-        totalOrderPrice = totalOrderPrice += 5;
-    }
 }
 
 @{
-    if (cart != null)
+    if (cart.Any() != false)
     {
         <section class="shoppingCart">
             <div class="container">
@@ -24,27 +22,38 @@
                     <i class="fa-light fa-bag-shopping"></i>
                 </div>
                 @{
-                    foreach (var c in await cart)
+                    foreach (var c in cart)
                     {
                         <div class="productItem">
                             <div class="productImage">
                                 <img class="image" src="/images/ProductImage.svg" alt="">
+                                @if (@c.ProductOfferPrice != null)
+                                {
                                 <img class="sale" src="/images/Sale.svg" alt="">
+                                }
                             </div>
                             <div class="productInfo">
                                 <p class="productTitle">@c.ProductTitle</p>
                                 <div class="price">
-                                    <p class="normalPrice">@c.ProductPrice</p>
-                                    <p class="discountPrice">@c.ProductOfferPrice</p>
+                                    @if (@c.ProductOfferPrice != null)
+                                    {
+                                    <p class="normalPrice">$@c.ProductPrice</p>
+                                    <p class="discountPrice">$@c.ProductOfferPrice</p>
+                                    }
+                                    else
+                                    {
+                                    <p>$@c.ProductPrice</p>
+                                    }
                                 </div>
-                                @foreach (var x in c.ProductEntries)
+                                @if (@c.ProductEntry.Size.SizeName != null)
                                 {
-                                    <p class="size">Size: @x.Color.ColorName</p>
+                                    <p class="size">Size: @c.ProductEntry.Size.SizeName</p>
                                 }
-                                @foreach (var x in c.ProductEntries)
+                                else
                                 {
-                                    <p class="color">Color: @x.Size.SizeName</p>
+                                    <p class="size">Size: - </p>
                                 }
+                                <p class="color">Color: @c.ProductEntry.Color.ColorName</p>
                             </div>
                             <div class="productAmount">
                                 <button class="increment"><i class="fa-solid fa-plus"></i></button>
@@ -53,40 +62,83 @@
                             </div>
                         </div>
                     }
+
+                    <div class="promocode">
+                        <p>Promocode applied</p><i class="fa-solid fa-check"></i>
+                    </div>
+                    
+                    decimal normalPrice = 0;
+
+                    foreach (var c in cart)
+                    {
+                        normalPrice += c.ProductPrice;
+                    }
+
+                    <div class="receipt">
+                        <div class="subtotal">
+                            <p>subtotal</p>
+                            <p class="totalamount">$@normalPrice</p>
+                        </div>
+                        @{
+                            decimal discountPrice = 0;
+                            decimal discount = 0;
+                            decimal usualPrice = 0;
+                            foreach (var c in cart)
+                            {
+                                if (c.ProductOfferPrice > 0)
+                                {
+                                    discount += c.ProductOfferPrice ?? 0;
+                                    usualPrice += c.ProductPrice;
+                                }
+                            }
+                            if (discount == 0)
+                            {
+                                discountPrice = 0;
+                            }
+                            else
+                            {
+                                discountPrice = usualPrice -= discount;
+                            }
+                        }
+                        <div class="discount">
+                            <p>discount</p>
+                            <p class="totaldiscount">-$@discountPrice</p>
+                        </div>
+                        @{
+                            decimal totalPrice = normalPrice -= discountPrice;
+                        }
+                        <div class="delivery">
+                            <p>delivery</p>
+                            @if (totalPrice <= 50)
+                            {
+                                <p class="shipmentCost">$5</p>
+                            }
+                            else
+                            {
+                                <p class="shipmentCost">Free</p>
+                            }
+                                    
+                        </div>
+                        <div class="dividingBorder"></div>
+                        @{
+                            if (totalPrice < 50)
+                            {
+                                totalPrice = totalPrice += 5;
+                            }
+                        }
+                        <div class="totalOrderCost">
+
+                            
+                            <p>Total</p>
+                            <p class="totalCost">$@totalPrice</p>
+                        </div>
+                    </div>
                 }
-                <div class="promocode">
-                    <p>Promocode applied</p><i class="fa-solid fa-check"></i>
-                </div>
-                <div class="receipt">
-                    <div class="subtotal">
-                        <p>Subtotal</p>
-                        <p class="totalAmount">@orderPrice</p>
-                    </div>
-                    <div class="discount">
-                        <p>Discount</p>
-                        <p class="totalDiscount">@orderDiscount</p>
-                    </div>
-                    <div class="delivery">
-                        <p>Delivery</p>
-                        @if (totalOrderPrice <= 50)
-                        {
-                            <p class="shipmentCost">$5</p>
-                        }
-                        else
-                        {
-                            <p class="shipmentCost">Free</p>
-                        }
-                    </div>
-                    <div class="dividingBorder"></div>
-                    <div class="totalOrderCost">
-                        <p>Total</p>
-                        <p class="totalCost">@totalOrderPrice</p>
-                    </div>
-                </div>
                 <button class="button335W">PROCEED TO CHECKOUT</button>
             </div>
         </section>
-    }
+        
+}
 
     else
     {
