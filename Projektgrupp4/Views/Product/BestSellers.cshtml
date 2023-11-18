@@ -32,9 +32,9 @@
                 {
                     if (product != null)
                     {
-                        var isProductSelected = Selectedproducts.Any(item => item.Product.ArticleNumber == product.ArticleNumber);
+                     @*    var isProductSelected = Selectedproducts.Any(item => item.Product.ArticleNumber == product.ArticleNumber);
                         if (isProductSelected)
-                        {
+                        { *@
                             <a asp-controller="ProductDetail" asp-action="ProductDetail" asp-route-ArticleNumber="@product.ArticleNumber" class="card">
                                 <img class="productImage" src="/images/productImage.svg" alt="Image of product">
                                 <div class="text">
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                             </a>
-                        }
+                     @*    } *@
                     }
                 }
 
