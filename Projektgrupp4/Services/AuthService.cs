@@ -11,6 +11,10 @@ namespace Projektgrupp4.Services
         private readonly UserManager<UserEntity> _userManager;
         private readonly SignInManager<UserEntity> _signInManager;
 
+        public AuthService()
+        {
+        }
+
         public AuthService(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
         {
             _userManager = userManager;

@@ -13,6 +13,10 @@ public class ShoppingCartService
         _context = context;
     }
 
+    public ShoppingCartService()
+    {
+    }
+
     public void AddToCartAsync(string userId, int productId)
     {
 

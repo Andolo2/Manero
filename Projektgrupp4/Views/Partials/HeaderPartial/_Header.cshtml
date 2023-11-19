@@ -1,4 +1,9 @@
-﻿<section class="Header-Section">
+﻿@using System.Security.Claims;
+@inject ShoppingCartService _shoppingCartService;
+
+
+
+<section class="Header-Section">
     <div class="container-fluid">
         <div class="bottom-menu">
             <button id="menu-toggle" class="fa-sharp fa-light fa-bars"></button>
@@ -10,16 +15,38 @@
                     <img src="~/images/logos/logo.svg" alt="logo">
                 </div>
             </a>
-
+            
             <input class="main-search" type="text" placeholder="&#xF002; Search" style="font-family: Arial, FontAwesome" />
             <div class="shopping-cart">
                 <i class="fa-thin fa-basket-shopping"></i>
-                <div class="cart-items">
-                    <p>$0</p>
-                </div>
+                @{
+                    try
+                    {
+                        ClaimsPrincipal currentUser = User;
+                        var userId = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                        if (userId != null)
+                        {
+                            var cart = _shoppingCartService.GetShoppingCart(userId);
+                            var totalCost = _shoppingCartService.OrderPrice(cart);
+                            int totalCartCost = (int)totalCost;
+
+
+                            <div class="cart-items">
+                                <p>$@totalCartCost</p>
+                            </div>
+                        }
+
+                    }
+                    catch
+                    {
+                        <div class="cart-items">
+                            <p>$0</p>
+                        </div>
+                    }
+                }
             </div>
         </div>
-
         <div class="slide-menu">
             <div class="slide-menu-top">
                 <h1>Contact US</h1>
